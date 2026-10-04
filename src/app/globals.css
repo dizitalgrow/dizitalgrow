@@ -1,0 +1,269 @@
+@import "tailwindcss";
+
+:root {
+  --radius: 0.25rem;
+
+  /* Typography System: Space Grotesk for Headings, Inter for Body */
+  --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* DizitalGrow Cyber System Color Palette */
+  --color-bg-primary: #050505;
+  --color-accent-lime: #D5FF40;
+  --color-accent-lime-hover: #c2ea36;
+  --color-accent-lime-glow: rgba(213, 255, 64, 0.35);
+  --color-surface: #101010;
+  --color-surface-secondary: #181818;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B0B0B0;
+  --color-border-cyber: rgba(213, 255, 64, 0.15);
+  --color-border-cyber-hover: rgba(213, 255, 64, 0.45);
+
+  /* Semantic UI Tokens */
+  --background: #050505;
+  --foreground: #FFFFFF;
+  --surface: #101010;
+  --card: #101010;
+  --card-foreground: #FFFFFF;
+  --popover: #101010;
+  --popover-foreground: #FFFFFF;
+  
+  --primary: #D5FF40;
+  --primary-foreground: #050505;
+  
+  --secondary: #181818;
+  --secondary-foreground: #FFFFFF;
+  
+  --muted: #181818;
+  --muted-foreground: #B0B0B0;
+  
+  --accent: #D5FF40;
+  --accent-foreground: #050505;
+  
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  
+  --border: rgba(213, 255, 64, 0.15);
+  --input: rgba(213, 255, 64, 0.2);
+  --ring: #D5FF40;
+}
+
+@theme {
+  --color-bg-primary: var(--color-bg-primary);
+  --color-accent-lime: var(--color-accent-lime);
+  --color-surface: var(--color-surface);
+  --color-surface-secondary: var(--color-surface-secondary);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-border-cyber: var(--color-border-cyber);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+/* Base Styles */
+html,
+body,
+main {
+  background-color: #050505 !important;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* 1600px Max-Width Layout System */
+.container-cyber {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-cyber {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-cyber {
+    padding-inline: 4rem;
+  }
+}
+
+/* Backward compatibility container alias */
+.container-edge {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-edge {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-edge {
+    padding-inline: 4rem;
+  }
+}
+
+/* Cyber Button System */
+.btn-cyber-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: #D5FF40;
+  color: #050505;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 20px rgba(213, 255, 64, 0.2);
+  cursor: pointer;
+}
+
+.btn-cyber-primary:hover {
+  background-color: #c2ea36;
+  box-shadow: 0 0 30px rgba(213, 255, 64, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-cyber-primary:active {
+  transform: translateY(0);
+}
+
+.btn-cyber-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(213, 255, 64, 0.25);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-cyber-secondary:hover {
+  border-color: #D5FF40;
+  background-color: #181818;
+  color: #D5FF40;
+  transform: translateY(-2px);
+}
+
+.btn-cyber-secondary:active {
+  transform: translateY(0);
+}
+
+/* Backward compatibility button alias */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #D5FF40;
+  color: #050505;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 1.75rem;
+  border-radius: 2px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.pill-btn:hover {
+  background-color: #c2ea36;
+  box-shadow: 0 0 25px rgba(213, 255, 64, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Cyber Card Styling */
+.cyber-card {
+  background-color: #101010;
+  border: 1px solid rgba(213, 255, 64, 0.15);
+  border-radius: 4px;
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-card:hover {
+  background-color: #181818;
+  border-color: rgba(213, 255, 64, 0.45);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 30px -10px rgba(213, 255, 64, 0.15);
+}
+
+/* Grid & Cyber Tech Details */
+.cyber-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(213, 255, 64, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(213, 255, 64, 0.04) 1px, transparent 1px);
+}
+
+.cyber-dot-matrix {
+  background-image: radial-gradient(rgba(213, 255, 64, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.eyebrow {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #D5FF40;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.hairline-divider {
+  border-top: 1px solid rgba(213, 255, 64, 0.15);
+}
+
+::selection {
+  background-color: #D5FF40;
+  color: #050505;
+}
