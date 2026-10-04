@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-4 pb-10 sm:pt-6 sm:pb-12 lg:pt-8 lg:pb-12 bg-[#050505] cyber-grid-bg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-32 bg-[#050505] cyber-grid-bg">
       {/* Background Radial Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[radial-gradient(circle,rgba(213,255,64,0.08)_0%,transparent_70%)] pointer-events-none blur-3xl" />
 
