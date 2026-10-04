@@ -280,19 +280,25 @@ export const CONTACT_METHODS = [
     iconName: "Instagram",
     label: "Instagram",
     value: "@dizitalgrow",
-    href: "https://instagram.com/dizitalgrow",
+    href: "https://www.instagram.com/dizitalgrow/",
   },
   {
-    iconName: "Facebook",
-    label: "Facebook",
+    iconName: "Linkedin",
+    label: "LinkedIn",
     value: "DizitalGrow",
-    href: "https://facebook.com/dizitalgrow",
+    href: "https://www.linkedin.com/in/dizital-grow",
   },
   {
     iconName: "Mail",
     label: "Email",
-    value: "hello@dizitalgrow.in",
-    href: "mailto:hello@dizitalgrow.in",
+    value: "contact@dizitalgrow.in",
+    href: "mailto:contact@dizitalgrow.in",
+  },
+  {
+    iconName: "WhatsApp",
+    label: "WhatsApp",
+    value: "9187126193",
+    href: "https://wa.me/9187126193",
   },
 ];
 

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -15,23 +16,18 @@ export function DizitalGrowLogo({
 }: LogoProps) {
   return (
     <div className={cn("inline-flex flex-col select-none group", className)}>
-      <div className="flex items-center gap-2">
-        {/* Cyber Monogram Badge */}
-        <div className="h-8 w-8 rounded-[2px] bg-[#101010] border border-[rgba(213,255,64,0.3)] flex items-center justify-center font-display font-extrabold text-sm text-[#D5FF40] shadow-[0_0_12px_rgba(213,255,64,0.15)] group-hover:border-[#D5FF40] transition-colors">
-          <span>DG</span>
-        </div>
-
-        {/* Brand Text in Space Grotesk */}
-        <span className="font-display tracking-tight text-xl sm:text-2xl font-extrabold uppercase text-white leading-none">
-          Dizital<span className="text-[#D5FF40]">Grow</span>
-        </span>
-
-        {/* Live System Indicator */}
-        <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40] shadow-[0_0_8px_#D5FF40] animate-pulse" />
+      <div className="flex items-center gap-2 relative w-[56px] h-[56px]">
+        <Image 
+          src="/logo-square.png" 
+          alt="DizitalGrow Logo" 
+          fill
+          className="object-contain"
+          priority
+        />
       </div>
-
+      {/* showTagline kept for backwards compatibility but hidden visually or just keep as is */}
       {showTagline && (
-        <span className="font-mono text-[9px] tracking-[0.25em] text-[#B0B0B0] uppercase mt-1 pl-10 font-medium">
+        <span className="font-mono text-[9px] tracking-[0.25em] text-[#B0B0B0] uppercase mt-0 pl-12 font-medium">
           BUILD • GROW • SCALE
         </span>
       )}
@@ -50,11 +46,16 @@ export function DGMonogram({
     <div
       style={{ width: size, height: size }}
       className={cn(
-        "rounded-[2px] bg-[#101010] border border-[rgba(213,255,64,0.3)] flex items-center justify-center font-display font-extrabold text-sm text-[#D5FF40] shadow-[0_0_12px_rgba(213,255,64,0.2)]",
+        "relative flex items-center justify-center overflow-hidden rounded-[2px]",
         className
       )}
     >
-      DG
+      <Image
+        src="/logo-square.png"
+        alt="DG Icon"
+        fill
+        className="object-contain"
+      />
     </div>
   );
 }
