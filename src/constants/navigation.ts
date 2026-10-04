@@ -33,7 +33,7 @@ export const FOOTER_SERVICES: string[] = [
 export const FOOTER_CONNECT_LINKS: NavItem[] = [
   { label: "Instagram: @dizitalgrow", href: "https://instagram.com/dizitalgrow" },
   { label: "Facebook: DizitalGrow", href: "https://facebook.com/dizitalgrow" },
-  { label: "Email: hello@dizitalgrow.in", href: "mailto:hello@dizitalgrow.in" },
+  { label: "Email: contact@dizitalgrow.in", href: "mailto:contact@dizitalgrow.in" },
 ];
 
 export const FOOTER_CONNECT = FOOTER_CONNECT_LINKS;

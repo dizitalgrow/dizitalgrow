@@ -90,10 +90,10 @@ export default function PrivacyPolicyPage() {
             <p>
               If you have any questions about this Privacy Policy or how your data is handled, please email us directly at:{" "}
               <a
-                href="mailto:hello@dizitalgrow.in"
+                href="mailto:contact@dizitalgrow.in"
                 className="text-[#D5FF40] hover:underline underline-offset-4 font-mono font-bold"
               >
-                hello@dizitalgrow.in
+                contact@dizitalgrow.in
               </a>
             </p>
           </section>

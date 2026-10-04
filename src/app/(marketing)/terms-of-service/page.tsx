@@ -88,10 +88,10 @@ export default function TermsOfServicePage() {
             <p>
               If you have any questions about these Terms of Service, please reach out to us at:{" "}
               <a
-                href="mailto:hello@dizitalgrow.in"
+                href="mailto:contact@dizitalgrow.in"
                 className="text-[#D5FF40] hover:underline underline-offset-4 font-mono font-bold"
               >
-                hello@dizitalgrow.in
+                contact@dizitalgrow.in
               </a>
             </p>
           </section>

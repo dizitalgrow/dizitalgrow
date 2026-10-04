@@ -26,8 +26,8 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-3">
             <span>DIRECT INQUIRIES:</span>
-            <a href="mailto:hello@dizitalgrow.in" className="text-[#D5FF40] hover:underline">
-              HELLO@DIZITALGROW.IN
+            <a href="mailto:contact@dizitalgrow.in" className="text-[#D5FF40] hover:underline">
+              contact@dizitalgrow.in
             </a>
           </div>
         </div>
@@ -37,7 +37,7 @@ export function Footer() {
           {/* Brand Info */}
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <DizitalGrowLogo showTagline={true} />
+              <DizitalGrowLogo showTagline={false} />
             </Link>
 
             <p className="mt-5 max-w-md text-sm sm:text-base text-[#B0B0B0] leading-relaxed font-normal">
