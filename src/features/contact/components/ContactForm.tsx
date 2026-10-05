@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, Loader2, ArrowUpRight } from "lucide-react";
 import { contactSchema, type ContactFormData } from "../schemas";
 import { submitContactEnquiry } from "../actions";
+import { sendEmailEnquiry } from "@/lib/emailjs";
 
 const LOOKING_FOR_OPTIONS = [
   "Website Development",
@@ -18,10 +19,11 @@ const LOOKING_FOR_OPTIONS = [
 ];
 
 const BUDGET_OPTIONS = [
-  "< $2,500",
-  "$2,500 – $5,000",
-  "$5,000 – $10,000",
-  "$10,000+",
+  "₹5,000 – ₹10,000",
+  "₹10,000 – ₹25,000",
+  "₹25,000 – ₹50,000",
+  "₹50,000 – ₹1,00,000",
+  "₹1,00,000+",
   "Flexible / Need Consultation",
 ];
 
@@ -50,14 +52,28 @@ export function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     setServerError(null);
     try {
-      const response = await submitContactEnquiry(data);
-      if (response.success) {
-        setSubmitted(true);
-      } else {
-        setServerError(response.message || "Something went wrong. Please try again.");
-      }
-    } catch {
-      setServerError("An unexpected error occurred. Please try again.");
+      await sendEmailEnquiry({
+        name: data.name,
+        email: data.email,
+        company: data.company,
+        phone: data.phone,
+        solution: data.service,
+        budget: data.budget,
+        details: data.details,
+      });
+
+      await submitContactEnquiry(data);
+
+      alert("Inquiry sent successfully!");
+      setSubmitted(true);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : typeof err === "object" && err !== null && "text" in err
+          ? String((err as { text: unknown }).text)
+          : "An unexpected error occurred while sending your inquiry. Please try again.";
+      setServerError(message);
     }
   };
 
@@ -234,7 +250,7 @@ export function ContactForm() {
             htmlFor="budget"
             className="text-xs font-mono uppercase tracking-wider text-white font-bold"
           >
-            Budget Allocation
+            Budget Allocation (INR)
           </label>
           <select
             id="budget"
@@ -243,7 +259,7 @@ export function ContactForm() {
             defaultValue=""
           >
             <option value="" disabled className="bg-[#101010] text-[#B0B0B0]">
-              Select budget range
+              Select budget range (₹)
             </option>
             {BUDGET_OPTIONS.map((b) => (
               <option key={b} value={b} className="bg-[#101010] text-white">
