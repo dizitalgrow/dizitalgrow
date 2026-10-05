@@ -64,7 +64,6 @@ export function ContactForm() {
 
       await submitContactEnquiry(data);
 
-      alert("Inquiry sent successfully!");
       setSubmitted(true);
     } catch (err: unknown) {
       const message =
