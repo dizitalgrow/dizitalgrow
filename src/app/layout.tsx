@@ -24,7 +24,12 @@ export const metadata: Metadata = {
       "We build websites, web apps, mobile apps, and advertising systems that help businesses get more customers.",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
