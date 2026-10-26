@@ -12,7 +12,7 @@ export default function TermsOfServicePage() {
       <article className="container-cyber pt-16 pb-24 max-w-3xl">
         <div className="border-b border-[rgba(213,255,64,0.15)] pb-6">
           <p className="font-mono text-xs uppercase tracking-widest text-[#D5FF40]">
-            // LEGAL
+            {"// LEGAL"}
           </p>
           <h1 className="font-display mt-2 text-3xl sm:text-5xl font-extrabold uppercase text-white">
             TERMS OF SERVICE

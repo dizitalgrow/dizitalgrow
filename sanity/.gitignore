@@ -1,0 +1,6 @@
+# Sanity Studio
+node_modules
+.sanity
+dist
+.env.local
+.env.*.local

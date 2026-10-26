@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { RefreshCw, ArrowLeft } from "lucide-react";
 
 interface RootErrorProps {
   error: Error & { digest?: string };
@@ -14,28 +15,33 @@ export default function RootError({ error, reset }: RootErrorProps) {
   }, [error]);
 
   return (
-    <div className="container-cyber flex min-h-[70vh] flex-col items-center justify-center text-center py-24 bg-[#050505]">
-      <p className="font-mono text-xs uppercase tracking-widest text-[#D5FF40] font-bold">
-        [ SYSTEM EXCEPTION ]
-      </p>
-      <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold tracking-tight text-white font-display uppercase">
-        ANOMALY ENCOUNTERED
+    <div className="container-cyber flex min-h-[70vh] flex-col items-center justify-center text-center py-20">
+      <span className="font-mono text-xs uppercase tracking-widest text-[#D5FF40] font-bold">
+        {"// UNEXPECTED ERROR"}
+      </span>
+      <h1 className="mt-3 text-2xl sm:text-4xl font-extrabold tracking-tight text-white font-display uppercase">
+        Something went wrong
       </h1>
-      <p className="mt-4 max-w-md text-sm text-[#B0B0B0] leading-relaxed font-normal">
-        Execution interrupted by an unexpected error state. Attempt reload or return to primary interface.
+      <p className="mt-3 max-w-md text-xs sm:text-sm text-[#B0B0B0] leading-relaxed font-normal">
+        An error occurred while loading this content. You can try refreshing the page or returning to the homepage.
       </p>
 
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
         <button
           type="button"
           onClick={() => reset()}
-          className="btn-cyber-primary text-xs uppercase tracking-wider cursor-pointer"
+          className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-5 py-2.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors cursor-pointer"
         >
-          RETRY EXECUTION
+          <RefreshCw className="h-3.5 w-3.5" />
+          <span>Try Again</span>
         </button>
-        <Button to="/" variant="outline">
-          RETURN ROOT
-        </Button>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 border border-[rgba(213,255,64,0.25)] text-white px-5 py-2.5 text-xs font-display font-bold uppercase tracking-wider rounded-[2px] hover:border-[#D5FF40] hover:text-[#D5FF40] transition-colors"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          <span>Return Home</span>
+        </Link>
       </div>
     </div>
   );

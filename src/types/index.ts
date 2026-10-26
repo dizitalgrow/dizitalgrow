@@ -49,7 +49,7 @@ export interface TestimonialItem {
 }
 
 export interface ContactMethodItem {
-  iconName: "WhatsApp" | "Mail" | "Instagram" | "LinkedIn";
+  iconName: "WhatsApp" | "Mail" | "Instagram";
   label: string;
   value: string;
   href: string;

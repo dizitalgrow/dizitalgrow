@@ -1,27 +1,43 @@
 import type { Metadata } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/providers";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "DizitalGrow — Websites, Apps & Ads That Grow Your Business",
+  title: "Dizital Grow — Digital Growth Platform for Businesses & Creators",
   description:
-    "We build websites, web apps, mobile apps, and advertising systems that help businesses get more customers.",
+    "Dizital Grow helps people and businesses understand digital growth, build a stronger online presence, and take practical steps toward better marketing and business growth.",
   metadataBase: new URL("https://dizitalgrow.in"),
+  alternates: {
+    canonical: "https://dizitalgrow.in",
+  },
   openGraph: {
-    title: "DizitalGrow — Websites, Apps & Ads That Grow Your Business",
+    title: "Dizital Grow — Digital Growth Platform",
     description:
-      "We build websites, web apps, mobile apps, and advertising systems that help businesses get more customers.",
+      "Understand what works, build a stronger online presence, and turn your digital efforts into meaningful business opportunities.",
     type: "website",
     url: "https://dizitalgrow.in",
-    siteName: "DizitalGrow",
+    siteName: "Dizital Grow",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DizitalGrow — Websites, Apps & Ads That Grow Your Business",
+    title: "Dizital Grow — Digital Growth Platform",
     description:
-      "We build websites, web apps, mobile apps, and advertising systems that help businesses get more customers.",
+      "Understand what works, build a stronger online presence, and turn your digital efforts into meaningful business opportunities.",
   },
   icons: {
     icon: [
@@ -39,22 +55,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ backgroundColor: "#050505" }}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body
-        className="min-h-screen bg-[#050505] text-[#FFFFFF] antialiased flex flex-col justify-between selection:bg-[#D5FF40] selection:text-[#050505]"
-        style={{ backgroundColor: "#050505" }}
-      >
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`}
+    >
+      <body className="min-h-screen bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased flex flex-col justify-between selection:bg-[#D5FF40] selection:text-[#050505] transition-colors duration-200">
         <Providers>
           <Header />
-          <main className="pt-16 flex-1 bg-[#050505]" style={{ backgroundColor: "#050505" }}>
+          <main className="pt-16 flex-1 bg-[var(--color-bg-primary)] transition-colors duration-200">
             {children}
           </main>
           <Footer />

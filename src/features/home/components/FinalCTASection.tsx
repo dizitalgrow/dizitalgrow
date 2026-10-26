@@ -1,64 +1,52 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, PhoneCall } from "lucide-react";
-import { Reveal } from "@/components/ui/Reveal";
+import { ArrowUpRight, Mail } from "lucide-react";
+import { VERIFIED_EMAIL } from "@/constants/navigation";
 
 export function FinalCTASection() {
   return (
-    <section className="py-20 md:py-28 bg-[#050505] border-t border-[rgba(213,255,64,0.15)] relative overflow-hidden">
-      <div className="container-cyber relative z-10">
-        <Reveal delay={0.05}>
-          <div className="rounded-[4px] border border-[rgba(213,255,64,0.25)] bg-[#101010] px-6 py-12 sm:px-12 sm:py-16 text-center shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(213,255,64,0.08)]">
-            <div className="mx-auto max-w-3xl">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#D5FF40] bg-[#181818] border border-[rgba(213,255,64,0.25)] px-3.5 py-1 rounded-[2px] mb-6">
-                <span className="h-2 w-2 rounded-full bg-[#D5FF40] shadow-[0_0_6px_#D5FF40] animate-pulse" />
-                <span>LET&apos;S TALK GROWTH</span>
-              </div>
+    <section className="py-20 md:py-28 bg-[#080808]">
+      <div className="container-cyber">
+        <div className="border border-[rgba(213,255,64,0.18)] bg-[#050505] p-8 sm:p-12 lg:p-16">
+          <div className="max-w-2xl space-y-6">
+            <div className="inline-flex items-center gap-2">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+                {"// READY TO TAKE THE NEXT STEP?"}
+              </span>
+            </div>
 
-              {/* Headline */}
-              <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-white leading-tight">
-                READY TO GROW? <br />
-                <span className="text-[#D5FF40] drop-shadow-[0_0_30px_rgba(213,255,64,0.3)]">
-                  LET&apos;S DISCUSS YOUR PROJECT.
-                </span>
-              </h2>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
+              Let&apos;s find your next <br />
+              <span className="text-[#D5FF40]">digital growth opportunity.</span>
+            </h2>
 
-              <p className="mt-4 mx-auto max-w-xl text-base text-[#B0B0B0] leading-relaxed font-normal">
-                Tell us about your business and what you&apos;d like to build. We&apos;ll respond within one business day with honest advice, clear pricing, and a simple roadmap.
-              </p>
+            <p className="text-sm sm:text-base text-[#B0B0B0] leading-relaxed font-normal">
+              Tell us about your business, where you are today, and what you want to achieve. We&apos;ll use that information to understand your needs and discuss practical next steps.
+            </p>
 
-              {/* Action Buttons */}
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/contact"
-                  className="btn-cyber-primary text-xs font-bold py-3 px-6 group"
-                >
-                  <span>Start Project</span>
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-6 py-3.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors"
+              >
+                <span>Get Growth Advice</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
 
-                <Link
-                  href="/contact"
-                  className="btn-cyber-secondary text-xs font-bold py-3 px-6 flex items-center gap-2"
-                >
-                  <PhoneCall className="h-3.5 w-3.5 text-[#D5FF40]" />
-                  <span>Book Call</span>
-                </Link>
-              </div>
+              <a
+                href={`mailto:${VERIFIED_EMAIL}`}
+                className="inline-flex items-center gap-2 border border-[rgba(213,255,64,0.25)] text-white px-5 py-3.5 text-xs font-display font-bold uppercase tracking-wider rounded-[2px] hover:border-[#D5FF40] hover:text-[#D5FF40] transition-colors"
+              >
+                <Mail className="h-3.5 w-3.5" />
+                <span>Contact Dizital Grow</span>
+              </a>
+            </div>
 
-              <div className="mt-10 pt-6 border-t border-[rgba(213,255,64,0.1)] flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-[#B0B0B0]">
-                <span>✓ FREE CONSULTATION</span>
-                <span className="text-[rgba(213,255,64,0.3)]">//</span>
-                <span>✓ CLEAR PRICING</span>
-                <span className="text-[rgba(213,255,64,0.3)]">//</span>
-                <span>✓ NO TECH JARGON</span>
-              </div>
+            <div className="pt-4 border-t border-[rgba(213,255,64,0.1)] text-xs font-mono text-[#B0B0B0]">
+              <span>Direct communication. Zero pressure or aggressive sales tactics.</span>
             </div>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

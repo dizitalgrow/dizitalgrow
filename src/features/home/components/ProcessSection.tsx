@@ -1,82 +1,59 @@
-"use client";
-
 import React from "react";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { Reveal } from "@/components/ui/Reveal";
 import { PROCESS_STEPS } from "@/constants/site-data";
 
 export function ProcessSection() {
   return (
-    <section className="py-20 md:py-28 bg-[#050505] border-t border-[rgba(213,255,64,0.15)] relative overflow-hidden" id="process">
+    <section id="process" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] scroll-mt-16">
       <div className="container-cyber">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[rgba(213,255,64,0.15)]">
-          <div className="max-w-2xl">
-            <Reveal delay={0.02}>
-              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#D5FF40]">
-                <span>// PROCESS</span>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.06}>
-              <h2 className="font-display mt-3 text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white uppercase leading-none">
-                HOW WE WORK.
-              </h2>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <p className="mt-4 text-base sm:text-lg text-[#B0B0B0] font-normal leading-relaxed">
-                A simple and transparent workflow from day one. You always know what is being built, when it will be ready, and how it will perform.
-              </p>
-            </Reveal>
+        {/* Section Header */}
+        <div className="max-w-2xl mb-14">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+              {"// OUR PROCESS"}
+            </span>
           </div>
-
-          <Reveal delay={0.14}>
-            <Link
-              href="/process"
-              className="btn-cyber-primary shrink-0 py-2.5 px-5 text-xs font-bold"
-            >
-              <span>See Our Process</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
+            A clear path from <br className="hidden sm:inline" />
+            <span className="text-[#D5FF40]">idea to action.</span>
+          </h2>
+          <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
+            We work transparently through four structured stages so you always understand where we are, what is happening next, and why.
+          </p>
         </div>
 
-        {/* Process Steps Cards */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 pt-12">
-          {PROCESS_STEPS.slice(0, 4).map((step, idx) => (
-            <Reveal key={step.no} delay={idx * 0.08}>
-              <div className="cyber-card group flex flex-col justify-between h-full p-6 sm:p-7 relative overflow-hidden border-[rgba(213,255,64,0.15)] hover:border-[#D5FF40]">
-                <div>
-                  {/* Step Number */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="font-display text-4xl sm:text-5xl font-extrabold text-[#D5FF40] leading-none drop-shadow-[0_0_15px_rgba(213,255,64,0.2)]">
-                      {step.no}
-                    </span>
-                    <span className="font-mono text-[10px] text-[#B0B0B0] border border-[rgba(213,255,64,0.2)] px-2 py-0.5 uppercase tracking-wider rounded-[2px]">
-                      STEP {idx + 1}
-                    </span>
-                  </div>
+        {/* 4 Process Steps Editorial Grid */}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {PROCESS_STEPS.map((step) => (
+            <div
+              key={step.step}
+              className="border-t border-[rgba(213,255,64,0.3)] pt-6 flex flex-col justify-between"
+            >
+              <div>
+                <span className="font-mono text-xs font-bold text-[#D5FF40] block mb-3">
+                  STEP {step.step}
+                </span>
 
-                  {/* Title */}
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white uppercase tracking-tight group-hover:text-[#D5FF40] transition-colors">
-                    {step.title}
-                  </h3>
+                <h3 className="font-display text-xl font-bold uppercase text-white">
+                  {step.name}
+                </h3>
 
-                  {/* Description */}
-                  <p className="mt-3 text-sm text-[#B0B0B0] leading-relaxed font-normal">
-                    {step.description}
-                  </p>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-[rgba(213,255,64,0.1)] flex items-center justify-between text-xs font-mono text-[#D5FF40]">
-                  <span>STEP COMPLETED</span>
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">→ NEXT</span>
-                </div>
+                <p className="mt-3 text-xs sm:text-sm text-[#B0B0B0] leading-relaxed font-normal">
+                  {step.description}
+                </p>
               </div>
-            </Reveal>
+
+              <div className="mt-8 pt-3 border-t border-[rgba(213,255,64,0.1)] text-[11px] font-mono text-[#B0B0B0]">
+                <span>Stage {step.step} / 04</span>
+              </div>
+            </div>
           ))}
+        </div>
+
+        {/* Note on Scope & Guarantees */}
+        <div className="mt-12 border border-[rgba(213,255,64,0.15)] bg-[#0A0A0A] p-5 text-xs text-[#B0B0B0] leading-relaxed">
+          <p>
+            <span className="text-white font-semibold">Scope &amp; Timelines:</span> Deliverables, timelines, and reporting cadence depend on the agreed scope of work. We do not make false promises of overnight rankings or guaranteed advertising returns; we focus on executing proven, disciplined strategies that build compounding value over time.
+          </p>
         </div>
       </div>
     </section>

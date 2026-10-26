@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/query-client";
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -9,15 +12,21 @@ export interface ProvidersProps {
 /**
  * Unified Provider Tree wrapper.
  * Encapsulates client-side providers and mounts once in root layout.
- * Enforces the brand palette strictly and clears any legacy theme overrides.
+ * Integrates TanStack QueryClientProvider and NextThemesProvider.
  */
 export function Providers({ children }: ProvidersProps) {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("dizitalgrow-theme");
-      document.documentElement.removeAttribute("data-theme");
-    }
-  }, []);
+  const queryClient = getQueryClient();
 
-  return <>{children}</>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <NextThemesProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        {children}
+      </NextThemesProvider>
+    </QueryClientProvider>
+  );
 }

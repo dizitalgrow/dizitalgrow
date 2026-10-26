@@ -4,8 +4,7 @@ import { contactSchema, type ContactFormData } from "./schemas";
 import type { ContactActionResult } from "./types";
 
 /**
- * Server Action to validate and submit a contact enquiry.
- * Shared Zod validation ensures boundaries are strictly enforced.
+ * Server Action to validate and process a contact inquiry.
  */
 export async function submitContactEnquiry(
   rawInput: ContactFormData
@@ -21,12 +20,22 @@ export async function submitContactEnquiry(
     };
   }
 
-  // Simulated server mutation / CRM forwarding / email dispatch
   const validatedData = result.data;
-  console.log("[Server Action] Contact enquiry received:", validatedData.email);
+
+  // Bot honeypot check
+  if (validatedData.websiteHoneypot && validatedData.websiteHoneypot.length > 0) {
+    return {
+      success: false,
+      message: "Spam submission rejected.",
+    };
+  }
+
+  console.log(
+    `[Server Action] New inquiry from ${validatedData.name} (${validatedData.email}) regarding ${validatedData.helpWith}`
+  );
 
   return {
     success: true,
-    message: "Thank you — we have received your details.",
+    message: "Thank you. Your inquiry has been received. We will respond with practical advice within one business day.",
   };
 }

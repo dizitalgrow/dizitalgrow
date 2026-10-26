@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Plus, Minus, ArrowUpRight } from "lucide-react";
 import { FAQItem } from "@/constants/site-data";
-import { Reveal } from "@/components/ui/Reveal";
 
 interface FAQAccordionProps {
   items: FAQItem[];
@@ -14,7 +13,7 @@ interface FAQAccordionProps {
 
 export function FAQAccordion({
   items,
-  title = "FREQUENTLY ASKED QUESTIONS",
+  title = "Frequently asked questions.",
   showCTA = true,
 }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -24,62 +23,80 @@ export function FAQAccordion({
   };
 
   return (
-    <section className="py-28 md:py-36 bg-[#050505] border-t border-[rgba(213,255,64,0.15)] relative overflow-hidden" id="faq">
+    <section
+      id="faq"
+      className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] scroll-mt-16"
+    >
       <div className="container-cyber">
-        <div className="grid gap-16 lg:grid-cols-[1fr_1.8fr] items-start">
-          {/* Left Column: Title & CTA */}
-          <div>
-            <Reveal delay={0.02}>
-              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#D5FF40]">
-                <span>// FAQ</span>
-              </div>
-            </Reveal>
+        <div className="grid gap-12 lg:grid-cols-12 items-start">
+          {/* Left Column: Heading & Quick CTA */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="inline-flex items-center gap-2">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+                {"// FAQ"}
+              </span>
+            </div>
 
-            <Reveal delay={0.06}>
-              <h2 className="font-display mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white uppercase leading-tight">
-                {title}
-              </h2>
-            </Reveal>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
+              {title}
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#B0B0B0] leading-relaxed font-normal">
+              Answers to common questions about digital growth, marketing foundations, and practical first steps.
+            </p>
 
             {showCTA && (
-              <Reveal delay={0.1}>
-                <div className="mt-6 space-y-5">
-                  <p className="text-base text-[#B0B0B0] leading-relaxed font-normal">
-                    Have a specific question about your business or need a custom estimate? Reach out directly to our team.
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="btn-cyber-primary py-2.5 px-5 text-xs font-bold"
-                  >
-                    <span>Start Project</span>
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </Reveal>
+              <div className="pt-2">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-5 py-3 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors"
+                >
+                  <span>Get Growth Advice</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
             )}
           </div>
 
-          {/* Right Column: Cyber Accordion */}
-          <div className="border-t border-[rgba(213,255,64,0.15)] divide-y divide-[rgba(213,255,64,0.15)]">
+          {/* Right Column: Accessible Accordion */}
+          <div className="lg:col-span-7 border-t border-[rgba(213,255,64,0.15)] divide-y divide-[rgba(213,255,64,0.15)]">
             {items.map((item, idx) => {
               const isOpen = openIndex === idx;
+              const buttonId = `faq-btn-${idx}`;
+              const panelId = `faq-panel-${idx}`;
+
               return (
-                <div key={idx} className="py-6 sm:py-8 group">
+                <div key={idx} className="py-5 sm:py-6 group">
                   <button
                     type="button"
+                    id={buttonId}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
                     onClick={() => toggle(idx)}
-                    className="flex w-full items-center justify-between gap-6 text-left cursor-pointer"
+                    className="flex w-full items-center justify-between gap-6 text-left cursor-pointer transition-colors"
                   >
-                    <span className="font-display text-lg sm:text-xl font-bold text-white group-hover:text-[#D5FF40] transition-colors uppercase tracking-tight">
+                    <span className="font-display text-base sm:text-lg font-bold text-white group-hover:text-[#D5FF40] transition-colors leading-snug">
                       {item.question}
                     </span>
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[2px] bg-[#101010] border border-[rgba(213,255,64,0.2)] text-[#D5FF40] transition-all group-hover:border-[#D5FF40]">
-                      {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                    <span
+                      aria-hidden="true"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[2px] border border-[rgba(213,255,64,0.2)] text-[#D5FF40] group-hover:border-[#D5FF40] transition-colors"
+                    >
+                      {isOpen ? (
+                        <Minus className="h-3.5 w-3.5" />
+                      ) : (
+                        <Plus className="h-3.5 w-3.5" />
+                      )}
                     </span>
                   </button>
 
                   {isOpen && (
-                    <div className="pt-4 pr-10 text-base text-[#B0B0B0] leading-relaxed font-normal animate-in fade-in duration-200">
+                    <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      className="pt-3 pr-8 text-sm text-[#B0B0B0] leading-relaxed font-normal animate-in fade-in duration-150"
+                    >
                       {item.answer}
                     </div>
                   )}

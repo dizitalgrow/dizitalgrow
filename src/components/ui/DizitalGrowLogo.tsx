@@ -8,29 +8,35 @@ interface LogoProps {
 }
 
 /**
- * Cyber-tech DizitalGrow Brand Wordmark
+ * Dizital Grow Brand Logo & Wordmark
+ * Displays brand icon and crisp typographic name adapting across light/dark modes
  */
 export function DizitalGrowLogo({
   className,
-  showTagline = true,
+  showTagline = false,
 }: LogoProps) {
   return (
-    <div className={cn("inline-flex flex-col select-none group", className)}>
-      <div className="flex items-center gap-2 relative w-[56px] h-[56px]">
-        <Image 
-          src="/logo-square.png" 
-          alt="DizitalGrow Logo" 
+    <div className={cn("inline-flex items-center gap-2.5 select-none group", className)}>
+      <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">
+        <Image
+          src="/logo-square.png"
+          alt="Dizital Grow Logo"
           fill
           className="object-contain"
           priority
         />
       </div>
-      {/* showTagline kept for backwards compatibility but hidden visually or just keep as is */}
-      {showTagline && (
-        <span className="font-mono text-[9px] tracking-[0.25em] text-[#B0B0B0] uppercase mt-0 pl-12 font-medium">
-          BUILD • GROW • SCALE
+
+      <div className="flex flex-col">
+        <span className="font-display text-base sm:text-lg font-extrabold tracking-tight text-white uppercase leading-none">
+          Dizital <span className="text-[#D5FF40]">Grow</span>
         </span>
-      )}
+        {showTagline && (
+          <span className="font-mono text-[9px] tracking-[0.2em] text-[#B0B0B0] uppercase mt-1 font-medium">
+            DIGITAL GROWTH PLATFORM
+          </span>
+        )}
+      </div>
     </div>
   );
 }
@@ -57,40 +63,5 @@ export function DGMonogram({
         className="object-contain"
       />
     </div>
-  );
-}
-
-export function GrowthChartIcon({
-  className,
-  color = "#D5FF40",
-}: {
-  className?: string;
-  color?: string;
-}) {
-  return (
-    <svg
-      viewBox="0 0 36 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn("inline-block", className)}
-    >
-      <rect x="2" y="18" width="5" height="12" rx="1" fill={color} />
-      <rect x="10" y="11" width="5" height="19" rx="1" fill={color} />
-      <rect x="18" y="4" width="5" height="26" rx="1" fill={color} />
-      <path
-        d="M2 24L12 14L19 20L32 5"
-        stroke={color}
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M23 5H32V14"
-        stroke={color}
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

@@ -1,0 +1,158 @@
+[
+  {
+    "_id": "siteSettings",
+    "_type": "siteSettings",
+    "showTopStrip": true,
+    "topStripAnnouncement": "READY TO GROW YOUR BUSINESS? // DISCUSS YOUR PROJECT WITH US",
+    "topStripEmail": "contact@dizitalgrow.in",
+    "topStripButtonLabel": "START PROJECT",
+    "topStripButtonUrl": "/contact",
+    "navbarLogoAlt": "Dizital Grow Logo",
+    "textLogo": "DizitalGrow",
+    "navLinks": [
+      {
+        "_key": "nav-1",
+        "label": "SERVICES",
+        "url": "/services",
+        "openInNewTab": false,
+        "children": [
+          {
+            "_key": "sub-1",
+            "label": "Web Development",
+            "url": "/services#web",
+            "description": "Custom modern web solutions",
+            "openInNewTab": false
+          },
+          {
+            "_key": "sub-2",
+            "label": "Mobile Apps",
+            "url": "/services#apps",
+            "description": "iOS & Android applications",
+            "openInNewTab": false
+          }
+        ]
+      },
+      {
+        "_key": "nav-2",
+        "label": "WORK",
+        "url": "/work",
+        "openInNewTab": false
+      },
+      {
+        "_key": "nav-3",
+        "label": "PROCESS",
+        "url": "/process",
+        "openInNewTab": false
+      },
+      {
+        "_key": "nav-4",
+        "label": "BLOG",
+        "url": "/blog",
+        "openInNewTab": false
+      },
+      {
+        "_key": "nav-5",
+        "label": "ABOUT",
+        "url": "/about",
+        "openInNewTab": false
+      },
+      {
+        "_key": "nav-6",
+        "label": "FAQ",
+        "url": "/faq",
+        "openInNewTab": false
+      },
+      {
+        "_key": "nav-7",
+        "label": "CONTACT",
+        "url": "/contact",
+        "openInNewTab": false
+      }
+    ],
+    "primaryCtaLabel": "START PROJECT",
+    "primaryCtaUrl": "/contact",
+    "footerDescription": "We build websites, web apps, mobile apps, and advertising systems that help businesses get more customers.",
+    "footerContactEmail": "contact@dizitalgrow.in",
+    "footerColumns": [
+      {
+        "_key": "col-1",
+        "heading": "NAVIGATION",
+        "links": [
+          {"_key": "l1", "label": "Home", "url": "/", "openInNewTab": false},
+          {"_key": "l2", "label": "Services", "url": "/services", "openInNewTab": false},
+          {"_key": "l3", "label": "Work", "url": "/work", "openInNewTab": false},
+          {"_key": "l4", "label": "Process", "url": "/process", "openInNewTab": false},
+          {"_key": "l5", "label": "Blog", "url": "/blog", "openInNewTab": false},
+          {"_key": "l6", "label": "About", "url": "/about", "openInNewTab": false},
+          {"_key": "l7", "label": "FAQ", "url": "/faq", "openInNewTab": false},
+          {"_key": "l8", "label": "Contact", "url": "/contact", "openInNewTab": false}
+        ]
+      },
+      {
+        "_key": "col-2",
+        "heading": "SERVICES",
+        "links": [
+          {"_key": "s1", "label": "Website Development", "url": "/services", "openInNewTab": false},
+          {"_key": "s2", "label": "Web Applications", "url": "/services", "openInNewTab": false},
+          {"_key": "s3", "label": "Mobile Apps", "url": "/services", "openInNewTab": false},
+          {"_key": "s4", "label": "Meta Ads", "url": "/services", "openInNewTab": false},
+          {"_key": "s5", "label": "Google Ads", "url": "/services", "openInNewTab": false},
+          {"_key": "s6", "label": "Conversion Tracking", "url": "/services", "openInNewTab": false}
+        ]
+      },
+      {
+        "_key": "col-3",
+        "heading": "CONTACT",
+        "links": [
+          {"_key": "c1", "label": "Instagram: @dizitalgrow", "url": "https://instagram.com/dizitalgrow", "openInNewTab": true},
+          {"_key": "c2", "label": "Facebook: DizitalGrow", "url": "https://facebook.com/dizitalgrow", "openInNewTab": true},
+          {"_key": "c3", "label": "Email: contact@dizitalgrow.in", "url": "mailto:contact@dizitalgrow.in", "openInNewTab": false}
+        ]
+      }
+    ],
+    "footerCtaHeading": "READY TO GROW YOUR BUSINESS?",
+    "footerCtaButtonLabel": "START PROJECT",
+    "footerCtaButtonUrl": "/contact",
+    "socialLinks": [
+      {
+        "_key": "soc-1",
+        "platform": "Instagram",
+        "url": "https://instagram.com/dizitalgrow",
+        "label": "@dizitalgrow"
+      },
+      {
+        "_key": "soc-2",
+        "platform": "Facebook",
+        "url": "https://facebook.com/dizitalgrow",
+        "label": "DizitalGrow"
+      }
+    ],
+    "copyrightText": "© 2026 DizitalGrow. All rights reserved. Websites, Apps & Ads That Grow Your Business.",
+    "legalLinks": [
+      {"_key": "leg-1", "label": "Privacy Policy", "url": "/privacy-policy", "openInNewTab": false},
+      {"_key": "leg-2", "label": "Terms of Service", "url": "/terms-of-service", "openInNewTab": false}
+    ],
+    "defaultSeoTitle": "Dizital Grow | High-Impact Websites, Web Apps & Growth Marketing",
+    "defaultMetaDescription": "We build websites, web apps, mobile apps, and advertising systems that help businesses get more customers."
+  },
+  {
+    "_id": "welcome-to-dizital-grow-blog",
+    "_type": "post",
+    "title": "Scaling Modern Businesses With High-Performance Web Applications and AI",
+    "slug": {
+      "_type": "slug",
+      "current": "scaling-modern-businesses-with-web-apps-and-ai"
+    },
+    "excerpt": "Learn how modern businesses leverage custom web platforms, automated workflows, and targeted growth marketing to achieve exponential ROI.",
+    "category": "AI & Automation",
+    "tags": ["AI", "Web Development", "Growth Marketing", "Automation"],
+    "author": "Dizital Grow",
+    "publishedAt": "2026-10-26T10:00:00.000Z",
+    "featured": true,
+    "readingTime": 6,
+    "seoTitle": "Scaling Modern Businesses With Web Apps & AI | Dizital Grow",
+    "metaDescription": "Explore how custom web applications and AI automation drive real business growth and higher conversions.",
+    "primaryKeyword": "AI business automation",
+    "hideFromSearchEngines": false
+  }
+]
