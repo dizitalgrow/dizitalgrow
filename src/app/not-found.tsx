@@ -16,7 +16,7 @@ export default function NotFound() {
           Page Not Found
         </h2>
         <p className="mt-2 text-xs sm:text-sm text-[#B0B0B0] font-normal leading-relaxed">
-          The page you are looking for doesn&apos;t exist or has moved. Return to the homepage to explore digital growth guides and services.
+          The page you are looking for doesn&apos;t exist or has moved. Return to the homepage to explore blog articles and digital services.
         </p>
         <div className="mt-6">
           <Link

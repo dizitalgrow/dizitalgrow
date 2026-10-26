@@ -195,12 +195,10 @@ export const siteSettings = defineType({
         },
       ],
       initialValue: [
-        {label: 'SERVICES', url: '/#services', openInNewTab: false},
-        {label: 'META CAPI', url: '/#tracking', openInNewTab: false},
-        {label: 'PROCESS', url: '/#process', openInNewTab: false},
-        {label: 'GUIDES', url: '/blog', openInNewTab: false},
-        {label: 'ABOUT', url: '/#about', openInNewTab: false},
-        {label: 'FAQ', url: '/#faq', openInNewTab: false},
+        {label: 'SERVICES', url: '/services', openInNewTab: false},
+        {label: 'PROCESS', url: '/process', openInNewTab: false},
+        {label: 'BLOG', url: '/blog', openInNewTab: false},
+        {label: 'ABOUT', url: '/about', openInNewTab: false},
         {label: 'CONTACT', url: '/contact', openInNewTab: false},
       ],
     }),
@@ -263,6 +261,22 @@ export const siteSettings = defineType({
       group: 'footer',
       description: 'Primary inquiry email shown in the footer.',
       initialValue: 'contact@dizitalgrow.in',
+    }),
+    defineField({
+      name: 'whatsappChannelUrl',
+      title: 'WhatsApp Channel URL',
+      type: 'url',
+      group: 'footer',
+      description: 'Official WhatsApp broadcast channel link.',
+      initialValue: 'https://whatsapp.com/channel/0029VbDnyoKFHWq92fKIGj2N',
+    }),
+    defineField({
+      name: 'whatsappNumber',
+      title: 'WhatsApp Phone Number (For WhatsApp Chat Only)',
+      type: 'string',
+      group: 'footer',
+      description: 'Direct contact phone number strictly for WhatsApp messaging (e.g. +91 91871 26193). Voice calls are excluded.',
+      initialValue: '+91 91871 26193',
     }),
     defineField({
       name: 'footerColumns',
@@ -342,9 +356,9 @@ export const siteSettings = defineType({
             {label: 'Home', url: '/', openInNewTab: false},
             {label: 'Services', url: '/#services', openInNewTab: false},
             {label: 'Meta CAPI', url: '/#tracking', openInNewTab: false},
-            {label: 'Process', url: '/#process', openInNewTab: false},
-            {label: 'Guides', url: '/blog', openInNewTab: false},
-            {label: 'About', url: '/#about', openInNewTab: false},
+            {label: 'Process', url: '/process', openInNewTab: false},
+            {label: 'Blog', url: '/blog', openInNewTab: false},
+            {label: 'About', url: '/about', openInNewTab: false},
             {label: 'FAQ', url: '/#faq', openInNewTab: false},
             {label: 'Contact', url: '/contact', openInNewTab: false},
           ],
@@ -363,6 +377,7 @@ export const siteSettings = defineType({
         {
           heading: 'CONTACT',
           links: [
+            {label: 'WhatsApp Channel', url: 'https://whatsapp.com/channel/0029VbDnyoKFHWq92fKIGj2N', openInNewTab: true},
             {label: 'Instagram: @dizitalgrow', url: 'https://instagram.com/dizitalgrow', openInNewTab: true},
             {label: 'Facebook: DizitalGrow', url: 'https://facebook.com/dizitalgrow', openInNewTab: true},
             {label: 'Email: contact@dizitalgrow.in', url: 'mailto:contact@dizitalgrow.in', openInNewTab: false},
@@ -412,6 +427,8 @@ export const siteSettings = defineType({
               type: 'string',
               options: {
                 list: [
+                  {title: 'WhatsApp Channel', value: 'WhatsApp Channel'},
+                  {title: 'WhatsApp (Direct Chat)', value: 'WhatsApp'},
                   {title: 'Instagram', value: 'Instagram'},
                   {title: 'Facebook', value: 'Facebook'},
                   {title: 'YouTube', value: 'YouTube'},
@@ -446,6 +463,11 @@ export const siteSettings = defineType({
         },
       ],
       initialValue: [
+        {
+          platform: 'WhatsApp Channel',
+          url: 'https://whatsapp.com/channel/0029VbDnyoKFHWq92fKIGj2N',
+          label: 'WhatsApp Channel',
+        },
         {
           platform: 'Instagram',
           url: 'https://instagram.com/dizitalgrow',

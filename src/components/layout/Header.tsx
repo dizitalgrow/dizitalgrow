@@ -68,11 +68,7 @@ export function Header() {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
-                  : link.href === "/contact"
-                  ? pathname === "/contact"
-                  : link.href === "/blog"
-                  ? pathname.startsWith("/blog")
-                  : false;
+                  : pathname.startsWith(link.href);
 
               return (
                 <li key={link.href}>
@@ -137,11 +133,8 @@ export function Header() {
                   const isActive =
                     link.href === "/"
                       ? pathname === "/"
-                      : link.href === "/contact"
-                      ? pathname === "/contact"
-                      : link.href === "/blog"
-                      ? pathname.startsWith("/blog")
-                      : false;
+                      : pathname.startsWith(link.href);
+
 
                   return (
                     <motion.li

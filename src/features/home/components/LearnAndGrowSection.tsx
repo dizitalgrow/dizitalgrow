@@ -25,15 +25,15 @@ export function LearnAndGrowSection({ posts = [] }: LearnAndGrowSectionProps) {
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                  {"// GUIDES & PLAYBOOKS"}
+                  {"// BLOG & ARTICLES"}
                 </span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
-                Simple Guides for <br className="hidden sm:inline" />
+                Practical Articles for <br className="hidden sm:inline" />
                 <span className="text-[#D5FF40]">Smart Digital Decisions.</span>
               </h2>
               <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
-                Straightforward guides on websites, advertising, and tracking to help you understand before you spend.
+                Straightforward articles on websites, advertising, and tracking to help you understand before you spend.
               </p>
             </div>
 
@@ -41,7 +41,7 @@ export function LearnAndGrowSection({ posts = [] }: LearnAndGrowSectionProps) {
               href="/blog"
               className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline shrink-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D5FF40]"
             >
-              <span>Explore All Guides</span>
+              <span>Read The Blog</span>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
@@ -72,10 +72,10 @@ export function LearnAndGrowSection({ posts = [] }: LearnAndGrowSectionProps) {
                 </div>
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-white font-display uppercase">
-                    Knowledge Base &amp; Growth Guides
+                    DizitalGrow Blog &amp; Insights
                   </h3>
                   <p className="text-xs sm:text-sm text-[#B0B0B0] mt-1 leading-relaxed">
-                    Practical playbooks covering business websites, Google Ads, Meta Ads, and server-side tracking.
+                    Practical articles covering business websites, Google Ads, Meta Ads, and server-side tracking.
                   </p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ export function LearnAndGrowSection({ posts = [] }: LearnAndGrowSectionProps) {
                   href="/blog"
                   className="inline-flex items-center gap-1.5 text-xs font-mono text-white hover:text-[#D5FF40] uppercase font-bold px-4 py-2.5 border border-[rgba(213,255,64,0.2)] hover:border-[#D5FF40] rounded-[2px] transition-colors"
                 >
-                  <span>Browse Library</span>
+                  <span>Read Blog</span>
                 </Link>
                 <Link
                   href="/contact"

@@ -4,23 +4,23 @@ export interface NavLink {
 }
 
 export const MAIN_NAV_ITEMS: NavLink[] = [
-  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Process", href: "/process" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/about" },
 ];
 
 export const NAV_LINKS = MAIN_NAV_ITEMS;
 
 export const FOOTER_NAV_LINKS: NavLink[] = [
-  { label: "Home", href: "/" },
-  { label: "Services & Capabilities", href: "/#services" },
-  { label: "Meta Conversions API", href: "/#tracking" },
-  { label: "Our 5-Stage Process", href: "/#process" },
-  { label: "Growth Guides & Articles", href: "/blog" },
-  { label: "About DizitalGrow", href: "/#about" },
-  { label: "Frequently Asked Questions", href: "/#faq" },
+  { label: "Services", href: "/services" },
+  { label: "Our Process", href: "/process" },
+  { label: "Meta Conversions API", href: "/meta-capi" },
+  { label: "Blog", href: "/blog" },
+  { label: "About DizitalGrow", href: "/about" },
   { label: "Discuss Your Project", href: "/contact" },
 ];
+
 
 export const FOOTER_LEGAL_LINKS: NavLink[] = [
   { label: "Privacy Policy", href: "/privacy-policy" },
@@ -28,3 +28,10 @@ export const FOOTER_LEGAL_LINKS: NavLink[] = [
 ];
 
 export const VERIFIED_EMAIL = "contact@dizitalgrow.in";
+export const WHATSAPP_CHANNEL_URL =
+  "https://whatsapp.com/channel/0029VbDnyoKFHWq92fKIGj2N";
+export const VERIFIED_WHATSAPP_PHONE =
+  process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "+91 91871 26193";
+export const VERIFIED_WHATSAPP_RAW = "919187126193";
+
+

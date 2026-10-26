@@ -30,7 +30,7 @@
       },
       {
         "_key": "nav-4",
-        "label": "GUIDES",
+        "label": "BLOG",
         "url": "/blog",
         "openInNewTab": false
       },
@@ -57,6 +57,8 @@
     "primaryCtaUrl": "/contact",
     "footerDescription": "We build the digital experiences, customer acquisition systems, and tracking infrastructure businesses need to grow online.",
     "footerContactEmail": "contact@dizitalgrow.in",
+    "whatsappChannelUrl": "https://whatsapp.com/channel/0029VbDnyoKFHWq92fKIGj2N",
+    "whatsappNumber": "+91 91871 26193",
     "footerColumns": [
       {
         "_key": "col-1",
@@ -66,7 +68,7 @@
           {"_key": "l2", "label": "Services", "url": "/#services", "openInNewTab": false},
           {"_key": "l3", "label": "Meta CAPI", "url": "/#tracking", "openInNewTab": false},
           {"_key": "l4", "label": "Process", "url": "/#process", "openInNewTab": false},
-          {"_key": "l5", "label": "Guides", "url": "/blog", "openInNewTab": false},
+          {"_key": "l5", "label": "Blog", "url": "/blog", "openInNewTab": false},
           {"_key": "l6", "label": "About", "url": "/#about", "openInNewTab": false},
           {"_key": "l7", "label": "FAQ", "url": "/#faq", "openInNewTab": false},
           {"_key": "l8", "label": "Contact", "url": "/contact", "openInNewTab": false}
@@ -88,9 +90,10 @@
         "_key": "col-3",
         "heading": "CONTACT",
         "links": [
+          {"_key": "c0", "label": "WhatsApp Channel (Updates)", "url": "https://whatsapp.com/channel/0029VbDnyoKFHWq92fKIGj2N", "openInNewTab": true},
+          {"_key": "c0b", "label": "WhatsApp Direct: +91 91871 26193 (Chat Only)", "url": "https://wa.me/919187126193?text=Hi%20DizitalGrow%2C%20I%20would%20like%20to%20discuss%20a%20project.", "openInNewTab": true},
           {"_key": "c1", "label": "Instagram: @dizitalgrow", "url": "https://instagram.com/dizitalgrow", "openInNewTab": true},
-          {"_key": "c2", "label": "Facebook: DizitalGrow", "url": "https://facebook.com/dizitalgrow", "openInNewTab": true},
-          {"_key": "c3", "label": "Email: contact@dizitalgrow.in", "url": "mailto:contact@dizitalgrow.in", "openInNewTab": false}
+          {"_key": "c2", "label": "Email: contact@dizitalgrow.in", "url": "mailto:contact@dizitalgrow.in", "openInNewTab": false}
         ]
       }
     ],
@@ -98,6 +101,12 @@
     "footerCtaButtonLabel": "DISCUSS YOUR PROJECT",
     "footerCtaButtonUrl": "/contact",
     "socialLinks": [
+      {
+        "_key": "soc-0",
+        "platform": "WhatsApp Channel",
+        "url": "https://whatsapp.com/channel/0029VbDnyoKFHWq92fKIGj2N",
+        "label": "WhatsApp Channel"
+      },
       {
         "_key": "soc-1",
         "platform": "Instagram",
@@ -112,6 +121,7 @@
       }
     ],
     "copyrightText": "© 2026 DizitalGrow. All rights reserved. Websites, Apps, Ads & Tracking.",
+
     "legalLinks": [
       {"_key": "leg-1", "label": "Privacy Policy", "url": "/privacy-policy", "openInNewTab": false},
       {"_key": "leg-2", "label": "Terms of Service", "url": "/terms-of-service", "openInNewTab": false}

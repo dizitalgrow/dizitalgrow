@@ -33,7 +33,7 @@ export async function generateMetadata({
   if (!post) {
     return {
       title: "Article Not Found | DizitalGrow",
-      description: "The requested digital growth guide could not be found.",
+      description: "The requested article could not be found.",
     };
   }
 
@@ -41,7 +41,7 @@ export async function generateMetadata({
   const description =
     post.metaDescription ||
     post.excerpt ||
-    "Practical digital growth, development, advertising, and tracking guides from DizitalGrow.";
+    "Practical digital growth, development, advertising, and tracking insights from DizitalGrow.";
   const canonical = `https://dizitalgrow.in/blog/${post.slug.current}`;
 
   // Image resolution priority: socialImage -> featuredImage

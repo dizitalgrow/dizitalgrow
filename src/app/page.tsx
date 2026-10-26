@@ -5,26 +5,23 @@ import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { getPublishedPosts } from "@/lib/sanity";
 import {
   HeroSection,
-  GrowthJourneySection,
-  CapabilitiesSection,
+  CoreCapabilitiesSection,
+  HowWeWorkSection,
   LearnAndGrowSection,
-  WhoWeHelpSection,
-  AboutSection,
-  ProcessSection,
   FinalCTASection,
 } from "@/features/home/components";
 
 export const metadata: Metadata = {
-  title: "DizitalGrow — Digital Growth Agency | Web Development, Advertising & Tracking",
+  title: "DizitalGrow — Build Better. Reach More. Grow Smarter.",
   description:
-    "From business websites and custom web applications to Google Ads, Meta Ads, and Meta CAPI conversion tracking, DizitalGrow helps businesses build, reach, measure, and improve their online growth.",
+    "Websites, digital advertising, and reliable tracking to help your business grow online. High-performance Next.js development, Google Ads, Meta Ads, and Meta Conversions API.",
   alternates: {
     canonical: "https://dizitalgrow.in",
   },
   openGraph: {
     title: "DizitalGrow — Digital Growth Agency",
     description:
-      "We build the digital experiences, customer acquisition systems, and tracking infrastructure businesses need to grow online.",
+      "Websites, digital advertising, and reliable tracking to help your business grow online.",
     url: "https://dizitalgrow.in",
     siteName: "DizitalGrow",
     type: "website",
@@ -33,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "DizitalGrow — Digital Growth Agency",
     description:
-      "Build better digital experiences. Reach the right customers. Measure what matters.",
+      "Build better. Reach more. Grow smarter. Websites, digital advertising, and reliable tracking.",
   },
 };
 
@@ -41,19 +38,6 @@ export const revalidate = 60; // Next.js ISR: Revalidate homepage every 60 secon
 
 export default async function HomePage() {
   const publishedPosts = await getPublishedPosts();
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQ_LIST.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -63,7 +47,20 @@ export default async function HomePage() {
     logo: "https://dizitalgrow.in/icon.png",
     email: "contact@dizitalgrow.in",
     description:
-      "DizitalGrow connects digital product development, customer acquisition (Google & Meta Ads), and conversion tracking (GA4 & Meta CAPI) to build sustainable online performance.",
+      "DizitalGrow builds business websites, web applications, targeted advertising campaigns, and server-side tracking infrastructure.",
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_LIST.slice(0, 6).map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   };
 
   return (
@@ -77,31 +74,22 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* Section A: Hero */}
+      {/* Section B: Hero with authentic digital agency imagery */}
       <HeroSection />
 
-      {/* Section B: The digital growth journey */}
-      <GrowthJourneySection />
+      {/* Section C: Three Core Capabilities (Build, Reach, Measure) */}
+      <CoreCapabilitiesSection />
 
-      {/* Section C: What we can help with */}
-      <CapabilitiesSection />
+      {/* Section D: How We Work (3 concise steps: Understand, Build, Improve) */}
+      <HowWeWorkSection />
 
-      {/* Section D: Learn and grow */}
+      {/* Section E: Blog & Practical Insights (Max 3 articles) */}
       <LearnAndGrowSection posts={publishedPosts} />
 
-      {/* Section E: Who we help */}
-      <WhoWeHelpSection />
+      {/* Frequently Asked Questions */}
+      <FAQAccordion items={FAQ_LIST.slice(0, 6)} showCTA={false} />
 
-      {/* Section F: About Dizital Grow */}
-      <AboutSection />
-
-      {/* Section G: Our process */}
-      <ProcessSection />
-
-      {/* Section H: Frequently asked questions */}
-      <FAQAccordion items={FAQ_LIST} showCTA={true} />
-
-      {/* Section I: Final CTA */}
+      {/* Section F: Final Clear Call to Action */}
       <FinalCTASection />
     </>
   );

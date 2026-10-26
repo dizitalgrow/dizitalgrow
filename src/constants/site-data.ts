@@ -415,13 +415,33 @@ export const CONTACT_METHODS = [
     label: "Direct Email",
     value: "contact@dizitalgrow.in",
     href: "mailto:contact@dizitalgrow.in",
-    description: "Send us project details, RFPs, or general inquiries.",
+    badge: "Inquiries",
+    description: "Send us project details, RFPs, or general business inquiries.",
+  },
+  {
+    iconName: "WhatsApp",
+    label: "WhatsApp Direct (Chat Only)",
+    value: "+91 91871 26193",
+    href: "https://wa.me/919187126193?text=Hi%20DizitalGrow%2C%20I%20would%20like%20to%20discuss%20a%20project.",
+    badge: "1-on-1 Chat",
+    description: "Direct 1-on-1 messaging for project scoping and quotes. Strictly WhatsApp chat (voice calls excluded).",
+  },
+  {
+    iconName: "WhatsApp",
+    label: "WhatsApp Channel (Broadcast)",
+    value: "Follow DizitalGrow Updates",
+    href: "https://whatsapp.com/channel/0029VbDnyoKFHWq92fKIGj2N",
+    badge: "Broadcast",
+    description: "Subscribe to our broadcast channel for practical digital tips, web tutorials, and agency announcements.",
   },
   {
     iconName: "Instagram",
     label: "Instagram",
     value: "@dizitalgrow",
     href: "https://www.instagram.com/dizitalgrow/",
+    badge: "Social",
     description: "Follow practical tips on web development, advertising, and tracking.",
   },
 ];
+
+

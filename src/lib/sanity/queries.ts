@@ -110,7 +110,10 @@ export const SITE_SETTINGS_QUERY = `
     footerLogo { asset, alt },
     footerDescription,
     footerContactEmail,
+    whatsappChannelUrl,
+    whatsappNumber,
     footerColumns[] {
+
       heading,
       links[] {
         label,

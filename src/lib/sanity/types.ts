@@ -127,7 +127,10 @@ export interface SanitySiteSettings {
   footerLogo?: SanityImage;
   footerDescription?: string;
   footerContactEmail?: string;
+  whatsappChannelUrl?: string;
+  whatsappNumber?: string;
   footerColumns?: FooterColumnConfig[];
+
   footerCtaHeading?: string;
   footerCtaButtonLabel?: string;
   footerCtaButtonUrl?: string;

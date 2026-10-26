@@ -8,35 +8,15 @@ const nextConfig: NextConfig = {
         hostname: "cdn.sanity.io",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        pathname: "/**",
+      },
     ],
   },
   async redirects() {
     return [
-      {
-        source: "/services",
-        destination: "/#capabilities",
-        permanent: true,
-      },
-      {
-        source: "/work",
-        destination: "/#journey",
-        permanent: true,
-      },
-      {
-        source: "/process",
-        destination: "/#process",
-        permanent: true,
-      },
-      {
-        source: "/about",
-        destination: "/#about",
-        permanent: true,
-      },
-      {
-        source: "/faq",
-        destination: "/#faq",
-        permanent: true,
-      },
       {
         source: "/privacy",
         destination: "/privacy-policy",
@@ -50,5 +30,6 @@ const nextConfig: NextConfig = {
     ];
   },
 };
+
 
 export default nextConfig;

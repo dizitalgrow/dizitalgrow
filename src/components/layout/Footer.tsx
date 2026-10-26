@@ -4,13 +4,20 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { DizitalGrowLogo } from "@/components/ui/DizitalGrowLogo";
-import { InstagramIcon } from "@/components/ui/Icons";
+import {
+  InstagramIcon,
+  WhatsAppIcon,
+  WhatsAppChannelIcon,
+} from "@/components/ui/Icons";
 import {
   FOOTER_NAV_LINKS,
   FOOTER_LEGAL_LINKS,
   VERIFIED_EMAIL,
+  WHATSAPP_CHANNEL_URL,
+  VERIFIED_WHATSAPP_PHONE,
 } from "@/constants/navigation";
 import { useSiteSettings } from "@/hooks/use-sanity-queries";
+import { formatWhatsAppUrl } from "@/lib/utils";
 
 export function Footer() {
   const { data: siteSettings } = useSiteSettings();
@@ -20,6 +27,10 @@ export function Footer() {
     "DizitalGrow builds fast business websites, custom web apps, and targeted Google & Meta ad campaigns with reliable server-side tracking.";
 
   const contactEmail = siteSettings?.footerContactEmail || VERIFIED_EMAIL;
+  const channelUrl = siteSettings?.whatsappChannelUrl || WHATSAPP_CHANNEL_URL;
+  const whatsappPhone =
+    siteSettings?.whatsappNumber || VERIFIED_WHATSAPP_PHONE;
+
   const ctaHeading = siteSettings?.footerCtaHeading || "Ready to Build & Grow?";
   const ctaLabel = siteSettings?.footerCtaButtonLabel || "Discuss Your Project";
   const ctaUrl = siteSettings?.footerCtaButtonUrl || "/contact";
@@ -46,14 +57,47 @@ export function Footer() {
               {footerDescription}
             </p>
 
-            <div className="pt-2">
+            <div className="pt-2 flex flex-col gap-2.5 text-xs font-mono">
               <a
                 href={`mailto:${contactEmail}`}
-                className="inline-flex items-center gap-2 text-xs font-mono text-[#D5FF40] hover:underline"
+                className="inline-flex items-center gap-2 text-[#D5FF40] hover:underline"
               >
                 <Mail className="h-3.5 w-3.5" />
                 <span>{contactEmail}</span>
               </a>
+
+              {whatsappPhone && (
+                <a
+                  href={formatWhatsAppUrl(
+                    whatsappPhone,
+                    "Hi DizitalGrow, I would like to discuss a project."
+                  )}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-[#B0B0B0] hover:text-[#D5FF40] transition-colors"
+                >
+                  <WhatsAppIcon className="h-3.5 w-3.5 text-[#D5FF40]" />
+                  <span>{whatsappPhone}</span>
+                  <span className="text-[10px] uppercase font-mono tracking-wider text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.2)] px-1.5 py-0.5 rounded-[2px]">
+                    Chat Only
+                  </span>
+                </a>
+              )}
+
+              {channelUrl && (
+                <a
+                  href={channelUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-[#B0B0B0] hover:text-[#D5FF40] transition-colors"
+                >
+                  <WhatsAppChannelIcon className="h-3.5 w-3.5 text-[#D5FF40]" />
+                  <span>WhatsApp Channel</span>
+                  <span className="text-[10px] uppercase font-mono tracking-wider text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.2)] px-1.5 py-0.5 rounded-[2px]">
+                    Broadcast
+                  </span>
+                </a>
+              )}
             </div>
           </div>
 
@@ -92,16 +136,49 @@ export function Footer() {
               <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
 
-            {/* Social links */}
-            <div className="pt-2 flex items-center gap-3">
+            {/* Social & Direct Contact Links */}
+            <div className="pt-2 flex flex-wrap items-center gap-2">
+              {whatsappPhone && (
+                <a
+                  href={formatWhatsAppUrl(
+                    whatsappPhone,
+                    "Hi DizitalGrow, I would like to discuss a project."
+                  )}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Direct WhatsApp Chat: +91 91871 26193 (Chat Only)"
+                  title="Direct WhatsApp Chat (1-on-1)"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono rounded-[2px] border border-[rgba(213,255,64,0.2)] text-[#B0B0B0] hover:text-[#D5FF40] hover:border-[#D5FF40] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5FF40]"
+                >
+                  <WhatsAppIcon className="h-3.5 w-3.5 text-[#D5FF40]" />
+                  <span>WhatsApp Chat</span>
+                </a>
+              )}
+
+              {channelUrl && (
+                <a
+                  href={channelUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Join Official WhatsApp Channel"
+                  title="Official WhatsApp Channel (Broadcast Updates)"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono rounded-[2px] border border-[rgba(213,255,64,0.2)] text-[#B0B0B0] hover:text-[#D5FF40] hover:border-[#D5FF40] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5FF40]"
+                >
+                  <WhatsAppChannelIcon className="h-3.5 w-3.5 text-[#D5FF40]" />
+                  <span>Channel</span>
+                </a>
+              )}
+
               <a
                 href="https://www.instagram.com/dizitalgrow/"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Instagram"
-                className="flex h-8 w-8 items-center justify-center rounded-[2px] border border-[rgba(213,255,64,0.15)] text-[#B0B0B0] hover:text-[#D5FF40] hover:border-[#D5FF40] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5FF40]"
+                aria-label="Instagram @dizitalgrow"
+                title="Follow us on Instagram"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono rounded-[2px] border border-[rgba(213,255,64,0.2)] text-[#B0B0B0] hover:text-[#D5FF40] hover:border-[#D5FF40] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5FF40]"
               >
                 <InstagramIcon className="h-3.5 w-3.5" />
+                <span>Instagram</span>
               </a>
             </div>
           </div>
