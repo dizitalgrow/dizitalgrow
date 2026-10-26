@@ -3,63 +3,47 @@
     "_id": "siteSettings",
     "_type": "siteSettings",
     "showTopStrip": true,
-    "topStripAnnouncement": "READY TO GROW YOUR BUSINESS? // DISCUSS YOUR PROJECT WITH US",
+    "topStripAnnouncement": "DISCUSS YOUR PROJECT // DIGITAL EXPERIENCES, ACQUISITION & TRACKING",
     "topStripEmail": "contact@dizitalgrow.in",
-    "topStripButtonLabel": "START PROJECT",
+    "topStripButtonLabel": "DISCUSS YOUR PROJECT",
     "topStripButtonUrl": "/contact",
-    "navbarLogoAlt": "Dizital Grow Logo",
+    "navbarLogoAlt": "DizitalGrow Logo",
     "textLogo": "DizitalGrow",
     "navLinks": [
       {
         "_key": "nav-1",
         "label": "SERVICES",
-        "url": "/services",
-        "openInNewTab": false,
-        "children": [
-          {
-            "_key": "sub-1",
-            "label": "Web Development",
-            "url": "/services#web",
-            "description": "Custom modern web solutions",
-            "openInNewTab": false
-          },
-          {
-            "_key": "sub-2",
-            "label": "Mobile Apps",
-            "url": "/services#apps",
-            "description": "iOS & Android applications",
-            "openInNewTab": false
-          }
-        ]
+        "url": "/#services",
+        "openInNewTab": false
       },
       {
         "_key": "nav-2",
-        "label": "WORK",
-        "url": "/work",
+        "label": "META CAPI",
+        "url": "/#tracking",
         "openInNewTab": false
       },
       {
         "_key": "nav-3",
         "label": "PROCESS",
-        "url": "/process",
+        "url": "/#process",
         "openInNewTab": false
       },
       {
         "_key": "nav-4",
-        "label": "BLOG",
+        "label": "GUIDES",
         "url": "/blog",
         "openInNewTab": false
       },
       {
         "_key": "nav-5",
         "label": "ABOUT",
-        "url": "/about",
+        "url": "/#about",
         "openInNewTab": false
       },
       {
         "_key": "nav-6",
         "label": "FAQ",
-        "url": "/faq",
+        "url": "/#faq",
         "openInNewTab": false
       },
       {
@@ -69,9 +53,9 @@
         "openInNewTab": false
       }
     ],
-    "primaryCtaLabel": "START PROJECT",
+    "primaryCtaLabel": "DISCUSS YOUR PROJECT",
     "primaryCtaUrl": "/contact",
-    "footerDescription": "We build websites, web apps, mobile apps, and advertising systems that help businesses get more customers.",
+    "footerDescription": "We build the digital experiences, customer acquisition systems, and tracking infrastructure businesses need to grow online.",
     "footerContactEmail": "contact@dizitalgrow.in",
     "footerColumns": [
       {
@@ -79,12 +63,12 @@
         "heading": "NAVIGATION",
         "links": [
           {"_key": "l1", "label": "Home", "url": "/", "openInNewTab": false},
-          {"_key": "l2", "label": "Services", "url": "/services", "openInNewTab": false},
-          {"_key": "l3", "label": "Work", "url": "/work", "openInNewTab": false},
-          {"_key": "l4", "label": "Process", "url": "/process", "openInNewTab": false},
-          {"_key": "l5", "label": "Blog", "url": "/blog", "openInNewTab": false},
-          {"_key": "l6", "label": "About", "url": "/about", "openInNewTab": false},
-          {"_key": "l7", "label": "FAQ", "url": "/faq", "openInNewTab": false},
+          {"_key": "l2", "label": "Services", "url": "/#services", "openInNewTab": false},
+          {"_key": "l3", "label": "Meta CAPI", "url": "/#tracking", "openInNewTab": false},
+          {"_key": "l4", "label": "Process", "url": "/#process", "openInNewTab": false},
+          {"_key": "l5", "label": "Guides", "url": "/blog", "openInNewTab": false},
+          {"_key": "l6", "label": "About", "url": "/#about", "openInNewTab": false},
+          {"_key": "l7", "label": "FAQ", "url": "/#faq", "openInNewTab": false},
           {"_key": "l8", "label": "Contact", "url": "/contact", "openInNewTab": false}
         ]
       },
@@ -92,12 +76,12 @@
         "_key": "col-2",
         "heading": "SERVICES",
         "links": [
-          {"_key": "s1", "label": "Website Development", "url": "/services", "openInNewTab": false},
-          {"_key": "s2", "label": "Web Applications", "url": "/services", "openInNewTab": false},
-          {"_key": "s3", "label": "Mobile Apps", "url": "/services", "openInNewTab": false},
-          {"_key": "s4", "label": "Meta Ads", "url": "/services", "openInNewTab": false},
-          {"_key": "s5", "label": "Google Ads", "url": "/services", "openInNewTab": false},
-          {"_key": "s6", "label": "Conversion Tracking", "url": "/services", "openInNewTab": false}
+          {"_key": "s1", "label": "Business Websites", "url": "/#services", "openInNewTab": false},
+          {"_key": "s2", "label": "Web Applications", "url": "/#services", "openInNewTab": false},
+          {"_key": "s3", "label": "Mobile Apps", "url": "/#services", "openInNewTab": false},
+          {"_key": "s4", "label": "Google Ads", "url": "/#services", "openInNewTab": false},
+          {"_key": "s5", "label": "Meta Ads (FB/IG)", "url": "/#services", "openInNewTab": false},
+          {"_key": "s6", "label": "Meta CAPI & Tracking", "url": "/#tracking", "openInNewTab": false}
         ]
       },
       {
@@ -110,8 +94,8 @@
         ]
       }
     ],
-    "footerCtaHeading": "READY TO GROW YOUR BUSINESS?",
-    "footerCtaButtonLabel": "START PROJECT",
+    "footerCtaHeading": "READY TO BUILD & GROW?",
+    "footerCtaButtonLabel": "DISCUSS YOUR PROJECT",
     "footerCtaButtonUrl": "/contact",
     "socialLinks": [
       {
@@ -127,13 +111,13 @@
         "label": "DizitalGrow"
       }
     ],
-    "copyrightText": "© 2026 DizitalGrow. All rights reserved. Websites, Apps & Ads That Grow Your Business.",
+    "copyrightText": "© 2026 DizitalGrow. All rights reserved. Websites, Apps, Ads & Tracking.",
     "legalLinks": [
       {"_key": "leg-1", "label": "Privacy Policy", "url": "/privacy-policy", "openInNewTab": false},
       {"_key": "leg-2", "label": "Terms of Service", "url": "/terms-of-service", "openInNewTab": false}
     ],
-    "defaultSeoTitle": "Dizital Grow | High-Impact Websites, Web Apps & Growth Marketing",
-    "defaultMetaDescription": "We build websites, web apps, mobile apps, and advertising systems that help businesses get more customers."
+    "defaultSeoTitle": "DizitalGrow — Digital Growth Agency | Web Development, Advertising & Tracking",
+    "defaultMetaDescription": "From business websites and custom web applications to Google Ads, Meta Ads, and Meta CAPI conversion tracking, DizitalGrow helps businesses build, reach, measure, and improve their online growth."
   },
   {
     "_id": "welcome-to-dizital-grow-blog",

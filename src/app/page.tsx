@@ -15,25 +15,25 @@ import {
 } from "@/features/home/components";
 
 export const metadata: Metadata = {
-  title: "Dizital Grow — Digital Growth Platform for Businesses & Creators",
+  title: "DizitalGrow — Digital Growth Agency | Web Development, Advertising & Tracking",
   description:
-    "Dizital Grow helps people and businesses understand digital growth, build a stronger online presence, and take practical steps toward better marketing and business growth.",
+    "From business websites and custom web applications to Google Ads, Meta Ads, and Meta CAPI conversion tracking, DizitalGrow helps businesses build, reach, measure, and improve their online growth.",
   alternates: {
     canonical: "https://dizitalgrow.in",
   },
   openGraph: {
-    title: "Dizital Grow — Digital Growth Platform",
+    title: "DizitalGrow — Digital Growth Agency",
     description:
-      "Understand what works, build a stronger online presence, and turn your digital efforts into meaningful business opportunities.",
+      "We build the digital experiences, customer acquisition systems, and tracking infrastructure businesses need to grow online.",
     url: "https://dizitalgrow.in",
-    siteName: "Dizital Grow",
+    siteName: "DizitalGrow",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dizital Grow — Digital Growth Platform",
+    title: "DizitalGrow — Digital Growth Agency",
     description:
-      "Practical guidance. Clear strategy. No unnecessary complexity.",
+      "Build better digital experiences. Reach the right customers. Measure what matters.",
   },
 };
 
@@ -58,12 +58,12 @@ export default async function HomePage() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Dizital Grow",
+    name: "DizitalGrow",
     url: "https://dizitalgrow.in",
     logo: "https://dizitalgrow.in/icon.png",
     email: "contact@dizitalgrow.in",
     description:
-      "Dizital Grow helps people and businesses understand digital growth, build a stronger online presence, and take practical steps toward better marketing.",
+      "DizitalGrow connects digital product development, customer acquisition (Google & Meta Ads), and conversion tracking (GA4 & Meta CAPI) to build sustainable online performance.",
   };
 
   return (

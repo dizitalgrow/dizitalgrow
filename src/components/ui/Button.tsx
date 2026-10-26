@@ -12,23 +12,23 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#D5FF40] text-[#050505] hover:bg-[#c2ea36] shadow-[0_0_20px_rgba(213,255,64,0.25)] hover:shadow-[0_0_30px_rgba(213,255,64,0.45)] hover:-translate-y-0.5 active:translate-y-0",
+          "bg-[#D5FF40] text-[#050505] hover:bg-[#c2ea36] border border-transparent active:translate-y-[1px]",
         primary:
-          "bg-[#D5FF40] text-[#050505] hover:bg-[#c2ea36] shadow-[0_0_20px_rgba(213,255,64,0.25)] hover:shadow-[0_0_30px_rgba(213,255,64,0.45)] hover:-translate-y-0.5 active:translate-y-0",
+          "bg-[#D5FF40] text-[#050505] hover:bg-[#c2ea36] border border-transparent active:translate-y-[1px]",
         lime:
-          "bg-[#D5FF40] text-[#050505] hover:bg-[#c2ea36] shadow-[0_0_20px_rgba(213,255,64,0.25)] hover:shadow-[0_0_30px_rgba(213,255,64,0.45)] hover:-translate-y-0.5 active:translate-y-0",
+          "bg-[#D5FF40] text-[#050505] hover:bg-[#c2ea36] border border-transparent active:translate-y-[1px]",
         secondary:
-          "border border-[rgba(213,255,64,0.3)] bg-transparent text-white hover:bg-[#181818] hover:border-[#D5FF40] hover:text-[#D5FF40] hover:-translate-y-0.5 active:translate-y-0",
+          "border border-[rgba(213,255,64,0.3)] bg-transparent text-white hover:bg-[#181818] hover:border-[#D5FF40] hover:text-[#D5FF40] active:translate-y-[1px]",
         outline:
-          "border border-[rgba(213,255,64,0.3)] bg-transparent text-white hover:bg-[#181818] hover:border-[#D5FF40] hover:text-[#D5FF40] hover:-translate-y-0.5 active:translate-y-0",
+          "border border-[rgba(213,255,64,0.3)] bg-transparent text-white hover:bg-[#181818] hover:border-[#D5FF40] hover:text-[#D5FF40] active:translate-y-[1px]",
         dark:
-          "bg-[#101010] text-white hover:bg-[#181818] border border-[rgba(213,255,64,0.15)] hover:border-[#D5FF40]",
+          "bg-[#101010] text-white hover:bg-[#181818] border border-[rgba(213,255,64,0.15)] hover:border-[#D5FF40] active:translate-y-[1px]",
         ghost:
           "text-[#B0B0B0] hover:text-white hover:bg-[#181818]",
         link:
           "text-[#D5FF40] underline-offset-4 hover:underline",
         cyberPill:
-          "bg-[#D5FF40] text-[#050505] hover:bg-[#c2ea36] px-8 py-4 text-xs font-extrabold uppercase tracking-widest shadow-[0_0_25px_rgba(213,255,64,0.3)] hover:-translate-y-0.5 active:translate-y-0",
+          "bg-[#D5FF40] text-[#050505] hover:bg-[#c2ea36] px-8 py-4 text-xs font-extrabold uppercase tracking-widest active:translate-y-[1px]",
       },
       size: {
         default: "h-11 px-7 py-3 text-xs",

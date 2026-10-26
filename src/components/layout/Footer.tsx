@@ -17,15 +17,15 @@ export function Footer() {
 
   const footerDescription =
     siteSettings?.footerDescription ||
-    "A digital growth platform helping small businesses, startups, creators, and teams build an effective online presence and make better marketing decisions.";
+    "DizitalGrow builds fast business websites, custom web apps, and targeted Google & Meta ad campaigns with reliable server-side tracking.";
 
   const contactEmail = siteSettings?.footerContactEmail || VERIFIED_EMAIL;
-  const ctaHeading = siteSettings?.footerCtaHeading || "Get Started";
-  const ctaLabel = siteSettings?.footerCtaButtonLabel || "Get Growth Advice";
+  const ctaHeading = siteSettings?.footerCtaHeading || "Ready to Build & Grow?";
+  const ctaLabel = siteSettings?.footerCtaButtonLabel || "Discuss Your Project";
   const ctaUrl = siteSettings?.footerCtaButtonUrl || "/contact";
   const copyright =
     siteSettings?.copyrightText ||
-    `© ${new Date().getFullYear()} Dizital Grow. Digital growth made practical.`;
+    `© ${new Date().getFullYear()} DizitalGrow. Digital products, customer acquisition & measurement.`;
 
   return (
     <footer className="relative overflow-hidden bg-[#050505] text-white pt-14 pb-12 border-t border-[rgba(213,255,64,0.15)]">
@@ -82,11 +82,11 @@ export function Footer() {
               {ctaHeading}
             </p>
             <p className="text-xs text-[#B0B0B0] leading-relaxed">
-              Have questions about your website, SEO, or digital strategy? Tell us where you are today.
+              Share your business challenges, website requirements, or advertising goals. We respond with practical advice within one business day.
             </p>
             <Link
               href={ctaUrl}
-              className="inline-flex items-center gap-1.5 bg-[#D5FF40] text-[#050505] px-4 py-2 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] transition-all hover:bg-[#c2ea36]"
+              className="inline-flex items-center gap-1.5 bg-[#D5FF40] text-[#050505] px-4 py-2 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] transition-colors hover:bg-[#c2ea36] active:translate-y-[1px] focus-cyber"
             >
               <span>{ctaLabel}</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
@@ -99,7 +99,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                className="flex h-8 w-8 items-center justify-center rounded-[2px] border border-[rgba(213,255,64,0.15)] text-[#B0B0B0] hover:text-[#D5FF40] hover:border-[#D5FF40] transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-[2px] border border-[rgba(213,255,64,0.15)] text-[#B0B0B0] hover:text-[#D5FF40] hover:border-[#D5FF40] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5FF40]"
               >
                 <InstagramIcon className="h-3.5 w-3.5" />
               </a>

@@ -1,10 +1,10 @@
 export interface Capability {
   id: string;
   number: string;
+  category: "Development" | "Acquisition" | "Tracking";
   title: string;
-  problem: string;
-  whoNeedsIt: string;
-  firstStep: string;
+  description: string;
+  deliverables: string[];
 }
 
 export interface GrowthStage {
@@ -19,315 +19,393 @@ export interface FAQItem {
   answer: string;
 }
 
-export interface EducationalTopic {
+export interface ProcessStep {
+  step: string;
+  name: string;
   title: string;
-  category: string;
-  summary: string;
-  readTime: string;
+  description: string;
+}
+
+export interface AudienceProfile {
+  title: string;
+  description: string;
+  tag: string;
 }
 
 export const HERO_CONTENT = {
-  eyebrow: "DIGITAL GROWTH, MADE PRACTICAL",
-  headline: "Grow your business in the digital world.",
+  eyebrow: "WEB DEVELOPMENT & DIGITAL ADS",
+  headline: "Build Your Digital Presence. Turn It Into Growth.",
   subheadline:
-    "Understand what works, build a stronger online presence, and turn your digital efforts into meaningful business opportunities.",
+    "We build fast business websites, custom web apps, and targeted Google & Meta ad campaigns that bring real customers.",
+  valueProposition:
+    "Connected websites, customer acquisition ads, and verified tracking.",
+  supportingTagline:
+    "Build better websites. Reach the right buyers. Measure real results.",
   trustStatement:
-    "Practical guidance. Clear strategy. No unnecessary complexity.",
-  primaryCTA: { label: "Get Growth Advice", href: "/contact" },
-  secondaryCTA: { label: "Explore Digital Growth Guides", href: "#learn" },
+    "Practical work. Real measurement. Clear communication.",
+  primaryCTA: { label: "Discuss Your Project", href: "/contact" },
+  secondaryCTA: { label: "Explore Services", href: "#services" },
 };
+
+export const GROWTH_FRAMEWORK_STEPS = [
+  {
+    step: "01",
+    phase: "BUILD",
+    title: "Websites & Web Apps",
+    description:
+      "Fast, mobile-ready websites engineered to turn visitors into real customer inquiries.",
+  },
+  {
+    step: "02",
+    phase: "REACH",
+    title: "Google & Meta Ads",
+    description:
+      "Targeted search and social ads that reach people actively looking to buy.",
+  },
+  {
+    step: "03",
+    phase: "TRACK",
+    title: "Accurate Tracking & CAPI",
+    description:
+      "Server-side Meta CAPI and GA4 tracking so you know where every lead comes from.",
+  },
+];
 
 export const GROWTH_JOURNEY_STAGES: GrowthStage[] = [
   {
     step: "01",
-    title: "Build your presence",
+    title: "Build a clean foundation",
     description:
-      "Create a clear website, establish your brand online, and make it easy for people to understand what you offer.",
+      "A fast, modern website that explains what you do clearly and makes it easy for visitors to contact you.",
     practicalFocus: [
-      "Clear, benefit-driven messaging",
-      "Fast, mobile-optimized experience",
-      "Direct contact points and clear calls to action",
+      "Mobile-friendly layout that loads fast",
+      "Clear, simple words that build trust",
+      "Easy contact and inquiry forms",
     ],
   },
   {
     step: "02",
-    title: "Reach the right audience",
+    title: "Reach people looking to buy",
     description:
-      "Use SEO, useful content, social media, and paid advertising where appropriate to help relevant people discover your business.",
+      "Target active searchers on Google and build customer interest on Facebook and Instagram.",
     practicalFocus: [
-      "High-intent search engine optimization",
-      "Helpful educational articles and guides",
-      "Targeted Google and Meta ad campaigns",
+      "Target high-intent search keywords",
+      "Test engaging ad creative and copy",
+      "Clean, focused landing pages",
     ],
   },
   {
     step: "03",
-    title: "Turn attention into action",
+    title: "Measure what works",
     description:
-      "Improve landing pages, calls to action, inquiries, conversion tracking, and the customer journey.",
+      "Track every inquiry and sale with server-side CAPI and GA4 so you never waste ad spend.",
     practicalFocus: [
-      "Frictionless inquiry forms",
-      "Accurate Google Analytics & conversion tracking",
-      "Continuous refinements based on actual results",
+      "Track verified phone calls and forms",
+      "No lost or duplicate sales data",
+      "Clear, simple ROI reports",
     ],
   },
 ];
 
 export const CAPABILITIES: Capability[] = [
   {
-    id: "website-presence",
+    id: "business-websites",
     number: "01",
-    title: "Website & Online Presence",
-    problem:
-      "Many websites are outdated, confusing on mobile devices, or fail to explain clearly what the business offers, losing potential customers immediately.",
-    whoNeedsIt:
-      "Businesses launching a new brand, modernizing an existing site, or needing a fast, trustworthy digital home that converts visitors.",
-    firstStep:
-      "Audit your core pages: clarify your main headline, simplify navigation, and ensure every page has a single clear call to action.",
+    category: "Development",
+    title: "Business & Corporate Websites",
+    description:
+      "Fast, clean websites built with Next.js that look great on phones and turn visitors into inquiries.",
+    deliverables: [
+      "Custom responsive design (phone, tablet, desktop)",
+      "Next.js speed & easy content management",
+      "Built-in Google search SEO foundations",
+      "Simple contact forms with instant email alerts",
+    ],
   },
   {
-    id: "seo",
+    id: "web-applications",
     number: "02",
-    title: "Search Engine Optimization (SEO)",
-    problem:
-      "Potential customers actively search Google for your services every day, but your website is nowhere to be found on page one.",
-    whoNeedsIt:
-      "Small businesses, service providers, and local brands looking for steady, compounding organic discovery over time.",
-    firstStep:
-      "Identify the 5–10 specific search queries your customers use and optimize your page titles, headings, and Google Business profile.",
+    category: "Development",
+    title: "Custom Web Applications & Portals",
+    description:
+      "Secure client portals, dashboards, and custom software with user logins and database tools.",
+    deliverables: [
+      "Client portals and team dashboards",
+      "User logins, roles, and secure access",
+      "Fast database setup and API connections",
+      "Automated business workflows",
+    ],
   },
   {
-    id: "content-marketing",
+    id: "mobile-apps",
     number: "03",
-    title: "Content Marketing & Blogging",
-    problem:
-      "Without helpful content, customers struggle to evaluate your expertise or find answers to their pre-purchase questions.",
-    whoNeedsIt:
-      "Founders, service professionals, and creators who want to educate their market, build authority, and rank for informative searches.",
-    firstStep:
-      "List the top 10 questions prospective customers ask before purchasing and write straightforward, genuinely helpful answers.",
+    category: "Development",
+    title: "Mobile App Development (iOS & Android)",
+    description:
+      "Smooth mobile apps for iPhones and Android phones with notifications and backend sync.",
+    deliverables: [
+      "Cross-platform iOS and Android apps",
+      "Secure backend sync and offline support",
+      "Push notification setups",
+      "App Store & Google Play launch help",
+    ],
   },
   {
-    id: "social-media",
+    id: "ecommerce-development",
     number: "04",
-    title: "Social Media Strategy & Content",
-    problem:
-      "Publishing random posts without a strategy consumes valuable time while delivering zero inquiries or meaningful business attention.",
-    whoNeedsIt:
-      "Brands wanting a consistent, recognizable presence on platforms where their target audience actively spends time.",
-    firstStep:
-      "Pick one primary social platform, establish 3 consistent content pillars, and commit to publishing 2–3 high-value posts weekly.",
+    category: "Development",
+    title: "E-Commerce Development & Stores",
+    description:
+      "Fast online stores with easy product browsing, safe checkout, and automatic order updates.",
+    deliverables: [
+      "Fast product pages and simple catalogs",
+      "Smooth checkout and secure payment setups",
+      "Order tracking and customer email alerts",
+      "Server-side purchase tracking",
+    ],
   },
   {
-    id: "paid-advertising",
+    id: "google-ads",
     number: "05",
-    title: "Google Ads & Meta Ads",
-    problem:
-      "Waiting months for organic reach isn't always practical when you need immediate feedback, customer inquiries, or market validation.",
-    whoNeedsIt:
-      "Businesses with an established offer and a clear budget who want to test demand and reach high-intent buyers promptly.",
-    firstStep:
-      "Create a targeted search campaign around high-intent keywords or targeted social audiences with a defined daily budget and dedicated landing page.",
+    category: "Acquisition",
+    title: "Google Ads Management",
+    description:
+      "Search and shopping campaigns that show your business to customers actively searching for your services.",
+    deliverables: [
+      "High-intent keyword selection and negative lists",
+      "Clear, persuasive search ad text",
+      "Focused landing pages that lift conversions",
+      "Search query reviews and bid adjustments",
+    ],
   },
   {
-    id: "analytics-tracking",
+    id: "meta-ads",
     number: "06",
-    title: "Analytics, Tracking & Optimization",
-    problem:
-      "Running marketing campaigns without conversion tracking means spending money blindly without knowing what produces revenue.",
-    whoNeedsIt:
-      "Any business investing time or money in digital marketing that wants complete clarity on where inquiries and sales come from.",
-    firstStep:
-      "Configure Google Analytics 4 key events and Meta conversion tracking for form submissions, phone calls, and key interactions.",
+    category: "Acquisition",
+    title: "Meta Ads (Facebook & Instagram)",
+    description:
+      "Targeted social ad campaigns that build customer demand, test creative hooks, and generate leads.",
+    deliverables: [
+      "Audience targeting and interest research",
+      "Ad creative direction and visual hook tests",
+      "Lead generation and store sales campaigns",
+      "Retargeting ads for warm prospects",
+    ],
+  },
+  {
+    id: "analytics-tracking-capi",
+    number: "07",
+    category: "Tracking",
+    title: "Analytics, Tracking & Meta CAPI",
+    description:
+      "Accurate tracking setup with Google Tag Manager, GA4, and server-side Meta CAPI to stop data loss.",
+    deliverables: [
+      "Google Tag Manager container setup",
+      "GA4 key events and lead tracking",
+      "Server-side Meta Conversions API (CAPI)",
+      "Event deduplication between Pixel and CAPI",
+    ],
   },
 ];
 
-export const EDUCATIONAL_TOPICS: EducationalTopic[] = [
-  {
-    title: "SEO fundamentals for beginners",
-    category: "Search Optimization",
-    summary:
-      "How search engines index content, choose rankings, and how beginners can structure their site for organic discovery.",
-    readTime: "6 min read",
-  },
-  {
-    title: "How to plan social media content",
-    category: "Social Strategy",
-    summary:
-      "A sustainable weekly system to plan, draft, and schedule social posts that genuinely connect with your audience.",
-    readTime: "5 min read",
-  },
-  {
-    title: "How to turn website visitors into inquiries",
-    category: "Conversion Optimization",
-    summary:
-      "The practical elements of high-converting pages: clear headlines, low friction forms, and authentic trust indicators.",
-    readTime: "7 min read",
-  },
-  {
-    title: "Google Ads versus Meta Ads",
-    category: "Paid Advertising",
-    summary:
-      "Understanding search intent vs. interest targeting to choose the right ad channel for your specific business model.",
-    readTime: "6 min read",
-  },
-  {
-    title: "Content marketing for small businesses",
-    category: "Content Strategy",
-    summary:
-      "How to create educational guides and case breakdowns that answer real buyer questions without a huge marketing team.",
-    readTime: "8 min read",
-  },
-  {
-    title: "How to measure digital marketing performance",
-    category: "Analytics & Tracking",
-    summary:
-      "Ditching vanity metrics like clicks and impressions to focus on qualified leads, cost per inquiry, and business ROI.",
-    readTime: "5 min read",
-  },
-  {
-    title: "Website essentials for a new business",
-    category: "Web & Presence",
-    summary:
-      "The 5 foundational pages and structural decisions every small business website needs before launching publicly.",
-    readTime: "6 min read",
-  },
-  {
-    title: "Building a practical digital marketing plan",
-    category: "Growth Strategy",
-    summary:
-      "A step-by-step roadmap to assess your budget, select 1–2 key channels, and execute consistently over 90 days.",
-    readTime: "9 min read",
-  },
-];
-
-export const WHO_WE_HELP = [
-  {
-    title: "Small businesses",
-    description:
-      "Building a trustworthy online presence, attracting local inquiries, and making marketing decisions that fit realistic budgets.",
-    tag: "Local & Service",
-  },
-  {
-    title: "Startups & founders",
-    description:
-      "Establishing digital foundations, validating product offers, and setting up initial customer acquisition channels.",
-    tag: "Early Stage",
-  },
-  {
-    title: "Creators & independent professionals",
-    description:
-      "Developing visibility, organizing useful content, and turning an audience into direct consulting or project inquiries.",
-    tag: "Personal Brands",
-  },
-  {
-    title: "Service businesses",
-    description:
-      "Improving inquiry quality, streamlining customer intake, and ensuring their website works as an effective sales asset.",
-    tag: "B2B & B2C Services",
-  },
-  {
-    title: "Growing teams",
-    description:
-      "Understanding digital marketing channels better so they can make informed decisions without confusing agency jargon.",
-    tag: "In-House Teams",
-  },
-];
-
-export const ABOUT_SECTION = {
-  heading: "Digital growth should be easier to understand.",
-  paragraphs: [
-    "Dizital Grow exists to make digital growth more practical and accessible. We focus on helping businesses understand their opportunities, choose suitable digital channels, and make informed decisions about their online presence.",
-    "We believe good digital marketing starts with understanding the business, the audience, and the problem to solve—not simply using more tools or publishing more content.",
-    "Rather than treating marketing as a mysterious black box, we break down strategies into clear, actionable steps that respect your resources and align with your business goals.",
-  ],
-  commitments: [
+export const META_CAPI_FEATURE = {
+  eyebrow: "SERVER-SIDE TRACKING",
+  title: "Server-Side Meta Conversions API (CAPI)",
+  description:
+    "Ad blockers can hide up to 30% of sales from standard browser pixels. Meta CAPI sends sales and lead data straight from your server, so your ad data is accurate and never double-counted.",
+  keyPoints: [
     {
-      title: "Honest Assessments",
-      desc: "We tell you what channels are worth pursuing and which ones you can safely ignore right now.",
+      title: "Dual-Channel Reliability",
+      desc: "Sends data from both browser and server so no lead is missed.",
     },
     {
-      title: "Practical Execution",
-      desc: "We focus on building reliable foundations that work sustainably, not temporary gimmicks.",
+      title: "No Double Counting",
+      desc: "Unique Event IDs make sure each sale or lead is counted only once.",
     },
     {
-      title: "Clear Communication",
-      desc: "No confusing technical buzzwords, fake authority, or exaggerated guarantees. Plain language always.",
+      title: "Better Ad Results",
+      desc: "Helps Meta match sales back to the exact ads that brought them.",
+    },
+    {
+      title: "Privacy Safe",
+      desc: "Respects user privacy settings while keeping your reporting accurate.",
     },
   ],
 };
 
-export const PROCESS_STEPS = [
+export const WHO_WE_HELP: AudienceProfile[] = [
+  {
+    title: "Small & Local Businesses",
+    description:
+      "Updating older websites and getting local inquiries through targeted Google Search Ads.",
+    tag: "Commercial",
+  },
+  {
+    title: "Startups & Early Founders",
+    description:
+      "Building MVP web apps and setting up first customer acquisition funnels with clean tracking.",
+    tag: "Startups",
+  },
+  {
+    title: "E-Commerce & Retail Brands",
+    description:
+      "Building fast online stores, running shopping ads, and tracking orders with Meta CAPI.",
+    tag: "D2C & Retail",
+  },
+  {
+    title: "B2B & Professional Services",
+    description:
+      "Creating clean corporate websites, getting high-value leads, and tracking calls and form submissions.",
+    tag: "B2B Services",
+  },
+  {
+    title: "Scaling Businesses",
+    description:
+      "Upgrading custom web portals, fixing underperforming ads, and repairing broken analytics.",
+    tag: "Growth Stage",
+  },
+];
+
+export const ABOUT_SECTION = {
+  heading: "Connecting websites, advertising, and measurement.",
+  paragraphs: [
+    "Most businesses struggle online because their website, ads, and analytics don't talk to each other. An ad wastes money if the landing page is confusing, and you can't improve without accurate data.",
+    "DizitalGrow unites web development, paid ads, and server-side tracking into one connected system built to grow your business.",
+  ],
+  commitments: [
+    {
+      title: "Honest Pricing",
+      desc: "Clear scopes, fixed timelines, and total separation between management fees and your ad spend.",
+    },
+    {
+      title: "Solid Technical Work",
+      desc: "Fast loading speeds, clean code, secure databases, and reliable server-side tracking.",
+    },
+    {
+      title: "Real Business Results",
+      desc: "We track real inquiries, phone calls, and purchases—not vanity clicks or views.",
+    },
+  ],
+};
+
+export const PROCESS_STEPS: ProcessStep[] = [
   {
     step: "01",
-    name: "Understand",
-    title: "Understand",
+    name: "Discovery & Audit",
+    title: "Discovery & Audit",
     description:
-      "Learn about your business, target audience, current online presence, goals, and constraints to establish a realistic baseline.",
+      "We review your goals, audience, current website, and ad accounts to find what needs improvement.",
   },
   {
     step: "02",
-    name: "Prioritize",
-    title: "Prioritize",
+    name: "Strategy & Scope",
+    title: "Strategy & Scope",
     description:
-      "Identify the most impactful opportunities and select realistic next steps based on your specific goals and budget.",
+      "We plan the technical setup, deliverables, timelines, and ad channels in a simple written plan.",
   },
   {
     step: "03",
-    name: "Implement",
-    title: "Implement",
+    name: "Design & Build",
+    title: "Design & Build",
     description:
-      "Put the agreed strategy into action through relevant website improvements, SEO structure, content, or targeted advertising.",
+      "We build the website, web application, or ad campaigns with mobile speed and tracking in place.",
   },
   {
     step: "04",
-    name: "Measure & improve",
-    title: "Measure & improve",
+    name: "Testing & Validation",
+    title: "Testing & Validation",
     description:
-      "Review meaningful indicators, learn from actual user response, and continuously refine the approach for sustainable growth.",
+      "We test forms, checkout, mobile responsiveness, and Meta CAPI tracking before going live.",
+  },
+  {
+    step: "05",
+    name: "Launch & Support",
+    title: "Launch & Support",
+    description:
+      "We launch your project, review live performance, optimize ads, and provide ongoing technical care.",
   },
 ];
 
 export const FAQ_LIST: FAQItem[] = [
   {
-    question: "What is digital growth?",
+    question: "What services does DizitalGrow offer?",
     answer:
-      "Digital growth is the intentional process of using online channels—such as a well-structured website, search visibility, helpful content, and targeted outreach—to increase awareness, attract relevant visitors, and turn them into paying customers or engaged followers.",
+      "We build business websites and web applications, manage Google and Meta Ads, and set up accurate analytics with server-side Meta CAPI. You can hire us for one service or an all-in-one setup.",
   },
   {
-    question: "Where should a small business start?",
+    question: "Do you build both business websites and custom web applications?",
     answer:
-      "Start with a clear, fast, mobile-friendly website that communicates exactly what you offer and how to contact you. Once that foundation is solid, focus on one or two discovery channels that best match where your target audience looks for solutions.",
+      "Yes. We build marketing websites to generate leads as well as custom web applications with user logins, dashboards, and automated databases.",
   },
   {
-    question: "Do I need a website before starting SEO?",
+    question: "What is the difference between a website and a web app?",
     answer:
-      "Yes. Search engine optimization requires digital assets that search engines can index, evaluate, and rank. Having your own website ensures you control your brand presence, content structure, and conversion journey rather than relying solely on rented social platforms.",
+      "A website is primarily informational and designed to bring inquiries. A web application is interactive software where users log in, manage data, and complete tasks.",
   },
   {
-    question: "How often should I post on social media?",
+    question: "Can you build Android and iOS mobile applications?",
     answer:
-      "Consistency and relevance matter far more than high frequency. Posting 2 to 3 valuable, well-crafted updates each week that genuinely inform or engage your audience will outperform daily low-effort posts that receive no engagement.",
+      "Yes. We build mobile apps for iOS and Android with secure backend connections, push notifications, and app store deployment.",
   },
   {
-    question: "Should I invest in SEO or paid advertising first?",
+    question: "Do you design campaign-specific landing pages?",
     answer:
-      "It depends on your timeline and budget. Paid advertising provides immediate visibility and helps validate your offer quickly, while SEO builds compounding organic visibility over months. Many businesses start with targeted ads to test demand while building foundational SEO in parallel.",
+      "Yes. We build fast, simple landing pages that match your ads and make it easy for visitors to convert.",
   },
   {
-    question: "Can Dizital Grow help a business that is just starting?",
+    question: "Can you manage our Google Ads and Meta Ads campaigns?",
     answer:
-      "Absolutely. We frequently help early-stage businesses and solo founders avoid costly mistakes by clarifying their core offer, setting up an effective digital presence, and prioritizing realistic next steps within their budget.",
+      "Yes. We handle keyword research, ad copy, creative direction, audience targeting, and weekly bid optimization.",
   },
   {
-    question: "How do I know which marketing channel is right for me?",
+    question: "Can we hire you only for advertising management?",
     answer:
-      "The right channel depends on where your potential customers actively look for answers. If they search on Google with specific intent, SEO and search ads work well. If visual storytelling and discovery drive interest, social media and Meta ads are often more effective.",
+      "Yes. If your website is already converting visitors well, you can hire us strictly to run and scale your Google or Meta Ads.",
   },
   {
-    question: "How can I contact Dizital Grow?",
+    question: "Can we hire you only for website or application development?",
     answer:
-      "You can submit an inquiry through our contact page or email us directly at contact@dizitalgrow.in. Share a brief overview of your business and goals, and we will follow up with practical advice and recommended next steps.",
+      "Yes. Many clients hire us exclusively to build or redesign a website, web app, or online store with built-in speed and SEO.",
+  },
+  {
+    question: "What is Meta Conversions API (CAPI), and do you set it up?",
+    answer:
+      "Meta CAPI sends sales and lead events straight from your server to Meta, bypassing browser ad blockers. We set it up alongside your pixel with deduplication.",
+  },
+  {
+    question: "Can you fix broken conversion tracking or missing events?",
+    answer:
+      "Yes. We audit and repair broken GTM tags, missing GA4 events, and untracked form submissions so your data is 100% accurate.",
+  },
+  {
+    question: "Can you track website forms, phone calls, and checkouts?",
+    answer:
+      "Yes. We connect contact forms, phone calls, calendar bookings, and online sales directly into GA4, Google Ads, and Meta Ads.",
+  },
+  {
+    question: "Do you provide ongoing website maintenance and support?",
+    answer:
+      "Yes. We offer maintenance plans covering security updates, speed checks, bug fixes, and feature additions.",
+  },
+  {
+    question: "How do project pricing and timelines work?",
+    answer:
+      "A standard business website takes 2–4 weeks. Ad management is billed as a flat monthly fee separate from your ad spend. We provide fixed-scope proposals before starting.",
+  },
+  {
+    question: "What should we prepare before an initial consultation?",
+    answer:
+      "A quick summary of your business, your current website URL (if you have one), your primary goal, and your approximate timeline.",
+  },
+  {
+    question: "Can you improve an existing website or underperforming ad campaign?",
+    answer:
+      "Yes. We audit existing websites for speed and conversion friction, and restructure ad accounts to cut wasted spend.",
+  },
+  {
+    question: "How do we measure whether a digital project is successful?",
+    answer:
+      "We track real business outcomes: qualified inquiries, cost per customer, and completed sales—never superficial vanity impressions.",
   },
 ];
 
@@ -337,13 +415,13 @@ export const CONTACT_METHODS = [
     label: "Direct Email",
     value: "contact@dizitalgrow.in",
     href: "mailto:contact@dizitalgrow.in",
-    description: "Send us project details or general inquiries anytime.",
+    description: "Send us project details, RFPs, or general inquiries.",
   },
   {
     iconName: "Instagram",
     label: "Instagram",
     value: "@dizitalgrow",
     href: "https://www.instagram.com/dizitalgrow/",
-    description: "Follow practical tips and digital growth insights.",
+    description: "Follow practical tips on web development, advertising, and tracking.",
   },
 ];

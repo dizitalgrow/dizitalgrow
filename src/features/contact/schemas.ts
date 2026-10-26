@@ -1,13 +1,15 @@
 import { z } from "zod";
 
 export const HELP_WITH_OPTIONS = [
-  "Website & Online Presence",
-  "Search Engine Optimization (SEO)",
-  "Content & Social Media Strategy",
-  "Paid Advertising (Google / Meta Ads)",
-  "Analytics & Conversion Tracking",
-  "General Digital Growth Consultation",
-  "Other / Multiple Topics",
+  "Business & Corporate Website Development",
+  "Custom Web Application or SaaS Portal",
+  "Mobile App Development (Android / iOS)",
+  "E-Commerce Website & Storefront",
+  "Google Ads Campaign Management",
+  "Meta Ads Management (Facebook & Instagram)",
+  "Analytics, Conversion Tracking & Meta CAPI",
+  "Integrated Digital Growth (Dev + Ads + Tracking)",
+  "Website Maintenance, Redesign & Speed Optimization",
 ] as const;
 
 export const BUDGET_OPTIONS = [
@@ -15,8 +17,9 @@ export const BUDGET_OPTIONS = [
   "Under ₹25,000",
   "₹25,000 – ₹50,000",
   "₹50,000 – ₹1,00,000",
-  "₹1,00,000+",
-  "Flexible based on recommendation",
+  "₹1,00,000 – ₹2,50,000",
+  "₹2,50,000+",
+  "Flexible based on agreed scope",
 ] as const;
 
 export const contactSchema = z.object({
@@ -54,7 +57,7 @@ export const contactSchema = z.object({
     .string()
     .min(10, {
       message:
-        "Please describe your challenge and goals in a little more detail (at least 10 characters)",
+        "Please describe your project, challenge, or goals in a little more detail (at least 10 characters)",
     })
     .max(3000, { message: "Message cannot exceed 3000 characters" }),
   budget: z.string().optional().or(z.literal("")),

@@ -5,25 +5,25 @@ import { BlogListingClient } from "./BlogListingClient";
 export const revalidate = 60; // Next.js ISR: Revalidate every 60 seconds
 
 export const metadata: Metadata = {
-  title: "Blog & Growth Insights | Dizital Grow",
+  title: "Digital Growth Guides & Tutorials | DizitalGrow",
   description:
-    "Actionable digital growth frameworks, SEO playbooks, website optimization guides, and digital marketing insights for growing businesses and creators.",
+    "Practical guides on website development, web applications, Google Ads, Meta Ads, GA4 analytics, and Meta Conversions API (CAPI) for growing businesses.",
   alternates: {
     canonical: "https://dizitalgrow.in/blog",
   },
   openGraph: {
-    title: "Blog & Growth Insights | Dizital Grow",
+    title: "Digital Growth Guides & Tutorials | DizitalGrow",
     description:
-      "Actionable digital growth frameworks, SEO playbooks, website optimization guides, and digital marketing insights.",
+      "Practical guides on website development, web applications, Google Ads, Meta Ads, GA4 analytics, and Meta Conversions API (CAPI).",
     url: "https://dizitalgrow.in/blog",
     type: "website",
-    siteName: "Dizital Grow",
+    siteName: "DizitalGrow",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog & Growth Insights | Dizital Grow",
+    title: "Digital Growth Guides & Tutorials | DizitalGrow",
     description:
-      "Actionable digital growth frameworks, SEO playbooks, website optimization guides, and digital marketing insights.",
+      "Practical guides on website development, web applications, Google Ads, Meta Ads, GA4 analytics, and Meta Conversions API (CAPI).",
   },
 };
 
@@ -46,13 +46,13 @@ export default async function BlogPage() {
             </span>
           </div>
 
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-[var(--color-text-primary)] leading-tight">
             Learn How Digital Growth{" "}
             <span className="text-[#D5FF40]">Actually Works.</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-[#B0B0B0] leading-relaxed font-normal">
-            No vanity jargon or empty promises. Practical guides, frameworks, and step-by-step methodologies to help you build a stronger presence, improve conversions, and grow sustainably.
+          <p className="text-base sm:text-lg text-[var(--color-text-secondary)] leading-relaxed font-normal">
+            Practical guides, architectural frameworks, and tracking tutorials to help you build, acquire, and measure online growth.
           </p>
         </div>
 

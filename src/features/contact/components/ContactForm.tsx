@@ -81,10 +81,10 @@ export function ContactForm() {
   };
 
   const getInputClass = (hasError: boolean) =>
-    `mt-2 w-full rounded-[2px] border px-4 py-3 text-sm text-white outline-none transition-colors font-mono ${
+    `mt-2 w-full rounded-[2px] border px-4 py-3 text-sm text-white outline-none transition-all duration-200 font-mono ${
       hasError
-        ? "border-red-500 bg-red-950/20 focus:border-red-500"
-        : "border-[rgba(213,255,64,0.2)] bg-[#101010] focus:border-[#D5FF40]"
+        ? "border-red-500 bg-red-950/20 focus:border-red-500 focus-visible:ring-1 focus-visible:ring-red-500"
+        : "border-[rgba(213,255,64,0.2)] bg-[#101010] focus:border-[#D5FF40] focus-visible:ring-1 focus-visible:ring-[#D5FF40]"
     }`;
 
   if (submitted) {
@@ -95,10 +95,10 @@ export function ContactForm() {
             <Check className="h-6 w-6 stroke-[3]" />
           </span>
           <h2 className="font-display mt-6 text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-white">
-            Inquiry received.
+            Project inquiry received.
           </h2>
           <p className="mt-3 max-w-md text-sm text-[#B0B0B0] leading-relaxed font-normal">
-            Thank you for reaching out. We have received your inquiry and will review your business challenge carefully. We will respond to your email with practical advice within one business day.
+            Thank you for reaching out. We have received your inquiry and will reply with practical recommendations within one business day.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <button
@@ -106,7 +106,7 @@ export function ContactForm() {
               onClick={() => setSubmitted(false)}
               className="border border-[rgba(213,255,64,0.25)] text-white px-5 py-2.5 text-xs font-display font-bold uppercase tracking-wider rounded-[2px] hover:border-[#D5FF40] hover:text-[#D5FF40] transition-colors"
             >
-              Send another message
+              Send another inquiry
             </button>
           </div>
         </div>
@@ -272,12 +272,12 @@ export function ContactForm() {
           htmlFor="challenge"
           className="block font-mono text-xs uppercase tracking-wider text-white font-bold"
         >
-          Current Challenge &amp; Goals <span className="text-[#D5FF40]">*</span>
+          Project Details, Challenges &amp; Goals <span className="text-[#D5FF40]">*</span>
         </label>
         <textarea
           id="challenge"
           rows={4}
-          placeholder="Tell us what your business does today, where you feel stuck, and what you hope to achieve online..."
+          placeholder="Tell us what your business does, your project requirements (website, custom app, ad management, or Meta CAPI tracking), and target timeline..."
           className={getInputClass(!!errors.challenge)}
           {...register("challenge")}
         />
@@ -318,7 +318,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#D5FF40] text-[#050505] px-8 py-3.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#D5FF40] text-[#050505] px-8 py-3.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] transition-colors duration-150 hover:bg-[#c2ea36] active:translate-y-[1px] focus-cyber disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <>
@@ -327,7 +327,7 @@ export function ContactForm() {
             </>
           ) : (
             <>
-              <span>Send Inquiry</span>
+              <span>Discuss Your Project</span>
               <ArrowUpRight className="h-4 w-4" />
             </>
           )}

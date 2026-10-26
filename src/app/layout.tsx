@@ -18,26 +18,26 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Dizital Grow — Digital Growth Platform for Businesses & Creators",
+  title: "DizitalGrow — Digital Growth Agency | Web Development, Advertising & Tracking",
   description:
-    "Dizital Grow helps people and businesses understand digital growth, build a stronger online presence, and take practical steps toward better marketing and business growth.",
+    "We build the digital experiences (websites & custom web apps), customer acquisition systems (Google & Meta Ads), and tracking infrastructure (GA4 & Meta CAPI) businesses need to grow online.",
   metadataBase: new URL("https://dizitalgrow.in"),
   alternates: {
     canonical: "https://dizitalgrow.in",
   },
   openGraph: {
-    title: "Dizital Grow — Digital Growth Platform",
+    title: "DizitalGrow — Digital Growth Agency",
     description:
-      "Understand what works, build a stronger online presence, and turn your digital efforts into meaningful business opportunities.",
+      "We build the digital experiences, customer acquisition systems, and tracking infrastructure businesses need to grow online.",
     type: "website",
     url: "https://dizitalgrow.in",
-    siteName: "Dizital Grow",
+    siteName: "DizitalGrow",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dizital Grow — Digital Growth Platform",
+    title: "DizitalGrow — Digital Growth Agency",
     description:
-      "Understand what works, build a stronger online presence, and turn your digital efforts into meaningful business opportunities.",
+      "Build better digital experiences. Reach the right customers. Measure what matters.",
   },
   icons: {
     icon: [

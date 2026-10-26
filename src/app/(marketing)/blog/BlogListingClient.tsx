@@ -3,8 +3,10 @@
 import React, { useState, useMemo } from "react";
 import { Search, Filter, BookOpen, Sparkles } from "lucide-react";
 import { useBlogPosts, useCategories } from "@/hooks/use-sanity-queries";
+import { useDebounce } from "@/hooks";
 import { BlogCard } from "@/components/blog/BlogCard";
 import type { SanityPost } from "@/lib/sanity";
+import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 interface BlogListingClientProps {
   initialPosts: SanityPost[];
@@ -17,6 +19,7 @@ export function BlogListingClient({
 }: BlogListingClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 200);
 
   // Categories query with fallback to server-fetched initialCategories
   const { data: categories = initialCategories } = useCategories({
@@ -44,19 +47,19 @@ export function BlogListingClient({
     }
   );
 
-  // Client-side search filtering over retrieved posts
+  // Client-side search filtering over retrieved posts with debounced query
   const filteredPosts = useMemo(() => {
     if (!posts) return [];
-    if (!searchQuery.trim()) return posts;
+    if (!debouncedSearchQuery.trim()) return posts;
 
-    const query = searchQuery.toLowerCase().trim();
+    const query = debouncedSearchQuery.toLowerCase().trim();
     return posts.filter((post) => {
       const matchTitle = post.title?.toLowerCase().includes(query);
       const matchExcerpt = post.excerpt?.toLowerCase().includes(query);
       const matchTag = post.tags?.some((t) => t.toLowerCase().includes(query));
       return matchTitle || matchExcerpt || matchTag;
     });
-  }, [posts, searchQuery]);
+  }, [posts, debouncedSearchQuery]);
 
   // Combined category tabs: ALL + dynamic categories from Sanity
   const categoryTabs = useMemo(() => {
@@ -83,9 +86,9 @@ export function BlogListingClient({
                 key={tab}
                 type="button"
                 onClick={() => setSelectedCategory(tab)}
-                className={`px-3.5 py-1.5 text-xs font-mono font-bold uppercase tracking-wider rounded-[2px] transition-all shrink-0 cursor-pointer ${
+                className={`px-3.5 py-1.5 text-xs font-mono font-bold uppercase tracking-wider rounded-[2px] transition-colors shrink-0 cursor-pointer focus-cyber ${
                   isActive
-                    ? "bg-[#D5FF40] text-[#050505] shadow-[0_0_12px_rgba(213,255,64,0.25)]"
+                    ? "bg-[#D5FF40] text-[#050505] font-extrabold"
                     : "border border-[rgba(213,255,64,0.2)] bg-[#101010] text-[#B0B0B0] hover:text-white hover:border-[rgba(213,255,64,0.4)]"
                 }`}
               >
@@ -103,7 +106,7 @@ export function BlogListingClient({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search articles by keyword..."
-            className="w-full pl-9 pr-4 py-2 text-xs font-mono bg-[#101010] border border-[rgba(213,255,64,0.2)] rounded-[2px] text-white placeholder:text-[#64748B] focus:border-[#D5FF40] focus:outline-none transition-colors"
+            className="w-full pl-9 pr-4 py-2 text-xs font-mono bg-[#101010] border border-[rgba(213,255,64,0.2)] rounded-[2px] text-white placeholder:text-[#64748B] focus:border-[#D5FF40] focus:ring-1 focus:ring-[#D5FF40] focus:outline-none transition-colors"
           />
         </div>
       </div>
@@ -183,11 +186,13 @@ export function BlogListingClient({
 
       {/* Articles Grid */}
       {!isLoading && !isError && filteredPosts.length > 0 && (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredPosts.map((post) => (
-            <BlogCard key={post._id} post={post} />
+            <StaggerItem key={post._id}>
+              <BlogCard post={post} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       )}
     </div>
   );

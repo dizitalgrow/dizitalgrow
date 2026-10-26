@@ -1,9 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { Plus, Minus, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FAQItem } from "@/constants/site-data";
+import { Reveal } from "@/components/ui/Reveal";
+import { useAccordion } from "@/hooks";
 
 interface FAQAccordionProps {
   items: FAQItem[];
@@ -16,11 +19,8 @@ export function FAQAccordion({
   title = "Frequently asked questions.",
   showCTA = true,
 }: FAQAccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const toggle = (index: number) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
-  };
+  const { isOpen, toggle } = useAccordion(0);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section
@@ -31,37 +31,40 @@ export function FAQAccordion({
         <div className="grid gap-12 lg:grid-cols-12 items-start">
           {/* Left Column: Heading & Quick CTA */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2">
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                {"// FAQ"}
-              </span>
-            </div>
-
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
-              {title}
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#B0B0B0] leading-relaxed font-normal">
-              Answers to common questions about digital growth, marketing foundations, and practical first steps.
-            </p>
-
-            {showCTA && (
-              <div className="pt-2">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-5 py-3 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors"
-                >
-                  <span>Get Growth Advice</span>
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
+            <Reveal>
+              <div className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+                  {"// FAQ"}
+                </span>
               </div>
-            )}
+
+              <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
+                {title}
+              </h2>
+
+              <p className="mt-4 text-sm sm:text-base text-[#B0B0B0] leading-relaxed font-normal">
+                Simple answers to common questions about websites, advertising, and tracking.
+              </p>
+
+              {showCTA && (
+                <div className="pt-4">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-5 py-3 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors focus-cyber"
+                  >
+                    <span>Discuss Your Project</span>
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              )}
+            </Reveal>
           </div>
 
-          {/* Right Column: Accessible Accordion */}
+          {/* Right Column: Accessible Animated Accordion */}
           <div className="lg:col-span-7 border-t border-[rgba(213,255,64,0.15)] divide-y divide-[rgba(213,255,64,0.15)]">
             {items.map((item, idx) => {
-              const isOpen = openIndex === idx;
+              const isExpanded = isOpen(idx);
               const buttonId = `faq-btn-${idx}`;
               const panelId = `faq-panel-${idx}`;
 
@@ -70,19 +73,29 @@ export function FAQAccordion({
                   <button
                     type="button"
                     id={buttonId}
-                    aria-expanded={isOpen}
+                    aria-expanded={isExpanded}
                     aria-controls={panelId}
                     onClick={() => toggle(idx)}
-                    className="flex w-full items-center justify-between gap-6 text-left cursor-pointer transition-colors"
+                    className="flex w-full items-center justify-between gap-6 text-left cursor-pointer transition-colors focus-cyber rounded-[2px]"
                   >
-                    <span className="font-display text-base sm:text-lg font-bold text-white group-hover:text-[#D5FF40] transition-colors leading-snug">
+                    <span
+                      className={`font-display text-base sm:text-lg font-bold transition-colors leading-snug ${
+                        isExpanded
+                          ? "text-[#D5FF40]"
+                          : "text-white group-hover:text-[#D5FF40]"
+                      }`}
+                    >
                       {item.question}
                     </span>
                     <span
                       aria-hidden="true"
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[2px] border border-[rgba(213,255,64,0.2)] text-[#D5FF40] group-hover:border-[#D5FF40] transition-colors"
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-[2px] border transition-all duration-200 ${
+                        isExpanded
+                          ? "border-[#D5FF40] bg-[#D5FF40]/10 text-[#D5FF40]"
+                          : "border-[rgba(213,255,64,0.2)] text-[#D5FF40] group-hover:border-[#D5FF40] group-hover:bg-[#D5FF40]/5"
+                      }`}
                     >
-                      {isOpen ? (
+                      {isExpanded ? (
                         <Minus className="h-3.5 w-3.5" />
                       ) : (
                         <Plus className="h-3.5 w-3.5" />
@@ -90,16 +103,39 @@ export function FAQAccordion({
                     </span>
                   </button>
 
-                  {isOpen && (
-                    <div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      className="pt-3 pr-8 text-sm text-[#B0B0B0] leading-relaxed font-normal animate-in fade-in duration-150"
-                    >
-                      {item.answer}
-                    </div>
-                  )}
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={buttonId}
+                        initial={
+                          shouldReduceMotion
+                            ? { opacity: 0 }
+                            : { height: 0, opacity: 0 }
+                        }
+                        animate={
+                          shouldReduceMotion
+                            ? { opacity: 1 }
+                            : { height: "auto", opacity: 1 }
+                        }
+                        exit={
+                          shouldReduceMotion
+                            ? { opacity: 0 }
+                            : { height: 0, opacity: 0 }
+                        }
+                        transition={{
+                          duration: shouldReduceMotion ? 0.01 : 0.25,
+                          ease: [0.16, 1, 0.3, 1] as const,
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-3 pr-8 text-sm text-[#B0B0B0] leading-relaxed font-normal">
+                          {item.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}

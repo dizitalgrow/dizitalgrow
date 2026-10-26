@@ -31,9 +31,9 @@ const iconSizes = {
 };
 
 const variantClasses = {
-  accent: "bg-[#D5FF40] text-[#050505] hover:bg-[#c7f333] shadow-[0_0_15px_rgba(213,255,64,0.3)]",
-  primary: "bg-[#D5FF40] text-[#050505] hover:bg-[#c7f333] shadow-[0_0_15px_rgba(213,255,64,0.3)]",
-  burgundy: "bg-[#D5FF40] text-[#050505] hover:bg-[#c7f333] shadow-[0_0_15px_rgba(213,255,64,0.3)]",
+  accent: "bg-[#D5FF40] text-[#050505] hover:bg-[#c7f333]",
+  primary: "bg-[#D5FF40] text-[#050505] hover:bg-[#c7f333]",
+  burgundy: "bg-[#D5FF40] text-[#050505] hover:bg-[#c7f333]",
   white: "bg-[#FFFFFF] text-[#050505] hover:bg-[#EEEEEE]",
   dark: "bg-[#101010] text-[#FFFFFF] border border-[rgba(213,255,64,0.2)] hover:border-[#D5FF40] hover:text-[#D5FF40] transition-colors",
   outline: "border border-[rgba(213,255,64,0.3)] bg-transparent text-[#FFFFFF] hover:border-[#D5FF40] hover:text-[#D5FF40]",

@@ -31,7 +31,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
 
   return (
     <article
-      className={`group relative flex flex-col justify-between border border-[rgba(213,255,64,0.15)] bg-[#0A0A0A] transition-all hover:border-[#D5FF40] ${
+      className={`group relative flex flex-col justify-between rounded-[2px] border border-[rgba(213,255,64,0.15)] bg-[#0A0A0A] transition-colors duration-200 hover:border-[#D5FF40] ${
         featured ? "p-6 sm:p-8" : "p-5"
       }`}
     >

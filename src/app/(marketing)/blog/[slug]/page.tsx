@@ -32,16 +32,16 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Article Not Found | Dizital Grow",
-      description: "The requested growth article could not be found.",
+      title: "Article Not Found | DizitalGrow",
+      description: "The requested digital growth guide could not be found.",
     };
   }
 
-  const title = post.seoTitle || `${post.title} | Dizital Grow`;
+  const title = post.seoTitle || `${post.title} | DizitalGrow`;
   const description =
     post.metaDescription ||
     post.excerpt ||
-    "Practical digital growth guides and frameworks from Dizital Grow.";
+    "Practical digital growth, development, advertising, and tracking guides from DizitalGrow.";
   const canonical = `https://dizitalgrow.in/blog/${post.slug.current}`;
 
   // Image resolution priority: socialImage -> featuredImage
@@ -76,7 +76,7 @@ export async function generateMetadata({
       type: "article",
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt || post.publishedAt,
-      authors: post.author ? [post.author] : ["Dizital Grow"],
+      authors: post.author ? [post.author] : ["DizitalGrow"],
       section: post.category,
       tags: post.tags,
       images: [
@@ -224,13 +224,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Title */}
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-[var(--color-text-primary)] leading-tight">
             {post.title}
           </h1>
 
           {/* Excerpt Lead */}
           {post.excerpt && (
-            <p className="text-base sm:text-lg text-[#B0B0B0] leading-relaxed font-normal border-l-2 border-[#D5FF40] pl-4 italic">
+            <p className="text-base sm:text-lg text-[var(--color-text-secondary)] leading-relaxed font-normal border-l-2 border-[#D5FF40] pl-4 italic">
               {post.excerpt}
             </p>
           )}
@@ -311,18 +311,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="inline-flex items-center gap-2 text-xs font-mono text-[#D5FF40] font-bold uppercase tracking-wider">
             <span>{"// PRACTICAL NEXT STEP"}</span>
           </div>
-          <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
-            Ready to apply this to your own website or business?
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--color-text-primary)]">
+            Ready to plan your development, advertising, or tracking?
           </h3>
-          <p className="text-xs sm:text-sm text-[#B0B0B0] leading-relaxed max-w-xl font-normal">
-            Whether you need a full website audit, a high-converting web presence, or advice on your digital marketing direction, we can help you take practical action.
+          <p className="text-xs sm:text-sm text-[var(--color-text-secondary)] leading-relaxed max-w-xl font-normal">
+            Whether you need a new website, custom web app, ad management, or server-side Meta CAPI tracking, we will help you plan the next steps.
           </p>
           <div className="pt-2">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-6 py-3.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-6 py-3.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] transition-colors duration-150 hover:bg-[#c2ea36] active:translate-y-[1px] focus-cyber"
             >
-              <span>Get Growth Advice</span>
+              <span>Discuss Your Project</span>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>

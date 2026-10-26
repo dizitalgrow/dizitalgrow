@@ -6,9 +6,6 @@ export interface NavLink {
 export const MAIN_NAV_ITEMS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
-  { label: "Process", href: "/#process" },
-  { label: "About", href: "/#about" },
-  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -16,11 +13,13 @@ export const NAV_LINKS = MAIN_NAV_ITEMS;
 
 export const FOOTER_NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "Blog", href: "/blog" },
-  { label: "Process", href: "/#process" },
-  { label: "About", href: "/#about" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/contact" },
+  { label: "Services & Capabilities", href: "/#services" },
+  { label: "Meta Conversions API", href: "/#tracking" },
+  { label: "Our 5-Stage Process", href: "/#process" },
+  { label: "Growth Guides & Articles", href: "/blog" },
+  { label: "About DizitalGrow", href: "/#about" },
+  { label: "Frequently Asked Questions", href: "/#faq" },
+  { label: "Discuss Your Project", href: "/contact" },
 ];
 
 export const FOOTER_LEGAL_LINKS: NavLink[] = [

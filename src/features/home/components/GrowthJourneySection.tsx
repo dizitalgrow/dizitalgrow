@@ -1,42 +1,49 @@
+"use client";
+
 import React from "react";
 import { GROWTH_JOURNEY_STAGES } from "@/constants/site-data";
 import { Check } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
+import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 export function GrowthJourneySection() {
   return (
-    <section id="journey" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)]">
+    <section id="journey" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] scroll-mt-16">
       <div className="container-cyber">
         {/* Section Header */}
-        <div className="max-w-2xl mb-14">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-              {"// THE STAGES OF GROWTH"}
-            </span>
+        <Reveal>
+          <div className="max-w-3xl mb-14">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+                {"// HOW IT WORKS"}
+              </span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
+              Build Better Sites. <br className="hidden sm:inline" />
+              <span className="text-[#D5FF40]">Reach Real Buyers. Measure Results.</span>
+            </h2>
+            <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
+              Online growth works best when your website, ads, and tracking work together as one simple system.
+            </p>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
-            Your digital growth starts with the <br className="hidden sm:inline" />
-            <span className="text-[#D5FF40]">right foundations.</span>
-          </h2>
-          <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
-            Successful digital marketing is not about doing everything at once. It is about taking the right steps in the right order so your efforts compound into real business results.
-          </p>
-        </div>
+        </Reveal>
 
         {/* Three Stages Editorial Grid */}
-        <div className="grid gap-8 md:grid-cols-3">
+        <StaggerContainer className="grid gap-8 md:grid-cols-3">
           {GROWTH_JOURNEY_STAGES.map((stage) => (
-            <div
+            <StaggerItem
               key={stage.step}
-              className="border-t border-[rgba(213,255,64,0.25)] pt-6 flex flex-col justify-between"
+              className="border-t border-[rgba(213,255,64,0.25)] pt-6 flex flex-col justify-between group transition-colors duration-200 hover:border-[#D5FF40]"
             >
               <div>
                 <div className="flex items-baseline justify-between mb-4">
-                  <span className="font-mono text-sm font-bold text-[#D5FF40]">
+                  <span className="font-mono text-xs font-bold text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.2)] px-2.5 py-1 rounded-[2px] group-hover:border-[#D5FF40] transition-colors">
                     STAGE {stage.step}
                   </span>
                 </div>
 
-                <h3 className="font-display text-xl sm:text-2xl font-bold uppercase text-white">
+                <h3 className="font-display text-xl sm:text-2xl font-bold uppercase text-white group-hover:text-[#D5FF40] transition-colors">
                   {stage.title}
                 </h3>
 
@@ -45,7 +52,7 @@ export function GrowthJourneySection() {
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[rgba(213,255,64,0.1)]">
+              <div className="mt-6 pt-4 border-t border-[rgba(213,255,64,0.1)] group-hover:border-[rgba(213,255,64,0.25)] transition-colors">
                 <p className="font-mono text-[11px] uppercase tracking-wider text-[#D5FF40] font-semibold mb-2.5">
                   PRACTICAL FOCUS
                 </p>
@@ -58,9 +65,9 @@ export function GrowthJourneySection() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

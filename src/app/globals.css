@@ -12,7 +12,6 @@
   --color-bg-primary: #050505;
   --color-accent-lime: #D5FF40;
   --color-accent-lime-hover: #c2ea36;
-  --color-accent-lime-glow: rgba(213, 255, 64, 0.35);
   --color-surface: #101010;
   --color-surface-secondary: #181818;
   --color-text-primary: #FFFFFF;
@@ -53,7 +52,6 @@ html.dark {
   --color-bg-primary: #050505;
   --color-accent-lime: #D5FF40;
   --color-accent-lime-hover: #c2ea36;
-  --color-accent-lime-glow: rgba(213, 255, 64, 0.35);
   --color-surface: #101010;
   --color-surface-secondary: #181818;
   --color-text-primary: #FFFFFF;
@@ -94,7 +92,6 @@ html.light {
   --color-bg-primary: #FAFAFA;
   --color-accent-lime: #65A30D;
   --color-accent-lime-hover: #4D7C0F;
-  --color-accent-lime-glow: rgba(101, 163, 13, 0.2);
   --color-surface: #FFFFFF;
   --color-surface-secondary: #F1F3F5;
   --color-text-primary: #0A0F1D;
@@ -218,18 +215,15 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.75rem 1.5rem;
   border-radius: 2px;
   border: 1px solid transparent;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 15px rgba(213, 255, 64, 0.2);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .btn-cyber-primary:hover {
   background-color: #c2ea36;
-  box-shadow: 0 0 25px rgba(213, 255, 64, 0.4);
-  transform: translateY(-1px);
 }
 
 .btn-cyber-primary:active {
-  transform: translateY(0);
+  transform: translateY(1px);
 }
 
 .btn-cyber-secondary {
@@ -247,15 +241,13 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.75rem 1.5rem;
   border-radius: 2px;
   border: 1px solid rgba(213, 255, 64, 0.25);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
 }
 
 .btn-cyber-secondary:hover {
   border-color: #D5FF40;
   color: #D5FF40;
-  background-color: rgba(213, 255, 64, 0.05);
-  box-shadow: 0 0 15px rgba(213, 255, 64, 0.15);
-  transform: translateY(-1px);
+  background-color: rgba(213, 255, 64, 0.04);
 }
 
 .pill-btn {
@@ -271,14 +263,11 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.05em;
   padding: 0.625rem 1.25rem;
   border-radius: 9999px;
-  transition: all 0.2s ease;
-  box-shadow: 0 0 20px rgba(213, 255, 64, 0.3);
+  transition: background-color 0.15s ease;
 }
 
 .pill-btn:hover {
   background-color: #c2ea36;
-  box-shadow: 0 0 30px rgba(213, 255, 64, 0.5);
-  transform: translateY(-1px);
 }
 
 /* Card Utility */
@@ -286,12 +275,11 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #101010;
   border: 1px solid rgba(213, 255, 64, 0.15);
   border-radius: 2px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .cyber-card:hover {
   border-color: rgba(213, 255, 64, 0.35);
-  box-shadow: 0 0 25px rgba(213, 255, 64, 0.08);
 }
 
 /* Grid & Matrix Backgrounds */
@@ -362,6 +350,7 @@ html.light {
   }
 
   /* Card and Panel Backgrounds */
+  & .bg-\[\#070707\],
   & .bg-\[\#0A0A0A\],
   & .bg-\[\#101010\] {
     background-color: #FFFFFF !important;
@@ -442,13 +431,11 @@ html.light {
   & .pill-btn {
     background-color: #D5FF40 !important;
     color: #050505 !important;
-    border: 1px solid rgba(0, 0, 0, 0.12) !important;
-    box-shadow: 0 4px 14px rgba(101, 163, 13, 0.22) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
   }
   & .btn-cyber-primary:hover,
   & .pill-btn:hover {
     background-color: #c2ea36 !important;
-    box-shadow: 0 6px 20px rgba(101, 163, 13, 0.32) !important;
   }
 
   & .btn-cyber-secondary {
@@ -459,19 +446,17 @@ html.light {
   & .btn-cyber-secondary:hover {
     border-color: #65A30D !important;
     color: #4D7C0F !important;
-    background-color: rgba(101, 163, 13, 0.08) !important;
+    background-color: rgba(101, 163, 13, 0.06) !important;
   }
 
   /* Cyber Cards */
   & .cyber-card {
     background-color: #FFFFFF !important;
     border-color: rgba(0, 0, 0, 0.08) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
   }
   & .cyber-card:hover {
     background-color: #FFFFFF !important;
-    border-color: rgba(101, 163, 13, 0.45) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+    border-color: rgba(101, 163, 13, 0.35) !important;
   }
 
   /* Grid & Matrix in Light Mode */
@@ -589,11 +574,31 @@ html.light {
     background-color: #65A30D !important;
   }
 
-  /* Dropdown & Modal Shadows */
-  & .shadow-\[0_4px_30px_rgba\(0\,0\,0\,0\.8\)\] {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  /* Dropdown & Modal Elevation (Functional only, no glow) */
+  & .shadow-dropdown {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
   }
-  & .shadow-\[0_10px_35px_rgba\(0\,0\,0\,0\.8\)\,0_0_20px_rgba\(213\,255\,64\,0\.1\)\] {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 0 15px rgba(101, 163, 13, 0.08) !important;
+}
+
+/* ========================================================================= */
+/* ACCESSIBILITY & FOCUS INTERACTION SYSTEM                                  */
+/* ========================================================================= */
+.focus-cyber {
+  outline: none;
+}
+.focus-cyber:focus-visible {
+  outline: 2px solid var(--color-accent-lime);
+  outline-offset: 2px;
+}
+
+/* Accessible reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

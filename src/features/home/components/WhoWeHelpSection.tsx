@@ -1,39 +1,46 @@
+"use client";
+
 import React from "react";
 import { WHO_WE_HELP } from "@/constants/site-data";
+import { Reveal } from "@/components/ui/Reveal";
+import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 export function WhoWeHelpSection() {
   return (
     <section className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)]">
       <div className="container-cyber">
         {/* Section Header */}
-        <div className="max-w-2xl mb-14">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-              {"// WHO WE HELP"}
-            </span>
+        <Reveal>
+          <div className="max-w-3xl mb-14">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+                {"// WHO WE WORK WITH"}
+              </span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
+              Built for Businesses <br className="hidden sm:inline" />
+              <span className="text-[#D5FF40]">Ready to Grow.</span>
+            </h2>
+            <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
+              We partner with founders, local businesses, and online stores looking for clear work, honest communication, and real results.
+            </p>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
-            Designed for businesses <br className="hidden sm:inline" />
-            <span className="text-[#D5FF40]">ready to grow.</span>
-          </h2>
-          <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
-            We focus on honest, practical solutions for people and teams who want to build a dependable online presence without agency fluff.
-          </p>
-        </div>
+        </Reveal>
 
         {/* Audience List */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {WHO_WE_HELP.map((item) => (
-            <div
+            <StaggerItem
               key={item.title}
-              className="border border-[rgba(213,255,64,0.15)] bg-[#0A0A0A] p-6 flex flex-col justify-between"
+              className="group border border-[rgba(213,255,64,0.15)] bg-[#0A0A0A] p-6 sm:p-7 rounded-[2px] flex flex-col justify-between transition-colors duration-200 hover:border-[#D5FF40] hover:bg-[#101010]"
             >
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#D5FF40] font-bold block mb-2">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-[#D5FF40] font-bold bg-[#D5FF40]/10 border border-[#D5FF40]/25 px-2.5 py-0.5 rounded-[2px] inline-block mb-3">
                   {item.tag}
                 </span>
 
-                <h3 className="font-display text-xl font-bold uppercase text-white">
+                <h3 className="font-display text-xl font-bold uppercase text-white group-hover:text-[#D5FF40] transition-colors">
                   {item.title}
                 </h3>
 
@@ -42,12 +49,13 @@ export function WhoWeHelpSection() {
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[rgba(213,255,64,0.1)] text-[11px] font-mono text-[#B0B0B0]">
-                <span>Practical Guidance</span>
+              <div className="mt-6 pt-4 border-t border-[rgba(213,255,64,0.1)] group-hover:border-[rgba(213,255,64,0.25)] flex items-center justify-between text-[11px] font-mono text-[#B0B0B0] transition-colors">
+                <span>Verified Partnership</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40] opacity-60 group-hover:opacity-100 transition-opacity" />
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
