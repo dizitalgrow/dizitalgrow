@@ -1,150 +1,155 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Check } from "lucide-react";
-import { CAPABILITIES, META_CAPI_FEATURE } from "@/constants/site-data";
-import { Reveal } from "@/components/ui/Reveal";
-import { MotionReveal } from "@/components/ui/motion";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { CAPABILITIES_PILLARS } from "@/constants/site-data";
+import { Reveal, MotionReveal } from "@/components/ui/motion";
 
 export function CapabilitiesSection() {
+  const [activePillarId, setActivePillarId] = useState(
+    CAPABILITIES_PILLARS[0].id
+  );
+
+  const selectedPillar =
+    CAPABILITIES_PILLARS.find((p) => p.id === activePillarId) ||
+    CAPABILITIES_PILLARS[0];
+
   return (
-    <section id="services" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] scroll-mt-16">
+    <section id="capabilities" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] bg-[#050505] scroll-mt-16">
       <div className="container-cyber">
-        {/* Header */}
-        <Reveal>
-          <div className="max-w-3xl mb-14">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                {"// CORE SERVICES & DIGITAL CAPABILITIES"}
-              </span>
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <Reveal>
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+                  OUR CAPABILITIES
+                </span>
+              </div>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
+                Everything You Need to <br />
+                <span className="text-[#D5FF40]">Move Forward Digitally.</span>
+              </h2>
+              <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
+                Organized into three essential pillars. Select a category below to explore specific business problems solved.
+              </p>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
-              Websites, Apps, <br className="hidden sm:inline" />
-              <span className="text-[#D5FF40]">Ads &amp; Tracking.</span>
-            </h2>
-            <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
-              Seven core services to help your business grow online. Hire us for a single service or an integrated setup.
-            </p>
-          </div>
-        </Reveal>
+          </Reveal>
 
-        {/* Minimal Numbered Service Rows */}
-        <div className="divide-y divide-[rgba(213,255,64,0.15)] border-y border-[rgba(213,255,64,0.15)]">
-          {CAPABILITIES.map((item, index) => (
-            <MotionReveal
-              key={item.id}
-              delay={index * 0.03}
-              className="py-8 sm:py-10 grid gap-6 lg:grid-cols-12 items-start group transition-colors duration-200 hover:bg-white/[0.01]"
-            >
-              {/* Service Title & Benefit */}
-              <div className="lg:col-span-7 space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-[#D5FF40]">
-                    {"//"} {item.number}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#B0B0B0] bg-[#141414] border border-[rgba(213,255,64,0.2)] px-2 py-0.5 rounded-[2px]">
-                    {item.category}
-                  </span>
-                </div>
-                <h3 className="font-display text-xl sm:text-2xl font-bold uppercase text-white group-hover:text-[#D5FF40] transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[#B0B0B0] leading-relaxed font-normal max-w-2xl">
-                  {item.description}
-                </p>
-              </div>
-
-              {/* Key Deliverables & Quick CTA */}
-              <div className="lg:col-span-5 flex flex-col justify-between sm:pt-2 space-y-4">
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {item.deliverables.map((del) => (
-                    <li key={del} className="flex items-start gap-2 text-xs text-[#B0B0B0]">
-                      <Check className="h-3.5 w-3.5 text-[#D5FF40] shrink-0 mt-0.5" />
-                      <span className="leading-snug">{del}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="pt-2">
-                  <Link
-                    href={`/contact?service=${item.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline focus-cyber"
-                  >
-                    <span>Discuss {item.title}</span>
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </MotionReveal>
-          ))}
-        </div>
-
-        {/* Dedicated Meta Conversions API (CAPI) Showcase */}
-        <div id="tracking" className="mt-16 scroll-mt-24">
-          <MotionReveal>
-            <div className="border border-[rgba(213,255,64,0.25)] bg-[#0A0A0A] p-8 sm:p-10 lg:p-12 rounded-[2px] relative">
-              <div className="relative z-10 max-w-3xl">
-                <div className="inline-flex items-center gap-2 mb-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                    {"// " + META_CAPI_FEATURE.eyebrow}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase text-white leading-tight">
-                  {META_CAPI_FEATURE.title}
-                </h3>
-
-                <p className="mt-4 text-sm sm:text-base text-[#B0B0B0] leading-relaxed">
-                  {META_CAPI_FEATURE.description}
-                </p>
-
-                <div className="grid gap-6 sm:grid-cols-2 mt-8 pt-8 border-t border-[rgba(213,255,64,0.15)]">
-                  {META_CAPI_FEATURE.keyPoints.map((point) => (
-                    <div key={point.title} className="space-y-1.5">
-                      <div className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
-                        <h4 className="font-display text-sm font-bold uppercase text-white">
-                          {point.title}
-                        </h4>
-                      </div>
-                      <p className="text-xs text-[#B0B0B0] leading-relaxed">
-                        {point.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-[rgba(213,255,64,0.1)] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#B0B0B0]">
-                  <p>Implementation depends on your website architecture and ad account access.</p>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-1.5 text-[#D5FF40] hover:underline uppercase font-bold tracking-wider"
-                  >
-                    <span>Request CAPI Audit</span>
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </MotionReveal>
-        </div>
-
-        {/* Bottom Note */}
-        <Reveal delay={0.1}>
-          <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs font-mono text-[#B0B0B0]">
-            <p>Unsure whether you need website development, ad management, or tracking first?</p>
+          <Reveal delay={0.1}>
             <Link
-              href="/contact"
-              className="inline-flex items-center gap-1.5 text-[#D5FF40] hover:underline uppercase font-bold tracking-wider focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D5FF40]"
+              href="/services"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline shrink-0"
             >
-              <span>Discuss Your Project</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
+              <span>Explore All Capabilities</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+
+        {/* 3 Pillars Selector Tabs */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
+          {CAPABILITIES_PILLARS.map((pillar) => {
+            const isSelected = pillar.id === activePillarId;
+            return (
+              <button
+                key={pillar.id}
+                type="button"
+                onClick={() => setActivePillarId(pillar.id)}
+                className={`p-4 rounded-[2px] border text-left transition-all cursor-pointer ${
+                  isSelected
+                    ? "border-[#D5FF40] bg-[#141414]"
+                    : "border-[rgba(213,255,64,0.18)] bg-[#0A0A0A] hover:border-[#D5FF40]"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-mono text-xs font-bold text-[#D5FF40]">
+                    0{pillar.pillarNumber}
+                  </span>
+                  <span className="font-mono text-[10px] text-[#A1A1AA] uppercase">
+                    PILLAR
+                  </span>
+                </div>
+                <h3 className="font-display text-lg font-bold uppercase text-white">
+                  {pillar.pillar}
+                </h3>
+                <p className="text-xs text-[#B0B0B0] mt-1 line-clamp-1">
+                  {pillar.tagline}
+                </p>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Pillar Capabilities Grid */}
+        <MotionReveal
+          key={selectedPillar.id}
+          className="border border-[rgba(213,255,64,0.2)] bg-[#0A0A0A] p-6 sm:p-10 rounded-[2px]"
+        >
+          <div className="border-b border-[rgba(213,255,64,0.12)] pb-6 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+                {selectedPillar.pillar} · CAPABILITIES & PROBLEMS SOLVED
+              </span>
+              <p className="text-sm text-[#B0B0B0] mt-1 max-w-2xl">
+                {selectedPillar.description}
+              </p>
+            </div>
+
+            <Link
+              href={`/services#${selectedPillar.id}`}
+              className="text-xs font-mono text-white hover:text-[#D5FF40] uppercase font-bold tracking-wider shrink-0 flex items-center gap-1"
+            >
+              <span>View Full Pillar</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-        </Reveal>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {selectedPillar.capabilities.map((cap) => (
+              <div
+                key={cap.name}
+                className="group border border-[rgba(213,255,64,0.15)] bg-[#101010] p-6 rounded-[2px] flex flex-col justify-between hover:border-[#D5FF40] transition-colors"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
+                    <ArrowUpRight className="h-4 w-4 text-[#D5FF40] opacity-40 group-hover:opacity-100 transition-opacity" />
+                  </div>
+
+                  <h4 className="font-display text-base font-bold uppercase text-white group-hover:text-[#D5FF40] transition-colors">
+                    {cap.name}
+                  </h4>
+
+                  <p className="mt-2 text-xs text-[#B0B0B0] leading-relaxed">
+                    {cap.summary}
+                  </p>
+
+                  <div className="mt-4 pt-3 border-t border-[rgba(213,255,64,0.1)]">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#D5FF40] font-bold block mb-1">
+                      PROBLEM IT SOLVES:
+                    </span>
+                    <p className="text-[11px] text-[#A1A1AA] leading-snug">
+                      {cap.solves}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-2">
+                  <Link
+                    href={cap.href}
+                    className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline"
+                  >
+                    <span>Learn More</span>
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </MotionReveal>
       </div>
     </section>
   );

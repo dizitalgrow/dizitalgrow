@@ -8,18 +8,8 @@ import {
   type HTMLMotionProps,
 } from "framer-motion";
 
-/**
- * Custom hook to safely determine if animations should be simplified
- */
-export function useAnimationSafe() {
-  const shouldReduceMotion = useReducedMotion();
-  return {
-    shouldReduceMotion,
-    transition: shouldReduceMotion
-      ? { duration: 0.01 }
-      : { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
-  };
-}
+export type RevealProps = MotionRevealProps;
+export const Reveal = MotionReveal;
 
 export interface MotionRevealProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
@@ -69,7 +59,7 @@ export function MotionReveal({
       className={className}
       initial={{ opacity: 0, ...getInitialPosition() }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once, margin: "-40px" }}
+      viewport={{ once, margin: "0px" }}
       transition={{
         duration: 0.45,
         delay,
@@ -118,7 +108,7 @@ export function StaggerContainer({
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "0px" }}
       {...props}
     >
       {children}

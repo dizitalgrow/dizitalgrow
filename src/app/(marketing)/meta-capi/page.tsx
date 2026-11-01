@@ -2,8 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2, ShieldAlert, Cpu, Globe, Server, Database, ArrowRight } from "lucide-react";
-import { Reveal } from "@/components/ui/Reveal";
-import { MotionReveal } from "@/components/ui/motion";
+import { Reveal, MotionReveal } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "Server-Side Meta Conversions API (CAPI) Setup & Audit | DizitalGrow",
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function MetaCapiPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <div className="w-full bg-[#050505] text-white">
       {/* Header */}
       <section className="container-cyber pt-16 pb-12">
         <Reveal>
@@ -32,7 +31,7 @@ export default function MetaCapiPage() {
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                {"// SERVER-SIDE MEASUREMENT"}
+                SERVER-SIDE MEASUREMENT
               </span>
             </div>
 
@@ -222,7 +221,7 @@ export default function MetaCapiPage() {
         <div className="container-cyber">
           <div className="max-w-2xl space-y-4">
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-              {"// AUDIT & IMPLEMENTATION"}
+              AUDIT & IMPLEMENTATION
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase text-white">
               Request a Tracking &amp; CAPI Audit

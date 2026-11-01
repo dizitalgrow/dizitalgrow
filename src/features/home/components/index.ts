@@ -1,12 +1,11 @@
 export { HeroSection } from "./HeroSection";
-export { CoreCapabilitiesSection } from "./CoreCapabilitiesSection";
-export { HowWeWorkSection } from "./HowWeWorkSection";
-export { LearnAndGrowSection } from "./LearnAndGrowSection";
-export { FinalCTASection } from "./FinalCTASection";
-
-// Retained for backwards compatibility if needed
-export { CapabilitiesSection } from "./CapabilitiesSection";
-export { GrowthJourneySection } from "./GrowthJourneySection";
-export { AboutSection } from "./AboutSection";
-export { ProcessSection } from "./ProcessSection";
+export { DigitalOpportunitySection } from "./DigitalOpportunitySection";
 export { WhoWeHelpSection } from "./WhoWeHelpSection";
+export { OutcomesSection } from "./OutcomesSection";
+export { GrowthFrameworkSection } from "./GrowthFrameworkSection";
+export { CapabilitiesSection } from "./CapabilitiesSection";
+export { WhyDizitalGrowSection } from "./WhyDizitalGrowSection";
+export { WorkShowcaseSection } from "./WorkShowcaseSection";
+export { LearnAndGrowSection } from "./LearnAndGrowSection";
+export { HomeFAQSection } from "./HomeFAQSection";
+export { FinalCTASection } from "./FinalCTASection";

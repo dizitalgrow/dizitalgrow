@@ -132,7 +132,7 @@ export function BlogListingClient({
       {isError && (
         <div className="border border-red-500/30 bg-red-950/20 p-8 text-center rounded-[2px] space-y-4">
           <p className="text-xs font-mono uppercase tracking-wider text-red-400 font-bold">
-            {"// ERROR LOADING ARTICLES"}
+            ERROR LOADING ARTICLES
           </p>
           <p className="text-sm text-[#B0B0B0] max-w-md mx-auto">
             {error?.message || "Could not retrieve articles from Sanity CMS."}
@@ -156,7 +156,7 @@ export function BlogListingClient({
 
           <div className="space-y-2 max-w-lg mx-auto">
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40] block">
-              {"// KNOWLEDGE BASE STATUS"}
+              KNOWLEDGE BASE STATUS
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
               {searchQuery

@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts } from "@/lib/sanity";
+import { SERVICE_DETAIL_PAGES } from "@/constants/site-data";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://dizitalgrow.in";
   const currentDate = new Date();
 
   // Static core routes
-  const staticRoutes: MetadataRoute.Sitemap = [
+  const staticCoreRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: currentDate,
@@ -14,25 +15,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/about`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/services`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/meta-capi`,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/process`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/meta-capi`,
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/about`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
@@ -47,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/contact`,
       lastModified: currentDate,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/privacy-policy`,
@@ -63,20 +64,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Service detail routes
+  const serviceDetailRoutes: MetadataRoute.Sitemap = Object.keys(
+    SERVICE_DETAIL_PAGES
+  ).map((slug) => ({
+    url: `${baseUrl}/services/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
 
   try {
     // Dynamic published blog posts from Sanity
     const posts = await getBlogPosts({ limit: 100 });
     const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
       url: `${baseUrl}/blog/${post.slug.current}`,
-      lastModified: post.updatedAt ? new Date(post.updatedAt) : post.publishedAt ? new Date(post.publishedAt) : currentDate,
+      lastModified: post.updatedAt
+        ? new Date(post.updatedAt)
+        : post.publishedAt
+        ? new Date(post.publishedAt)
+        : currentDate,
       changeFrequency: "weekly",
-      priority: 0.7,
+      priority: 0.75,
     }));
 
-    return [...staticRoutes, ...postRoutes];
+    return [...staticCoreRoutes, ...serviceDetailRoutes, ...postRoutes];
   } catch (err) {
     console.warn("[Sitemap] Could not retrieve dynamic blog posts:", err);
-    return staticRoutes;
+    return [...staticCoreRoutes, ...serviceDetailRoutes];
   }
 }

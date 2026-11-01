@@ -3,7 +3,6 @@ import {
   POSTS_QUERY,
   POST_BY_SLUG_QUERY,
   POSTS_BY_CATEGORY_QUERY,
-  FEATURED_POSTS_QUERY,
   ALL_CATEGORIES_QUERY,
   SITE_SETTINGS_QUERY,
 } from "./queries";
@@ -74,39 +73,6 @@ export async function getBlogPostBySlug(
   }
 }
 
-/**
- * Fetch featured posts for homepage or showcase sections.
- * Falls back to newest published articles if no posts have featured == true.
- */
-export async function getFeaturedPosts(limit = 3): Promise<SanityPost[]> {
-  try {
-    const featured = await sanityClient.fetch<SanityPost[]>(
-      FEATURED_POSTS_QUERY,
-      { limit },
-      { next: { revalidate: 60, tags: ["sanity-featured-posts"] } }
-    );
-
-    if (Array.isArray(featured) && featured.length > 0) {
-      return featured;
-    }
-
-    // Fall back to newest published articles
-    return await getBlogPosts({ limit });
-  } catch (err) {
-    console.warn("[Sanity API] Error fetching featured posts:", err);
-    return [];
-  }
-}
-
-/**
- * Fetch posts for a specific category.
- */
-export async function getPostsByCategory(
-  category: string,
-  limit = 12
-): Promise<SanityPost[]> {
-  return getBlogPosts({ category, limit });
-}
 
 /**
  * Fetch all distinct categories present in published posts.

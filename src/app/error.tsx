@@ -18,7 +18,7 @@ export default function RootError({ error, reset }: RootErrorProps) {
     <div className="container-cyber flex min-h-[70vh] flex-col items-center justify-center text-center py-20">
       <div className="max-w-md border border-[rgba(213,255,64,0.2)] bg-[#0A0A0A] p-8 sm:p-12 rounded-[2px]">
         <span className="font-mono text-xs uppercase tracking-widest text-[#D5FF40] font-bold">
-          {"// UNEXPECTED ERROR"}
+          UNEXPECTED ERROR
         </span>
         <h1 className="mt-3 text-2xl sm:text-3xl font-extrabold tracking-tight text-white font-display uppercase">
           Something went wrong

@@ -2,8 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2, Compass, FileCheck2, Code2, TestTube2, Rocket } from "lucide-react";
-import { Reveal } from "@/components/ui/Reveal";
-import { MotionReveal } from "@/components/ui/motion";
+import { Reveal, MotionReveal } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "Our 5-Stage Process — Discovery to Launch | DizitalGrow",
@@ -97,7 +96,7 @@ const DETAILED_STAGES = [
 
 export default function ProcessPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <div className="w-full bg-[#050505] text-white">
       {/* Header */}
       <section className="container-cyber pt-16 pb-12">
         <Reveal>
@@ -105,7 +104,7 @@ export default function ProcessPage() {
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                {"// OUR 5-STAGE PROCESS"}
+                OUR 5-STAGE PROCESS
               </span>
             </div>
 
@@ -187,7 +186,7 @@ export default function ProcessPage() {
       <section className="container-cyber pb-20">
         <div className="border border-[rgba(213,255,64,0.2)] bg-[#0A0A0A] p-8 sm:p-10 rounded-[2px]">
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-            {"// WORKING PRINCIPLES"}
+            WORKING PRINCIPLES
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold uppercase text-white mt-1 mb-6">
             What You Can Depend On

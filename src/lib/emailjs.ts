@@ -3,10 +3,10 @@ import emailjs from "@emailjs/browser";
 export interface ContactEmailPayload {
   name: string;
   email: string;
-  businessName?: string;
-  websiteUrl?: string;
-  helpWith: string;
-  challenge: string;
+  phoneOrWhatsApp: string;
+  businessOrOrg?: string;
+  goal: string;
+  description: string;
   budget?: string;
 }
 
@@ -43,13 +43,15 @@ export async function sendEmailEnquiry(data: ContactEmailPayload) {
   const templateParams: Record<string, unknown> = {
     name: data.name,
     email: data.email,
-    business_name: data.businessName || "N/A",
-    company: data.businessName || "N/A",
-    website_url: data.websiteUrl || "N/A",
-    help_with: data.helpWith,
-    solution: data.helpWith,
-    challenge: data.challenge,
-    details: data.challenge,
+    phone: data.phoneOrWhatsApp,
+    phone_or_whatsapp: data.phoneOrWhatsApp,
+    business_name: data.businessOrOrg || "N/A",
+    company: data.businessOrOrg || "N/A",
+    goal: data.goal,
+    help_with: data.goal,
+    challenge: data.description,
+    description: data.description,
+    details: data.description,
     budget: data.budget || "Not specified",
   };
 

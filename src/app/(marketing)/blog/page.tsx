@@ -42,7 +42,7 @@ export default async function BlogPage() {
           <div className="inline-flex items-center gap-2 border border-[rgba(213,255,64,0.25)] bg-[#101010] px-3 py-1">
             <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
             <span className="font-mono text-xs font-bold tracking-widest uppercase text-[#D5FF40]">
-              {"// BLOG & ARTICLES"}
+              BLOG & ARTICLES
             </span>
           </div>
 

@@ -5,8 +5,7 @@ import {
   ContactMethods,
   WhatHappensNext,
 } from "@/features/contact/components";
-import { Reveal } from "@/components/ui/Reveal";
-import { MotionReveal } from "@/components/ui/motion";
+import { Reveal, MotionReveal } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "Discuss Your Project — Web Development, Advertising & Tracking | DizitalGrow",
@@ -48,7 +47,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen text-[var(--color-text-primary)]">
+    <div className="w-full text-[var(--color-text-primary)]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
@@ -61,17 +60,17 @@ export default function ContactPage() {
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                {"// DISCUSS YOUR PROJECT"}
+                DISCUSS YOUR PROJECT
               </span>
             </div>
 
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--color-text-primary)] uppercase leading-tight">
-              Tell Us What You&apos;re Building. <br />
-              <span className="text-[#D5FF40]">We&apos;ll Plan the Next Steps.</span>
+              Tell Us What You <br />
+              <span className="text-[#D5FF40]">Want to Grow.</span>
             </h1>
 
             <p className="mt-4 text-base sm:text-lg text-[var(--color-text-secondary)] leading-relaxed font-normal">
-              Share your digital goals, website challenges, or ad tracking questions. We review every inquiry thoroughly and respond with practical recommendations within one business day.
+              Whether you are starting from scratch or looking to grow an existing business, let&apos;s explore how digital can create new opportunities for you. Honest advice, clear technical scoping, and zero sales pressure.
             </p>
           </div>
         </Reveal>

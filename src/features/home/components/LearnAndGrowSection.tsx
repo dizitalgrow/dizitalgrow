@@ -2,21 +2,32 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, BookOpen } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { BlogCard } from "@/components/blog/BlogCard";
 import type { SanityPost } from "@/lib/sanity";
-import { Reveal } from "@/components/ui/Reveal";
-import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 interface LearnAndGrowSectionProps {
   posts?: SanityPost[];
 }
 
+const INSIGHTS_CATEGORIES = [
+  "Digital Growth",
+  "Website & Tech",
+  "Marketing",
+  "Advertising",
+  "SEO",
+  "Analytics & CAPI",
+  "Entrepreneurship",
+];
+
 export function LearnAndGrowSection({ posts = [] }: LearnAndGrowSectionProps) {
+  // Check if the verified post is already in the fetched list
   const hasSanityPosts = posts && posts.length > 0;
+  const verifiedArticleSlug = "how-to-grow-your-business-online";
 
   return (
-    <section id="learn" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] scroll-mt-16">
+    <section id="insights" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] bg-[#070707] scroll-mt-16">
       <div className="container-cyber">
         {/* Section Header */}
         <Reveal>
@@ -25,77 +36,99 @@ export function LearnAndGrowSection({ posts = [] }: LearnAndGrowSectionProps) {
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                  {"// BLOG & ARTICLES"}
+                  KNOWLEDGE & INSIGHTS
                 </span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
-                Practical Articles for <br className="hidden sm:inline" />
-                <span className="text-[#D5FF40]">Smart Digital Decisions.</span>
+                Understand Digital. <br />
+                <span className="text-[#D5FF40]">Grow Smarter.</span>
               </h2>
               <p className="mt-4 text-base text-[#B0B0B0] leading-relaxed">
-                Straightforward articles on websites, advertising, and tracking to help you understand before you spend.
+                We believe in educating business owners and creators. Practical articles, architectural frameworks, and ad strategies to help you understand before you spend.
               </p>
             </div>
 
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline shrink-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D5FF40]"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline shrink-0"
             >
-              <span>Read The Blog</span>
+              <span>Explore All Insights</span>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
         </Reveal>
 
-        {/* Dynamic Sanity Published Articles or Clean Status Banner */}
-        {hasSanityPosts ? (
+        {/* Categories Strip */}
+        <div className="flex flex-wrap items-center gap-2 pb-8 border-b border-[rgba(213,255,64,0.12)] mb-10">
+          <span className="text-xs font-mono text-[#B0B0B0] uppercase font-bold mr-2">
+            TOPICS:
+          </span>
+          {INSIGHTS_CATEGORIES.map((cat) => (
+            <Link
+              key={cat}
+              href="/blog"
+              className="px-3 py-1 text-[11px] font-mono rounded-[2px] border border-[rgba(213,255,64,0.15)] bg-[#0A0A0A] text-[#A1A1AA] hover:text-[#D5FF40] hover:border-[#D5FF40] transition-colors"
+            >
+              #{cat}
+            </Link>
+          ))}
+        </div>
+
+        {/* Featured Flagship Article Highlight */}
+        <div className="mb-10">
+          <Link
+            href={`/blog/${verifiedArticleSlug}`}
+            className="group block border border-[rgba(213,255,64,0.22)] bg-[#0A0A0A] p-6 sm:p-10 rounded-[2px] hover:border-[#D5FF40] transition-all"
+          >
+            <div className="grid gap-6 lg:grid-cols-12 items-center">
+              <div className="lg:col-span-8 space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#050505] bg-[#D5FF40] px-2 py-0.5 rounded-[2px] font-bold">
+                    FLAGSHIP GUIDE
+                  </span>
+                  <span className="text-xs font-mono text-[#A1A1AA]">
+                    6 min read · AI &amp; Digital Marketing
+                  </span>
+                </div>
+
+                <h3 className="font-display text-2xl sm:text-3xl font-extrabold uppercase text-white group-hover:text-[#D5FF40] transition-colors leading-tight">
+                  How to Grow Your Business Online in 2026
+                </h3>
+
+                <p className="text-xs sm:text-sm text-[#B0B0B0] leading-relaxed max-w-2xl">
+                  Discover how to grow your business online in 2026 by combining Google SEO, AI-powered search, social media, and helpful content to reach the right customers.
+                </p>
+              </div>
+
+              <div className="lg:col-span-4 flex lg:justify-end">
+                <span className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] group-hover:underline">
+                  <span>Read Full Article</span>
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        {/* Dynamic Published Articles from Sanity */}
+        {hasSanityPosts && (
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-mono text-xs uppercase tracking-wider text-[#D5FF40] font-bold">
-                LATEST ARTICLES
-              </h3>
+              <span className="font-mono text-xs uppercase tracking-wider text-[#D5FF40] font-bold">
+                MORE RECENT PUBLICATIONS
+              </span>
             </div>
             <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {posts.slice(0, 3).map((post) => (
-                <StaggerItem key={post._id}>
-                  <BlogCard post={post} />
-                </StaggerItem>
-              ))}
+              {posts
+                .filter((p) => p.slug?.current !== verifiedArticleSlug)
+                .slice(0, 3)
+                .map((post) => (
+                  <StaggerItem key={post._id}>
+                    <BlogCard post={post} />
+                  </StaggerItem>
+                ))}
             </StaggerContainer>
           </div>
-        ) : (
-          <Reveal>
-            <div className="border border-[rgba(213,255,64,0.18)] bg-[#0A0A0A] p-8 sm:p-10 rounded-[2px] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-              <div className="flex items-start sm:items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[2px] bg-[#141414] border border-[rgba(213,255,64,0.2)] text-[#D5FF40]">
-                  <BookOpen className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold text-white font-display uppercase">
-                    DizitalGrow Blog &amp; Insights
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#B0B0B0] mt-1 leading-relaxed">
-                    Practical articles covering business websites, Google Ads, Meta Ads, and server-side tracking.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 shrink-0">
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-white hover:text-[#D5FF40] uppercase font-bold px-4 py-2.5 border border-[rgba(213,255,64,0.2)] hover:border-[#D5FF40] rounded-[2px] transition-colors"
-                >
-                  <span>Read Blog</span>
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-[#050505] bg-[#D5FF40] hover:bg-[#c2ea36] uppercase font-bold px-4 py-2.5 rounded-[2px] transition-colors"
-                >
-                  <span>Discuss Your Project</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
-            </div>
-          </Reveal>
         )}
       </div>
     </section>

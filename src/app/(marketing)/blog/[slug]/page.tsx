@@ -309,7 +309,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* End-of-Article Growth Action Callout */}
         <div className="border border-[rgba(213,255,64,0.25)] bg-[#0A0A0A] p-8 sm:p-10 space-y-4">
           <div className="inline-flex items-center gap-2 text-xs font-mono text-[#D5FF40] font-bold uppercase tracking-wider">
-            <span>{"// PRACTICAL NEXT STEP"}</span>
+            <span>PRACTICAL NEXT STEP</span>
           </div>
           <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--color-text-primary)]">
             Ready to plan your development, advertising, or tracking?

@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — DizitalGrow",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] min-h-screen">
+    <div className="w-full bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       <article className="container-cyber pt-16 pb-24 max-w-3xl">
         <Reveal>
           {/* Breadcrumb Back Link */}
@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
 
           <div className="border-b border-[rgba(213,255,64,0.15)] pb-6">
             <p className="font-mono text-xs uppercase tracking-widest text-[#D5FF40] font-bold">
-              {"// LEGAL"}
+              LEGAL
             </p>
             <h1 className="font-display mt-2 text-3xl sm:text-5xl font-extrabold uppercase text-[var(--color-text-primary)]">
               PRIVACY POLICY

@@ -31,11 +31,12 @@ export async function submitContactEnquiry(
   }
 
   console.log(
-    `[Server Action] New inquiry from ${validatedData.name} (${validatedData.email}) regarding ${validatedData.helpWith}`
+    `[Server Action] New inquiry from ${validatedData.name} (${validatedData.email}, Phone: ${validatedData.phoneOrWhatsApp}) regarding ${validatedData.goal}`
   );
 
   return {
     success: true,
-    message: "Thank you. Your inquiry has been received. We will respond with practical advice within one business day.",
+    message:
+      "Thank you. Your inquiry has been received. We will respond with practical advice and clear scopes within one business day.",
   };
 }

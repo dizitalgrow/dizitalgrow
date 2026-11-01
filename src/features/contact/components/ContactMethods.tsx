@@ -47,7 +47,7 @@ export function ContactMethods() {
   return (
     <div className="border border-[rgba(213,255,64,0.18)] bg-[#0A0A0A] p-6 sm:p-8">
       <span className="font-mono text-xs uppercase tracking-widest text-[#D5FF40] font-bold">
-        {"// DIRECT CHANNELS"}
+        DIRECT CHANNELS
       </span>
       <h3 className="font-display mt-2 text-xl font-bold text-white uppercase">
         Verified Contacts

@@ -1,277 +1,205 @@
 import React from "react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Check, ArrowRight } from "lucide-react";
-import { Reveal } from "@/components/ui/Reveal";
-import { MotionReveal } from "@/components/ui/motion";
+import { ArrowUpRight, ArrowRight, PhoneCall } from "lucide-react";
+import { CAPABILITIES_PILLARS, MASTER_FAQS } from "@/constants/site-data";
+import { VERIFIED_WHATSAPP_PHONE, PRIMARY_CTA_LABEL } from "@/constants/navigation";
+import { formatWhatsAppUrl } from "@/lib/utils";
+import { Reveal } from "@/components/ui/motion";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
-import { PEXELS_IMAGES } from "@/constants/images";
 
 export const metadata: Metadata = {
-  title: "Services & Capabilities — Websites, Ads & Tracking | DizitalGrow",
+  title: "Digital Solutions & Capabilities — Build, Reach, Convert & Measure | DizitalGrow",
   description:
-    "Explore our three core digital service categories: Websites & Web Applications, Google & Meta Ads Management, and Server-Side Meta CAPI Analytics.",
+    "Explore our complete digital solutions architecture: Website Development, Web Applications, Mobile Apps, Google & Meta Ads Management, SEO, and Server-Side Meta CAPI Telemetry.",
   alternates: {
     canonical: "https://dizitalgrow.in/services",
   },
   openGraph: {
-    title: "Services & Capabilities — DizitalGrow",
+    title: "Digital Solutions & Capabilities — DizitalGrow",
     description:
-      "Web development, customer acquisition advertising, and server-side conversion tracking.",
+      "Modern web engineering, customer acquisition advertising, and server-side conversion telemetry for growing businesses.",
     url: "https://dizitalgrow.in/services",
     siteName: "DizitalGrow",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Solutions & Capabilities — DizitalGrow",
+    description:
+      "Web development, customer acquisition advertising, and server-side tracking.",
+  },
 };
 
-const SERVICE_GROUPS = [
-  {
-    id: "build",
-    categoryNumber: "01",
-    categoryTitle: "Websites and Digital Products",
-    headline: "Fast, accessible web products engineered to convert visitors into inquiries.",
-    description:
-      "We design and build clean corporate websites, interactive web applications, e-commerce stores, and cross-platform mobile apps with sub-second page loads and mobile responsiveness.",
-    image: PEXELS_IMAGES.capabilityBuild,
-    services: [
-      {
-        name: "Business & Corporate Websites",
-        detail: "Next.js marketing websites with built-in search engine foundations, structured schema, and instant email alerts.",
-        deliverables: [
-          "Custom responsive mobile-first design",
-          "Next.js App Router for sub-second page loads",
-          "Built-in Google search SEO architecture",
-          "Simple lead capture forms with email alerts",
-        ],
-      },
-      {
-        name: "Custom Web Applications & Portals",
-        detail: "Interactive web applications, customer portals, and internal team dashboards with secure authentication and database tools.",
-        deliverables: [
-          "User authentication, roles & permissions",
-          "Secure database architecture and API integrations",
-          "Client-facing dashboards and workflows",
-          "Automated business notifications",
-        ],
-      },
-      {
-        name: "E-Commerce Websites & Stores",
-        detail: "High-performance online stores with quick product navigation, secure payment checkout, and server-side order telemetry.",
-        deliverables: [
-          "Fast-loading catalog and product pages",
-          "Friction-free checkout workflows",
-          "Order status alerts and email confirmations",
-          "Server-side purchase tracking integrations",
-        ],
-      },
-      {
-        name: "Mobile Application Development",
-        detail: "Smooth mobile apps for iOS and Android built on clean cross-platform frameworks with offline support and push alerts.",
-        deliverables: [
-          "Cross-platform iOS and Android builds",
-          "Push notifications and background sync",
-          "Secure API connections",
-          "App Store & Google Play preparation",
-        ],
-      },
-    ],
-  },
-  {
-    id: "reach",
-    categoryNumber: "02",
-    categoryTitle: "Customer Acquisition",
-    headline: "Targeted advertising campaigns that capture high-intent buyers.",
-    description:
-      "We build and manage search and social campaigns across Google Ads and Meta (Facebook & Instagram). We focus on qualified inquiries and purchases rather than vanity clicks.",
-    image: PEXELS_IMAGES.capabilityReach,
-    services: [
-      {
-        name: "Google Ads Management",
-        detail: "Targeted Search, Display, and Shopping campaigns showing your services to customers actively searching to buy.",
-        deliverables: [
-          "High-intent keyword discovery & negative lists",
-          "Persuasive ad copy and extensions",
-          "Conversion-focused landing page testing",
-          "Weekly bid adjustments and query audits",
-        ],
-      },
-      {
-        name: "Meta Ads Management (Facebook & Instagram)",
-        detail: "Targeted social ad campaigns that build customer demand, test creative hooks, and generate consistent leads.",
-        deliverables: [
-          "Audience segmentation and interest targeting",
-          "Ad creative direction and visual hook testing",
-          "Lead-generation and dynamic catalog funnels",
-          "Retargeting warm prospects without ad fatigue",
-        ],
-      },
-    ],
-  },
-  {
-    id: "measure",
-    categoryNumber: "03",
-    categoryTitle: "Analytics and Measurement",
-    headline: "Server-side tracking that eliminates lost sales and ad-blocker gaps.",
-    description:
-      "Standard browser pixels miss up to 30% of sales data due to iOS privacy controls and ad blockers. We configure server-side telemetry so your ad data is accurate and never double-counted.",
-    image: PEXELS_IMAGES.capabilityMeasure,
-    services: [
-      {
-        name: "Analytics & Tracking Audit",
-        detail: "Complete inspection of your GTM container, Google Analytics 4, and ad tags to locate missing events and tracking errors.",
-        deliverables: [
-          "Google Tag Manager container audit",
-          "GA4 key events and purchase tracking setup",
-          "Phone call and contact form event triggers",
-          "Data privacy compliance inspection",
-        ],
-      },
-      {
-        name: "Server-Side Meta Conversions API (CAPI)",
-        detail: "Direct server-to-server event dispatch with unique event IDs to deduplicate browser pixel and server signals.",
-        deliverables: [
-          "Direct server-side event transmission",
-          "Automatic browser & server deduplication",
-          "Higher Event Match Quality (EMQ) scores",
-          "Accurate return-on-ad-spend (ROAS) reporting",
-        ],
-      },
-    ],
-  },
-];
-
-const SERVICES_FAQS = [
-  {
-    question: "Can we hire DizitalGrow for a single service?",
-    answer:
-      "Yes. Many clients hire us exclusively for web development, while others work with us solely for ad management or Meta CAPI tracking. You are never forced into an all-in-one package.",
-  },
-  {
-    question: "How do project pricing and timelines work?",
-    answer:
-      "Websites typically take 2–4 weeks. Ad management and tracking setups are billed with fixed, transparent monthly management fees completely separate from your ad spend.",
-  },
-  {
-    question: "Do you provide maintenance after a website is launched?",
-    answer:
-      "Yes. We offer ongoing maintenance covering security updates, performance monitoring, bug fixes, and feature additions.",
-  },
-];
-
 export default function ServicesPage() {
+  const serviceCatalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "DizitalGrow Digital Solutions",
+    description:
+      "Complete capabilities across website development, web applications, advertising, and server-side telemetry.",
+    itemListElement: CAPABILITIES_PILLARS.flatMap((pillar, pIdx) =>
+      pillar.capabilities.map((cap, cIdx) => ({
+        "@type": "ListItem",
+        position: pIdx * 10 + cIdx + 1,
+        name: cap.name,
+        url: `https://dizitalgrow.in${cap.href}`,
+        description: cap.summary,
+      }))
+    ),
+  };
+
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
-      {/* Header */}
-      <section className="container-cyber pt-16 pb-12">
+    <div className="w-full bg-[#050505] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceCatalogSchema) }}
+      />
+
+      {/* Hero Section */}
+      <section className="container-cyber pt-16 pb-14 border-b border-[rgba(213,255,64,0.12)]">
         <Reveal>
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-3">
+          <div className="max-w-3xl space-y-5">
+            <div className="inline-flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                {"// SERVICES & CAPABILITIES"}
+                SOLUTIONS & CAPABILITIES
               </span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-white leading-tight">
-              Websites, Advertising, <br />
-              <span className="text-[#D5FF40]">&amp; Verified Tracking.</span>
+              Everything You Need to <br />
+              <span className="text-[#D5FF40]">Move Forward Digitally.</span>
             </h1>
 
-            <p className="mt-4 text-base sm:text-lg text-[#B0B0B0] leading-relaxed font-normal">
-              Practical digital services grouped into three core disciplines. We build the digital foundation, reach the right buyers, and measure real outcomes.
+            <p className="text-base sm:text-lg text-[#B0B0B0] leading-relaxed font-normal">
+              We organize our capabilities around three core business needs: establishing your digital foundation, connecting with high-intent buyers, and accurately measuring what drives revenue.
             </p>
+
+            <div className="pt-2 flex flex-wrap items-center gap-3.5">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-6 py-3.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors focus-cyber"
+              >
+                <span>{PRIMARY_CTA_LABEL}</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+
+              <a
+                href={formatWhatsAppUrl(
+                  VERIFIED_WHATSAPP_PHONE,
+                  "Hi DizitalGrow, I would like to explore your solutions."
+                )}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 border border-[rgba(213,255,64,0.25)] bg-[#101010] text-white px-5 py-3.5 text-xs font-display font-bold uppercase tracking-wider rounded-[2px] hover:border-[#D5FF40] hover:text-[#D5FF40] transition-colors"
+              >
+                <PhoneCall className="h-3.5 w-3.5 text-[#D5FF40]" />
+                <span>WhatsApp Consultation</span>
+              </a>
+            </div>
           </div>
         </Reveal>
       </section>
 
-      {/* Service Groups */}
-      <div className="space-y-24 pb-20">
-        {SERVICE_GROUPS.map((group) => (
+      {/* 3 Core Pillars Navigation / Anchors */}
+      <section className="container-cyber py-8 border-b border-[rgba(213,255,64,0.12)] bg-[#070707]">
+        <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+          <span className="text-[#B0B0B0] uppercase font-bold tracking-wider">
+            QUICK PILLAR JUMP:
+          </span>
+          <div className="flex flex-wrap items-center gap-3">
+            {CAPABILITIES_PILLARS.map((p) => (
+              <a
+                key={p.id}
+                href={`#${p.id}`}
+                className="px-3 py-1.5 rounded-[2px] border border-[rgba(213,255,64,0.2)] text-white hover:border-[#D5FF40] hover:text-[#D5FF40] transition-colors"
+              >
+                0{p.pillarNumber} · {p.pillar}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Pillars Sections */}
+      <div className="space-y-24 py-16 md:py-24">
+        {CAPABILITIES_PILLARS.map((pillar) => (
           <section
-            key={group.id}
-            id={group.id}
-            className="border-t border-[rgba(213,255,64,0.15)] pt-16 scroll-mt-20"
+            key={pillar.id}
+            id={pillar.id}
+            className="container-cyber scroll-mt-24"
           >
-            <div className="container-cyber">
-              {/* Category Header with Image */}
-              <div className="grid gap-8 lg:grid-cols-12 lg:gap-14 items-center mb-14">
-                <div className="lg:col-span-7 space-y-4">
-                  <div className="flex items-center gap-2">
+            <div className="border border-[rgba(213,255,64,0.2)] bg-[#0A0A0A] p-6 sm:p-10 lg:p-12 rounded-[2px] space-y-10">
+              {/* Pillar Header */}
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[rgba(213,255,64,0.12)]">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
                     <span className="font-mono text-xs font-bold text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.25)] px-2.5 py-0.5 rounded-[2px]">
-                      CATEGORY {group.categoryNumber}
+                      PILLAR 0{pillar.pillarNumber}
                     </span>
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#B0B0B0]">
-                      {group.categoryTitle}
+                    <span className="font-mono text-xs uppercase tracking-widest text-white font-bold">
+                      {pillar.pillar}
                     </span>
                   </div>
-
-                  <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase text-white leading-tight">
-                    {group.headline}
+                  <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase text-white mt-1">
+                    {pillar.tagline}
                   </h2>
-
-                  <p className="text-sm sm:text-base text-[#B0B0B0] leading-relaxed font-normal">
-                    {group.description}
+                  <p className="mt-2 text-sm text-[#B0B0B0] max-w-2xl leading-relaxed">
+                    {pillar.description}
                   </p>
                 </div>
 
-                <div className="lg:col-span-5">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] border border-[rgba(213,255,64,0.2)] bg-[#101010]">
-                    <Image
-                      src={group.image.src}
-                      alt={group.image.alt}
-                      fill
-                      loading="lazy"
-                      sizes="(max-width: 768px) 100vw, 40vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline shrink-0"
+                >
+                  <span>Discuss {pillar.pillar} Requirements</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
               </div>
 
-              {/* Individual Services in this Category */}
-              <div className="grid gap-6 md:grid-cols-2">
-                {group.services.map((service) => (
-                  <MotionReveal
-                    key={service.name}
-                    className="border border-[rgba(213,255,64,0.18)] bg-[#0A0A0A] p-6 sm:p-7 rounded-[2px] flex flex-col justify-between"
+              {/* Pillar Capabilities Grid */}
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {pillar.capabilities.map((cap) => (
+                  <div
+                    key={cap.name}
+                    className="group border border-[rgba(213,255,64,0.15)] bg-[#101010] p-6 rounded-[2px] flex flex-col justify-between hover:border-[#D5FF40] transition-all"
                   >
                     <div>
-                      <h3 className="font-display text-lg sm:text-xl font-bold uppercase text-white">
-                        {service.name}
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
+                        <ArrowUpRight className="h-4 w-4 text-[#D5FF40] opacity-40 group-hover:opacity-100 transition-opacity" />
+                      </div>
+
+                      <h3 className="font-display text-lg font-bold uppercase text-white group-hover:text-[#D5FF40] transition-colors">
+                        {cap.name}
                       </h3>
+
                       <p className="mt-2 text-xs sm:text-sm text-[#B0B0B0] leading-relaxed">
-                        {service.detail}
+                        {cap.summary}
                       </p>
 
-                      <div className="mt-5 pt-4 border-t border-[rgba(213,255,64,0.12)]">
-                        <span className="font-mono text-[11px] uppercase tracking-wider text-[#D5FF40] font-semibold block mb-2">
-                          WHAT WE DELIVER
+                      <div className="mt-4 pt-3 border-t border-[rgba(213,255,64,0.1)]">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#D5FF40] font-bold block mb-1">
+                          PROBLEM IT SOLVES:
                         </span>
-                        <ul className="space-y-1.5">
-                          {service.deliverables.map((del) => (
-                            <li key={del} className="flex items-start gap-2 text-xs text-[#B0B0B0]">
-                              <Check className="h-3.5 w-3.5 text-[#D5FF40] shrink-0 mt-0.5" />
-                              <span>{del}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        <p className="text-[11px] text-[#A1A1AA] leading-snug">
+                          {cap.solves}
+                        </p>
                       </div>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-[rgba(213,255,64,0.1)] flex items-center justify-between">
-                      <span className="font-mono text-[11px] text-[#B0B0B0]">
-                        Fixed scope &amp; timeline
-                      </span>
+                    <div className="mt-6 pt-3">
                       <Link
-                        href={`/contact?service=${encodeURIComponent(service.name)}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline"
+                        href={cap.href}
+                        className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase tracking-wider text-[#D5FF40] hover:underline"
                       >
-                        <span>Discuss Service</span>
-                        <ArrowRight className="h-3.5 w-3.5" />
+                        <span>Explore Dedicated Page</span>
+                        <ArrowRight className="h-3 w-3" />
                       </Link>
                     </div>
-                  </MotionReveal>
+                  </div>
                 ))}
               </div>
             </div>
@@ -279,40 +207,44 @@ export default function ServicesPage() {
         ))}
       </div>
 
-      {/* FAQ Section */}
-      <section className="border-t border-[rgba(213,255,64,0.15)] pt-12 pb-16">
-        <div className="container-cyber">
-          <div className="max-w-2xl mb-8">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-              {"// COMMON QUESTIONS"}
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold uppercase text-white mt-1">
-              Service Delivery &amp; Working Terms
-            </h2>
-          </div>
-          <FAQAccordion items={SERVICES_FAQS} showCTA={false} />
+      {/* Frequently Asked Questions */}
+      <section className="container-cyber py-16 md:py-24 border-t border-[rgba(213,255,64,0.12)]">
+        <div className="max-w-2xl mb-12">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+            FAQ
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase text-white mt-1">
+            Questions About Our Solutions
+          </h2>
+          <p className="text-sm text-[#B0B0B0] mt-2">
+            Clear, honest answers about scopes, pricing, and execution.
+          </p>
         </div>
+
+        <FAQAccordion items={MASTER_FAQS.slice(0, 6)} showCTA={false} />
       </section>
 
       {/* Bottom CTA */}
-      <section className="border-t border-[rgba(213,255,64,0.15)] py-16 bg-[#080808]">
-        <div className="container-cyber">
-          <div className="max-w-2xl space-y-4">
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase text-white">
-              Ready to discuss your requirements?
-            </h2>
-            <p className="text-sm sm:text-base text-[#B0B0B0]">
-              Share your goals, website challenges, or ad questions. We reply with technical scoping and clear recommendations within 24 hours.
-            </p>
-            <div className="pt-2">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-6 py-3 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors"
-              >
-                <span>Discuss Your Project</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
+      <section className="border-t border-[rgba(213,255,64,0.15)] py-20 bg-[#070707]">
+        <div className="container-cyber text-center max-w-3xl space-y-6">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
+            GET STARTED
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
+            Your Digital Growth Journey <br />
+            <span className="text-[#D5FF40]">Starts With One Step.</span>
+          </h2>
+          <p className="text-base text-[#B0B0B0] leading-relaxed">
+            Whether you are starting from scratch or looking to grow an existing business, let&apos;s explore how digital can create new opportunities for you.
+          </p>
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-[#D5FF40] text-[#050505] px-6 py-3.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors focus-cyber"
+            >
+              <span>Let&apos;s Talk About Your Goals</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

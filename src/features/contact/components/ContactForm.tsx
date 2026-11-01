@@ -3,11 +3,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, Loader2, ArrowUpRight, AlertCircle, Mail } from "lucide-react";
+import { Check, Loader2, ArrowUpRight, AlertCircle, Mail, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 import {
   contactSchema,
   type ContactFormData,
-  HELP_WITH_OPTIONS,
+  GOAL_OPTIONS,
   BUDGET_OPTIONS,
 } from "../schemas";
 import { submitContactEnquiry } from "../actions";
@@ -28,11 +29,12 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      businessName: "",
-      websiteUrl: "",
-      helpWith: "",
-      challenge: "",
+      phoneOrWhatsApp: "",
+      businessOrOrg: "",
+      goal: "",
+      description: "",
       budget: "",
+      privacyConsent: false,
       websiteHoneypot: "",
     },
   });
@@ -52,15 +54,15 @@ export function ContactForm() {
         await sendEmailEnquiry({
           name: data.name,
           email: data.email,
-          businessName: data.businessName,
-          websiteUrl: data.websiteUrl,
-          helpWith: data.helpWith,
-          challenge: data.challenge,
+          phoneOrWhatsApp: data.phoneOrWhatsApp,
+          businessOrOrg: data.businessOrOrg,
+          goal: data.goal,
+          description: data.description,
           budget: data.budget,
         });
       }
 
-      // 2. Submit server action for logging & validation
+      // 2. Submit server action for validation & logging
       const serverResult = await submitContactEnquiry(data);
       if (!serverResult.success) {
         throw new Error(serverResult.message || "Failed to process inquiry.");
@@ -89,7 +91,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="border border-[rgba(213,255,64,0.3)] bg-[#0A0A0A] p-8 sm:p-10">
+      <div className="border border-[rgba(213,255,64,0.3)] bg-[#0A0A0A] p-8 sm:p-10 rounded-[2px]">
         <div className="flex flex-col items-center justify-center text-center py-6">
           <span className="inline-flex h-12 w-12 items-center justify-center rounded-[2px] bg-[#D5FF40] text-[#050505]">
             <Check className="h-6 w-6 stroke-[3]" />
@@ -98,7 +100,7 @@ export function ContactForm() {
             Project inquiry received.
           </h2>
           <p className="mt-3 max-w-md text-sm text-[#B0B0B0] leading-relaxed font-normal">
-            Thank you for reaching out. We have received your inquiry and will reply with practical recommendations within one business day.
+            Thank you for reaching out. We have received your inquiry and will reply with practical recommendations and clear scopes within one business day.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <button
@@ -117,10 +119,19 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="border border-[rgba(213,255,64,0.18)] bg-[#0A0A0A] p-6 sm:p-8 space-y-6"
+      className="border border-[rgba(213,255,64,0.18)] bg-[#0A0A0A] p-6 sm:p-8 space-y-6 rounded-[2px]"
       noValidate
     >
-      {/* Bot Honeypot - hidden from real humans */}
+      <div className="border-b border-[rgba(213,255,64,0.12)] pb-4 mb-2">
+        <h2 className="font-display text-2xl font-bold uppercase text-white">
+          Tell Us What You Want to Grow.
+        </h2>
+        <p className="text-xs text-[#B0B0B0] mt-1">
+          Share your goals below. Every inquiry is personally reviewed with honest recommendations.
+        </p>
+      </div>
+
+      {/* Bot Honeypot */}
       <div className="hidden" aria-hidden="true">
         <label htmlFor="websiteHoneypot">Leave this empty</label>
         <input
@@ -133,10 +144,10 @@ export function ContactForm() {
       </div>
 
       {serverError && (
-        <div className="p-4 border border-red-500/40 bg-red-950/20 text-xs sm:text-sm text-red-300 flex items-start gap-2.5">
+        <div className="p-4 border border-red-500/40 bg-red-950/20 text-xs sm:text-sm text-red-300 flex items-start gap-2.5 rounded-[2px]">
           <AlertCircle className="h-4 w-4 shrink-0 text-red-400 mt-0.5" />
           <div>
-            <p className="font-bold">Transmission issue</p>
+            <p className="font-bold">Transmission notice</p>
             <p className="mt-0.5">{serverError}</p>
             <a
               href={`mailto:${VERIFIED_EMAIL}`}
@@ -196,142 +207,175 @@ export function ContactForm() {
         </div>
       </div>
 
-      {/* Business Name and Website URL */}
+      {/* Phone/WhatsApp & Business Name */}
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label
-            htmlFor="businessName"
+            htmlFor="phoneOrWhatsApp"
             className="block font-mono text-xs uppercase tracking-wider text-white font-bold"
           >
-            Business / Brand Name <span className="text-[#B0B0B0] font-normal">(Optional)</span>
+            Phone or WhatsApp <span className="text-[#D5FF40]">*</span>
           </label>
           <input
-            id="businessName"
-            type="text"
-            placeholder="Acme Studio"
-            className={getInputClass(!!errors.businessName)}
-            {...register("businessName")}
+            id="phoneOrWhatsApp"
+            type="tel"
+            placeholder="+91 98765 43210"
+            autoComplete="tel"
+            className={getInputClass(!!errors.phoneOrWhatsApp)}
+            {...register("phoneOrWhatsApp")}
           />
+          {errors.phoneOrWhatsApp && (
+            <p className="mt-1.5 text-xs text-red-400 font-mono">
+              {errors.phoneOrWhatsApp.message}
+            </p>
+          )}
         </div>
 
         <div>
           <label
-            htmlFor="websiteUrl"
+            htmlFor="businessOrOrg"
             className="block font-mono text-xs uppercase tracking-wider text-white font-bold"
           >
-            Website URL <span className="text-[#B0B0B0] font-normal">(Optional)</span>
+            Business or Organization <span className="text-[#B0B0B0] font-normal">(Optional)</span>
           </label>
           <input
-            id="websiteUrl"
+            id="businessOrOrg"
             type="text"
-            placeholder="https://example.com"
-            className={getInputClass(!!errors.websiteUrl)}
-            {...register("websiteUrl")}
+            placeholder="Company or Project Name"
+            className={getInputClass(!!errors.businessOrOrg)}
+            {...register("businessOrOrg")}
           />
-          {errors.websiteUrl && (
-            <p className="mt-1.5 text-xs text-red-400 font-mono">
-              {errors.websiteUrl.message}
-            </p>
-          )}
         </div>
       </div>
 
-      {/* What do you need help with? */}
+      {/* What are you looking to achieve? */}
       <div>
         <label
-          htmlFor="helpWith"
+          htmlFor="goal"
           className="block font-mono text-xs uppercase tracking-wider text-white font-bold"
         >
-          What do you need help with? <span className="text-[#D5FF40]">*</span>
+          What are you looking to achieve? <span className="text-[#D5FF40]">*</span>
         </label>
         <select
-          id="helpWith"
-          className={getInputClass(!!errors.helpWith)}
+          id="goal"
+          className={getInputClass(!!errors.goal)}
           defaultValue=""
-          {...register("helpWith")}
+          {...register("goal")}
         >
           <option value="" disabled className="text-[#B0B0B0]">
-            Select an area of interest...
+            Select your primary objective...
           </option>
-          {HELP_WITH_OPTIONS.map((opt) => (
+          {GOAL_OPTIONS.map((opt) => (
             <option key={opt} value={opt} className="bg-[#101010] text-white">
               {opt}
             </option>
           ))}
         </select>
-        {errors.helpWith && (
+        {errors.goal && (
           <p className="mt-1.5 text-xs text-red-400 font-mono">
-            {errors.helpWith.message}
+            {errors.goal.message}
           </p>
         )}
       </div>
 
-      {/* Current challenge and goals (Message) */}
+      {/* Brief description of requirements */}
       <div>
         <label
-          htmlFor="challenge"
+          htmlFor="description"
           className="block font-mono text-xs uppercase tracking-wider text-white font-bold"
         >
-          Project Details, Challenges &amp; Goals <span className="text-[#D5FF40]">*</span>
+          Brief description of your requirements <span className="text-[#D5FF40]">*</span>
         </label>
         <textarea
-          id="challenge"
+          id="description"
           rows={4}
-          placeholder="Tell us what your business does, your project requirements (website, custom app, ad management, or Meta CAPI tracking), and target timeline..."
-          className={getInputClass(!!errors.challenge)}
-          {...register("challenge")}
+          placeholder="Tell us about what you want to build, current challenges, or your desired timeline..."
+          className={getInputClass(!!errors.description)}
+          {...register("description")}
         />
-        {errors.challenge && (
+        {errors.description && (
           <p className="mt-1.5 text-xs text-red-400 font-mono">
-            {errors.challenge.message}
+            {errors.description.message}
           </p>
         )}
       </div>
 
-      {/* Approximate budget (Optional) */}
+      {/* Budget Range (Optional) */}
       <div>
         <label
           htmlFor="budget"
           className="block font-mono text-xs uppercase tracking-wider text-white font-bold"
         >
-          Approximate Budget <span className="text-[#B0B0B0] font-normal">(Optional)</span>
+          Budget Range <span className="text-[#B0B0B0] font-normal">(Optional)</span>
         </label>
         <select
           id="budget"
-          className={getInputClass(false)}
+          className={getInputClass(!!errors.budget)}
           defaultValue=""
           {...register("budget")}
         >
           <option value="" className="text-[#B0B0B0]">
-            Select an approximate range (or leave blank)...
+            Select an estimated budget range (optional)...
           </option>
-          {BUDGET_OPTIONS.map((b) => (
-            <option key={b} value={b} className="bg-[#101010] text-white">
-              {b}
+          {BUDGET_OPTIONS.map((opt) => (
+            <option key={opt} value={opt} className="bg-[#101010] text-white">
+              {opt}
             </option>
           ))}
         </select>
       </div>
 
-      {/* Submit Button */}
+      {/* Privacy Consent Checkbox */}
       <div className="pt-2">
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            className="mt-1 h-4 w-4 rounded-[2px] border-[rgba(213,255,64,0.3)] bg-[#101010] text-[#D5FF40] accent-[#D5FF40] focus:ring-0"
+            {...register("privacyConsent")}
+          />
+          <span className="text-xs text-[#B0B0B0] leading-relaxed">
+            I agree to the processing of my contact details for project consultation in accordance with DizitalGrow&apos;s{" "}
+            <Link
+              href="/privacy-policy"
+              target="_blank"
+              className="text-[#D5FF40] underline hover:text-white"
+            >
+              Privacy Policy
+            </Link>
+            . We never share your data.
+          </span>
+        </label>
+        {errors.privacyConsent && (
+          <p className="mt-1.5 text-xs text-red-400 font-mono">
+            {errors.privacyConsent.message}
+          </p>
+        )}
+      </div>
+
+      {/* Submit Button */}
+      <div className="pt-4 border-t border-[rgba(213,255,64,0.12)]">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#D5FF40] text-[#050505] px-8 py-3.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] transition-colors duration-150 hover:bg-[#c2ea36] active:translate-y-[1px] focus-cyber disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full inline-flex items-center justify-center gap-2 bg-[#D5FF40] text-[#050505] py-3.5 px-6 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] hover:bg-[#c2ea36] transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus-cyber cursor-pointer"
         >
           {isSubmitting ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Sending Inquiry...</span>
+              <span>Transmitting Inquiry...</span>
             </>
           ) : (
             <>
-              <span>Discuss Your Project</span>
+              <span>Submit Project Inquiry</span>
               <ArrowUpRight className="h-4 w-4" />
             </>
           )}
         </button>
+      </div>
+
+      <div className="flex items-center justify-center gap-2 text-[11px] font-mono text-[#B0B0B0]">
+        <ShieldCheck className="h-3.5 w-3.5 text-[#D5FF40]" />
+        <span>Spam-protected &amp; encrypted. Response within 1 business day.</span>
       </div>
     </form>
   );

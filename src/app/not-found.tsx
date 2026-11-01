@@ -7,7 +7,7 @@ export default function NotFound() {
     <div className="flex min-h-[70vh] items-center justify-center px-4 py-20">
       <div className="max-w-md text-center border border-[rgba(213,255,64,0.2)] bg-[#0A0A0A] p-8 sm:p-12 rounded-[2px]">
         <span className="font-mono text-xs uppercase tracking-widest text-[#D5FF40] font-bold">
-          {"// 404 — PAGE NOT FOUND"}
+          404 — PAGE NOT FOUND
         </span>
         <h1 className="mt-4 text-6xl sm:text-7xl font-extrabold font-display text-white tracking-tight">
           4<span className="text-[#D5FF40]">0</span>4

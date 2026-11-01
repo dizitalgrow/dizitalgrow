@@ -66,13 +66,6 @@ export const POSTS_BY_CATEGORY_QUERY = `
   }
 `;
 
-// Featured articles query
-export const FEATURED_POSTS_QUERY = `
-  *[_type == "post" && defined(slug.current) && !(_id in path("drafts.**")) && featured == true] 
-  | order(publishedAt desc) [0...$limit] {
-    ${POST_CARD_FIELDS}
-  }
-`;
 
 // Get all unique categories dynamically from published posts
 export const ALL_CATEGORIES_QUERY = `

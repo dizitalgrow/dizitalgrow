@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Plus, Minus, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FAQItem } from "@/constants/site-data";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/motion";
 import { useAccordion } from "@/hooks";
 
 interface FAQAccordionProps {
@@ -35,7 +35,7 @@ export function FAQAccordion({
               <div className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                  {"// FAQ"}
+                  FAQ
                 </span>
               </div>
 
