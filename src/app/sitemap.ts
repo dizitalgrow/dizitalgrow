@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { getBlogPosts } from "@/lib/sanity";
+import { getBlogPosts, getAllCategories } from "@/lib/sanity";
+import { categoryToSlug } from "@/lib/editorial/category-utils";
 import { SERVICE_DETAIL_PAGES } from "@/constants/site-data";
 import { SOLUTIONS_DATA } from "@/constants/solutions-data";
 import { INDUSTRIES_DATA } from "@/constants/industries-data";
@@ -66,6 +67,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: currentDate,
       changeFrequency: "daily",
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/editorial-policy`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/contact`,
@@ -143,9 +150,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   );
 
+  // 7. Dynamic Published Blog Articles
   let postRoutes: MetadataRoute.Sitemap = [];
   try {
-    // Dynamic published blog articles from Sanity CMS
     const posts = await getBlogPosts({ limit: 100 });
     postRoutes = posts
       .filter((post) => Boolean(post?.slug?.current))
@@ -157,10 +164,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           ? new Date(post.publishedAt)
           : currentDate,
         changeFrequency: "weekly",
-        priority: 0.75,
+        priority: 0.8,
       }));
   } catch (err) {
     console.warn("[Sitemap] Could not retrieve dynamic blog posts from Sanity:", err);
+  }
+
+  // 8. Dynamic Category Topic Cluster Routes
+  let categoryRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const categories = await getAllCategories();
+    categoryRoutes = categories.map((cat) => ({
+      url: `${baseUrl}/blog/category/${categoryToSlug(cat)}`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.75,
+    }));
+  } catch (err) {
+    console.warn("[Sitemap] Could not retrieve categories:", err);
   }
 
   // Combine and deduplicate URLs by location
@@ -172,6 +193,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...toolCategoryRoutes,
     ...toolRoutes,
     ...postRoutes,
+    ...categoryRoutes,
   ];
 
   const uniqueMap = new Map<string, MetadataRoute.Sitemap[number]>();

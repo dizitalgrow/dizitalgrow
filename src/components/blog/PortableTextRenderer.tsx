@@ -3,6 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { urlFor, type PortableTextBlock } from "@/lib/sanity";
+import { slugifyHeading, extractBlockText } from "@/lib/editorial/heading-utils";
+
+// Custom block components
+import { ComparisonTable } from "./blocks/ComparisonTable";
+import { CalloutBox } from "./blocks/CalloutBox";
+import { FeatureComparisonCard } from "./blocks/FeatureComparisonCard";
+import { ProsAndCons } from "./blocks/ProsAndCons";
+import { StepByStepGuide } from "./blocks/StepByStepGuide";
+import { StatisticCallout } from "./blocks/StatisticCallout";
+import { CodeSnippet } from "./blocks/CodeSnippet";
+import { VideoEmbed } from "./blocks/VideoEmbed";
+import { EditorialCTA } from "./EditorialCTA";
+import { FAQSection } from "./FAQSection";
 
 interface PortableTextRendererProps {
   value?: PortableTextBlock[];
@@ -15,32 +28,40 @@ export const portableTextComponents: PortableTextComponents = {
         {children}
       </p>
     ),
-    h2: ({ children }) => {
-      const id = typeof children === "string" 
-        ? children.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-") 
-        : undefined;
+    h2: ({ value, children }) => {
+      const text = extractBlockText(value as unknown as PortableTextBlock);
+      const id = slugifyHeading(text);
+
       return (
         <h2
-          id={id}
-          className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-[var(--color-text-primary)] uppercase tracking-tight mt-12 mb-5 scroll-mt-24 flex items-center gap-2"
+          id={id || undefined}
+          className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-[var(--color-text-primary)] uppercase tracking-tight mt-12 mb-5 scroll-mt-28 flex items-center gap-2 group"
         >
           <span className="h-2 w-2 rounded-full bg-[#D5FF40] inline-block shrink-0" />
           <span>{children}</span>
         </h2>
       );
     },
-    h3: ({ children }) => (
-      <h3 className="font-display text-lg sm:text-xl font-bold text-[var(--color-text-primary)] uppercase tracking-tight mt-8 mb-4">
-        {children}
-      </h3>
-    ),
+    h3: ({ value, children }) => {
+      const text = extractBlockText(value as unknown as PortableTextBlock);
+      const id = slugifyHeading(text);
+
+      return (
+        <h3
+          id={id || undefined}
+          className="font-display text-lg sm:text-xl font-bold text-[var(--color-text-primary)] uppercase tracking-tight mt-8 mb-4 scroll-mt-28"
+        >
+          {children}
+        </h3>
+      );
+    },
     h4: ({ children }) => (
       <h4 className="font-display text-base sm:text-lg font-bold text-[var(--color-text-primary)] uppercase tracking-tight mt-6 mb-3">
         {children}
       </h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-8 border-l-2 border-[#D5FF40] bg-[rgba(213,255,64,0.04)] dark:bg-[rgba(213,255,64,0.03)] py-4 px-6 italic text-sm sm:text-base text-[var(--color-text-primary)] leading-relaxed">
+      <blockquote className="my-8 border-l-2 border-[#D5FF40] bg-[rgba(213,255,64,0.04)] py-4 px-6 italic text-sm sm:text-base text-[var(--color-text-primary)] leading-relaxed rounded-r-[2px]">
         {children}
       </blockquote>
     ),
@@ -83,7 +104,7 @@ export const portableTextComponents: PortableTextComponents = {
       <span className="line-through opacity-70">{children}</span>
     ),
     code: ({ children }) => (
-      <code className="rounded-[2px] bg-[rgba(213,255,64,0.08)] border border-[rgba(213,255,64,0.2)] px-1.5 py-0.5 font-mono text-xs text-[#D5FF40] dark:text-[#D5FF40]">
+      <code className="rounded-[2px] bg-[rgba(213,255,64,0.08)] border border-[rgba(213,255,64,0.2)] px-1.5 py-0.5 font-mono text-xs text-[#D5FF40]">
         {children}
       </code>
     ),
@@ -144,6 +165,29 @@ export const portableTextComponents: PortableTextComponents = {
         </figure>
       );
     },
+    comparisonTable: ({ value }) => <ComparisonTable value={value} />,
+    callout: ({ value }) => <CalloutBox value={value} />,
+    featureComparisonCard: ({ value }) => <FeatureComparisonCard value={value} />,
+    prosAndCons: ({ value }) => <ProsAndCons value={value} />,
+    stepByStepGuide: ({ value }) => <StepByStepGuide value={value} />,
+    statisticCallout: ({ value }) => <StatisticCallout value={value} />,
+    codeBlock: ({ value }) => <CodeSnippet value={value} />,
+    videoEmbed: ({ value }) => <VideoEmbed value={value} />,
+    ctaBanner: ({ value }) => (
+      <EditorialCTA
+        variant="inline"
+        config={{
+          customTitle: value.headline,
+          customDescription: value.description,
+          customButtonText: value.buttonLabel,
+          customButtonUrl: value.buttonUrl,
+          targetService: value.targetService,
+        }}
+      />
+    ),
+    faqBlock: ({ value }) => (
+      <FAQSection heading={value.heading} items={value.items} />
+    ),
   },
 };
 
