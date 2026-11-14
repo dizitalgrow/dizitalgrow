@@ -1,12 +1,22 @@
 import React from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { Reveal } from "@/components/ui/motion";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — DizitalGrow",
-  description: "DizitalGrow Privacy Policy. How we collect, use, and protect your information.",
+  title: "Privacy Policy | DizitalGrow",
+  description:
+    "Learn how DizitalGrow collects, utilizes, safeguards, and handles your data and privacy across our website, services, and free tools.",
+  alternates: {
+    canonical: "https://dizitalgrow.in/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy | DizitalGrow",
+    description: "DizitalGrow Privacy Policy. Information handling, cookies, and data protection.",
+    url: "https://dizitalgrow.in/privacy-policy",
+    siteName: "DizitalGrow",
+    type: "website",
+  },
 };
 
 export default function PrivacyPolicyPage() {
@@ -14,87 +24,85 @@ export default function PrivacyPolicyPage() {
     <div className="w-full bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       <article className="container-cyber pt-16 pb-24 max-w-3xl">
         <Reveal>
-          {/* Breadcrumb Back Link */}
-          <div className="mb-6">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-mono text-[#D5FF40] hover:underline font-bold uppercase tracking-wider focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D5FF40]"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              <span>Back to Home</span>
-            </Link>
-          </div>
+          <Breadcrumb items={[{ name: "Privacy Policy" }]} />
 
           <div className="border-b border-[rgba(213,255,64,0.15)] pb-6">
-            <p className="font-mono text-xs uppercase tracking-widest text-[#D5FF40] font-bold">
-              LEGAL
-            </p>
+            <span className="font-mono text-xs uppercase tracking-widest text-[#D5FF40] font-bold">
+              PRIVACY & DATA PROTECTION
+            </span>
             <h1 className="font-display mt-2 text-3xl sm:text-5xl font-extrabold uppercase text-[var(--color-text-primary)]">
-              PRIVACY POLICY
+              Privacy Policy
             </h1>
             <p className="mt-2 font-mono text-xs text-[var(--color-text-secondary)]">
-              Last updated: October 2026
+              Last updated: October 2026 · Transparent Practices
             </p>
           </div>
 
           <div className="mt-10 space-y-8 text-[var(--color-text-secondary)] leading-relaxed text-sm sm:text-base font-normal">
             <p>
-              DizitalGrow (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) values your privacy. This Privacy Policy explains in simple terms how we collect, use, and safeguard your data when you visit our website or work with us.
+              DizitalGrow (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), operating via https://dizitalgrow.in, respects your personal privacy. This Privacy Policy details the types of information we collect, how it is handled, our cookie practices, and how your data is protected.
             </p>
 
             <section className="space-y-3 border-t border-[rgba(213,255,64,0.15)] pt-6">
               <h2 className="font-display text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] uppercase">
-                1. Information We Collect
+                1. Information Collected
               </h2>
-              <p>We only collect information necessary to understand your project and communicate with you:</p>
+              <p>We collect information only when explicitly provided by you or automatically through standard web technologies:</p>
               <ul className="list-disc pl-5 space-y-1.5 marker:text-[#D5FF40]">
-                <li>Name and company name</li>
-                <li>Contact details (email address and phone number)</li>
-                <li>Project details, requirements, and budget preferences you share via our forms</li>
-                <li>Basic website usage information (such as browser type and pages viewed)</li>
+                <li><strong>Contact Inquiries:</strong> Full name, email address, phone or WhatsApp number, business/project name, service requirements, budget preferences, and project descriptions submitted via our consultation forms.</li>
+                <li><strong>Browser-Based Free Tools:</strong> Our free calculators, builders, and generators execute 100% locally in your client web browser. We do not store, capture, transmit, or retain your tool inputs, invoices, calculations, or generated text on external database servers.</li>
+                <li><strong>Technical Usage Data:</strong> Anonymized telemetry such as browser version, operating system, pages visited, time spent, and referral sources to maintain uptime and speed.</li>
               </ul>
             </section>
 
             <section className="space-y-3 border-t border-[rgba(213,255,64,0.15)] pt-6">
               <h2 className="font-display text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] uppercase">
-                2. How We Use Information
+                2. How We Use Collected Data
               </h2>
-              <p>We use your information exclusively to:</p>
+              <p>The information we collect is strictly used to:</p>
               <ul className="list-disc pl-5 space-y-1.5 marker:text-[#D5FF40]">
-                <li>Respond to your inquiries and consultation requests</li>
-                <li>Provide website development, app development, and advertising services</li>
-                <li>Send project proposals, roadmaps, and progress updates</li>
-                <li>Improve website performance and user experience</li>
+                <li>Evaluate project requirements and deliver personalized technical proposals and estimates.</li>
+                <li>Execute contracted website development, software engineering, advertising campaigns, and server-side telemetry setup.</li>
+                <li>Coordinate directly with you via email or WhatsApp regarding milestone deliverables.</li>
+                <li>Audit website performance, prevent malicious bot attacks, and protect infrastructure security.</li>
               </ul>
               <p className="font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] p-3.5 border border-[rgba(213,255,64,0.15)] rounded-[2px]">
-                We will never sell, rent, or share your personal contact details with third-party marketers.
+                We do not sell, rent, monetize, or trade your contact details with external data brokers or advertisers.
               </p>
             </section>
 
             <section className="space-y-3 border-t border-[rgba(213,255,64,0.15)] pt-6">
               <h2 className="font-display text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] uppercase">
-                3. Cookies &amp; Analytics
+                3. Cookies & Analytics Integration
               </h2>
               <p>
-                We use standard cookies and analytics tools (like Google Analytics) to understand which pages visitors find helpful and ensure the site runs fast. You can disable cookies at any time through your browser settings.
+                We utilize minimal, privacy-conscious performance cookies and tracking tags (such as Google Analytics 4) to monitor website health and understand content engagement. You may set your browser preferences to reject cookies or delete them at any time with zero impact on our free tools.
               </p>
             </section>
 
             <section className="space-y-3 border-t border-[rgba(213,255,64,0.15)] pt-6">
               <h2 className="font-display text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] uppercase">
-                4. Data Security
+                4. Third-Party Services
               </h2>
               <p>
-                We take data protection seriously. All communications on our website use secure HTTPS encryption (SSL), and client project information is stored in password-protected, restricted systems.
+                To provide high-reliability services, we collaborate with reputable cloud service providers:
+              </p>
+              <ul className="list-disc pl-5 space-y-1.5 marker:text-[#D5FF40]">
+                <li><strong>Hosting & Edge Delivery:</strong> Vercel for fast, encrypted SSL content delivery.</li>
+                <li><strong>Content Management:</strong> Sanity.io for serving published blog articles and insights.</li>
+                <li><strong>Email Routing:</strong> EmailJS and encrypted email servers for delivering customer inquiries.</li>
+              </ul>
+              <p>
+                Each provider maintains independent security standards and complies with data processing regulations.
               </p>
             </section>
 
             <section className="space-y-3 border-t border-[rgba(213,255,64,0.15)] pt-6">
               <h2 className="font-display text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] uppercase">
-                5. Third-Party Services
+                5. Data Retention & User Rights
               </h2>
               <p>
-                We may use trusted service providers (such as Google, Meta, and email delivery platforms) to help run our business operations. These providers have their own strict privacy policies and only process data necessary for their specific service.
+                Project consultation submissions are retained only as long as necessary to facilitate communications and maintain business records. You retain the right to request access to your contact data, request corrections, or request deletion of your records by emailing us.
               </p>
             </section>
 
@@ -103,7 +111,7 @@ export default function PrivacyPolicyPage() {
                 6. Contact Information
               </h2>
               <p>
-                If you have any questions about this Privacy Policy or how your data is handled, please email us directly at:{" "}
+                For questions concerning our privacy practices, data protection, or to request record removal, please contact:{" "}
                 <a
                   href="mailto:contact@dizitalgrow.in"
                   className="text-[#D5FF40] hover:underline underline-offset-4 font-mono font-bold"

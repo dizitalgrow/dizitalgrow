@@ -101,7 +101,7 @@ export const portableTextComponents: PortableTextComponents = {
             href={href}
             target={openInNewTab ? "_blank" : undefined}
             rel={openInNewTab ? "noopener noreferrer" : undefined}
-            className="text-[#4D7C0F] dark:text-[#D5FF40] underline font-medium hover:opacity-80 transition-opacity"
+            className="text-[#D5FF40] underline font-medium hover:opacity-80 transition-opacity"
           >
             {children}
           </a>
@@ -111,7 +111,7 @@ export const portableTextComponents: PortableTextComponents = {
       return (
         <Link
           href={href}
-          className="text-[#4D7C0F] dark:text-[#D5FF40] underline font-medium hover:opacity-80 transition-opacity"
+          className="text-[#D5FF40] underline font-medium hover:opacity-80 transition-opacity"
         >
           {children}
         </Link>

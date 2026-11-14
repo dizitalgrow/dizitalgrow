@@ -51,7 +51,7 @@ export function WorkShowcaseSection() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[10px] uppercase font-bold text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.25)] px-2.5 py-0.5 rounded-[2px]">
-                    {project.clientIndustry}
+                    {project.clientIndustry || project.industry}
                   </span>
                   <span className="font-mono text-xs text-[#A1A1AA]">
                     Architecture Showcase

@@ -1,15 +1,3 @@
-export interface AudienceCategory {
-  id: string;
-  number: string;
-  title: string;
-  subtitle: string;
-  problems: string[];
-  solution: string;
-  deliverables: string[];
-  ctaText: string;
-  ctaHref: string;
-}
-
 export interface OutcomeItem {
   number: string;
   title: string;
@@ -20,7 +8,7 @@ export interface OutcomeItem {
 
 export interface GrowthFrameworkStage {
   step: string;
-  phase: "LEARN" | "BUILD" | "REACH" | "CONVERT" | "GROW";
+  phase: "UNDERSTAND" | "BUILD" | "REACH" | "CONVERT" | "MEASURE";
   title: string;
   tagline: string;
   description: string;
@@ -35,6 +23,7 @@ export interface ServiceDetailData {
   tagline: string;
   heroHeadline: string;
   heroDescription: string;
+  includes: string[];
   problemsSolved: string[];
   whoNeedsThis: {
     audience: string;
@@ -47,6 +36,16 @@ export interface ServiceDetailData {
     description: string;
   }[];
   technicalCapabilities: string[];
+  relatedSolutions: {
+    name: string;
+    href: string;
+    description: string;
+  }[];
+  relatedIndustries: {
+    name: string;
+    href: string;
+    description: string;
+  }[];
   relatedServices: {
     name: string;
     href: string;
@@ -61,11 +60,18 @@ export interface ServiceDetailData {
 export interface ProjectShowcaseItem {
   id: string;
   title: string;
-  clientIndustry: string;
+  industry: string;
+  clientIndustry?: string;
+  category: string;
   overview: string;
   challenge: string;
   solution: string;
+  approach: string;
+  features: string[];
   technologies: string[];
+  isConcept?: boolean;
+  servicesDelivered: string[];
+  caseStudySlug: string;
   liveHref?: string;
   linkText?: string;
 }
@@ -81,610 +87,575 @@ export interface FAQItem {
 
 export const HERO_CONTENT = {
   eyebrow: "GROW BEYOND OFFLINE",
-  headline: "The Digital World Has Opportunities. Let's Help You Grow With Them.",
+  headline: "Build Your Digital Presence. Reach More People. Grow With Clarity.",
   supportingText:
-    "From building your digital presence to reaching the right audience and turning visitors into customers, we help you make the most of the digital world.",
-  primaryCTA: { label: "Explore How We Help", href: "#capabilities" },
-  secondaryCTA: { label: "Start Your Growth Journey", href: "/contact" },
+    "DizitalGrow helps individuals, startups and businesses build a stronger presence online. From professional websites and custom applications to digital advertising, SEO and conversion tracking, we bring the important parts of your digital growth together.",
+  primaryCTA: { label: "Discuss Your Project", href: "/contact" },
+  secondaryCTA: { label: "Explore Our Services", href: "/services" },
   trustHighlights: [
-    "Websites & Web Apps",
+    "Websites & Applications",
     "Meta & Google Ads",
-    "Verified Telemetry & CAPI",
+    "SEO & Server Telemetry",
   ],
 };
 
 /* ========================================================================= */
-/* SECTION 2: THE DIGITAL OPPORTUNITY                                        */
+/* SECTION 2: BUSINESS PROBLEMS                                              */
 /* ========================================================================= */
 
-export const DIGITAL_OPPORTUNITY = {
-  eyebrow: "WHY DIGITAL PRESENCE MATTERS",
-  heading: "Your Business Has More Room to Grow.",
+export const BUSINESS_PROBLEMS = {
+  eyebrow: "BUSINESS CHALLENGES",
+  heading: "Your Business Deserves More Than Just Being Online",
   leadParagraph:
-    "Most ambitious businesses and professionals hit a growth ceiling when they rely exclusively on offline referrals, outdated websites, or disjointed marketing campaigns.",
-  bottlenecks: [
+    "Merely having a domain name or social handle is not enough. Most businesses encounter four persistent bottlenecks that prevent digital growth.",
+  challenges: [
     {
-      id: "discoverability",
       number: "01",
-      title: "Hard to Find Online",
+      title: "People cannot find your business.",
       description:
-        "Potential buyers search on Google and social media daily, but your competitors appear because your digital footprint is fragmented or nonexistent.",
+        "Potential buyers search for solutions on Google and social media every day, but your brand is invisible because search foundations and indexation are lacking.",
+      impact: "Zero inbound discovery from active commercial searches.",
     },
     {
-      id: "offline-dependency",
       number: "02",
-      title: "100% Offline Dependency",
+      title: "Your website is not generating enquiries.",
       description:
-        "Relying solely on word-of-mouth or physical foot traffic limits your reach to a tiny geographic radius and leaves revenue vulnerable to footfall fluctuations.",
+        "Visitors arrive at your website but leave without taking action because pages load slowly, messaging is confusing, or contact pathways are broken.",
+      impact: "High bounce rates and lost customer opportunities.",
     },
     {
-      id: "silent-websites",
       number: "03",
-      title: "Websites That Don't Convert",
+      title: "Your advertising is not producing clear results.",
       description:
-        "You have a website, but it loads slowly, confuses visitors, or lacks clear pathways to contact you—turning valuable traffic into bounced visitors.",
+        "You run ad campaigns on Meta or Google, but money is spent on clicks that never convert into verified customer calls or booked projects.",
+      impact: "Uncontrolled ad budget wastage with declining returns.",
     },
     {
-      id: "wasted-ad-spend",
       number: "04",
-      title: "Traffic Without Enquiries",
+      title: "You cannot clearly measure what is working.",
       description:
-        "Ad campaigns generate clicks and vanity impressions, but the traffic bounces without taking action because ads do not match visitor intent.",
-    },
-    {
-      id: "unmeasured-marketing",
-      number: "05",
-      title: "Unmeasured Marketing Spend",
-      description:
-        "Business owners spend on marketing without knowing which channel, campaign, or keyword generated their best customers due to broken analytics.",
-    },
-    {
-      id: "untapped-expertise",
-      number: "06",
-      title: "Expertise Without Digital Identity",
-      description:
-        "Individuals, creators, and consultants possess immense domain authority offline, but lack a polished personal platform to command authority and opportunities online.",
+        "Ad blockers and fragmented analytics prevent you from knowing which channel, ad creative, or keyword generated your actual customers.",
+      impact: "Blind marketing decisions without dependable attribution.",
     },
   ],
 };
 
 /* ========================================================================= */
-/* SECTION 3: WHO WE HELP (5 TARGET AUDIENCES)                              */
+/* SECTION 3: CORE SERVICES (8 CARDS)                                        */
 /* ========================================================================= */
 
-export const WHO_WE_HELP_AUDIENCES: AudienceCategory[] = [
+export const HOMEPAGE_SERVICES = [
   {
-    id: "individuals-creators",
-    number: "01",
-    title: "Individuals & Creators",
-    subtitle: "Personal Brands, Consultants & Specialists",
-    problems: [
-      "Struggling to showcase expertise and portfolio in a professional light.",
-      "Dependent on third-party algorithms for audience connection.",
-      "Missing inbound consulting leads, speaking gigs, and media inquiries.",
-    ],
-    solution:
-      "We design custom personal brand platforms and portfolio websites that establish authority, showcase your best work, and capture high-value inbound opportunities.",
-    deliverables: [
-      "High-speed personal authority website",
-      "Content publishing & newsletter architecture",
-      "Direct consultation booking workflows",
-    ],
-    ctaText: "Build Your Personal Presence",
-    ctaHref: "/contact?goal=build-website",
+    title: "Website Development",
+    slug: "web-development",
+    href: "/services/web-development",
+    description:
+      "Modern, fast business websites built on Next.js engineered to explain your value, build trust, and turn visitors into enquiries.",
+    iconName: "Globe",
+    tag: "Next.js",
   },
   {
-    id: "entrepreneurs",
-    number: "02",
-    title: "Entrepreneurs",
-    subtitle: "New Ventures & Market Entrants",
-    problems: [
-      "Having a viable business concept without digital infrastructure.",
-      "Uncertainty on whether to build a website, app, or marketing funnel first.",
-      "Limited runway requiring lean, high-efficiency execution.",
-    ],
-    solution:
-      "We provide end-to-end launchpad roadmaps—transforming raw concepts into market-ready digital presences with verified lead capture from day one.",
-    deliverables: [
-      "Rapid market launch websites & landing pages",
-      "Initial customer discovery funnels",
-      "Lean lead qualification systems",
-    ],
-    ctaText: "Launch Your Business",
-    ctaHref: "/contact?goal=digital-growth-strategy",
+    title: "Web Application Development",
+    slug: "web-applications",
+    href: "/services/web-applications",
+    description:
+      "Custom browser-based applications, client portals, and SaaS tools built around your exact operational workflows.",
+    iconName: "LayoutDashboard",
+    tag: "Full-Stack",
   },
   {
-    id: "startups",
-    number: "03",
-    title: "Startups",
-    subtitle: "Early-Stage & Funded Companies",
-    problems: [
-      "Need custom web apps, MVPs, and client portals built rapidly.",
-      "Complex technical requirements requiring reliable Next.js and API architecture.",
-      "Need clear attribution on early user acquisition channels.",
-    ],
-    solution:
-      "We engineer scalable Next.js web applications, user portals, and cross-platform mobile apps paired with robust telemetry to accelerate product-market fit.",
-    deliverables: [
-      "Full-stack custom web applications & MVPs",
-      "User authentication, databases & APIs",
-      "Precision user funnel tracking (GA4 + CAPI)",
-    ],
-    ctaText: "Develop Your Startup Solution",
-    ctaHref: "/contact?goal=develop-app",
+    title: "Mobile App Development",
+    slug: "mobile-apps",
+    href: "/services/mobile-apps",
+    description:
+      "Cross-platform iOS and Android mobile experiences designed around real user needs, with push alerts and offline capabilities.",
+    iconName: "Smartphone",
+    tag: "iOS & Android",
   },
   {
-    id: "small-local-businesses",
-    number: "04",
-    title: "Small & Local Businesses",
-    subtitle: "Service Providers, Clinics & Stores",
-    problems: [
-      "Missing out on local customers searching for their exact services nearby.",
-      "Older, clunky websites that do not load properly on mobile devices.",
-      "Unsure how Google Search and Meta Ads can generate daily customer phone calls.",
-    ],
-    solution:
-      "We build modern mobile-first websites and local search campaigns that put your business directly in front of buyers in your city actively looking to purchase.",
-    deliverables: [
-      "Mobile-optimized high-converting business website",
-      "High-intent Google Search advertising",
-      "Verified phone call & WhatsApp inquiry tracking",
-    ],
-    ctaText: "Grow Your Local Reach",
-    ctaHref: "/contact?goal=improve-lead-generation",
+    title: "Meta Ads",
+    slug: "meta-ads",
+    href: "/services/meta-ads",
+    description:
+      "Facebook and Instagram advertising campaigns built around business goals, targeted audiences, and measurable website actions.",
+    iconName: "Megaphone",
+    tag: "FB & IG",
   },
   {
-    id: "growing-businesses",
-    number: "05",
-    title: "Growing Businesses",
-    subtitle: "Established Enterprises & Scale-Ups",
-    problems: [
-      "Data discrepancies between ad platforms and actual bank receipts.",
-      "Legacy web systems creating friction for both clients and internal teams.",
-      "Ad campaigns plateauing in cost-per-acquisition without server-side signals.",
-    ],
-    solution:
-      "We upgrade digital infrastructure with enterprise Next.js architectures, server-side Meta Conversions API pipelines, and automated multi-channel acquisition.",
-    deliverables: [
-      "Server-side Meta CAPI & GA4 telemetry overhaul",
-      "Custom internal workflow software & portals",
-      "Cross-channel advertising scaling (Google + Meta)",
-    ],
-    ctaText: "Scale Your Infrastructure",
-    ctaHref: "/contact?goal=explore-growth",
+    title: "Google Ads",
+    slug: "google-ads",
+    href: "/services/google-ads",
+    description:
+      "High-intent Search, Display, and Shopping campaigns connecting your business with customers actively searching for what you offer.",
+    iconName: "Search",
+    tag: "Search Ads",
+  },
+  {
+    title: "SEO & Digital Visibility",
+    slug: "seo-visibility",
+    href: "/services/seo-visibility",
+    description:
+      "Technical search engine optimization, semantic site architecture, and on-page content planning to earn lasting discoverability.",
+    iconName: "LineChart",
+    tag: "Organic",
+  },
+  {
+    title: "Conversion Tracking",
+    slug: "conversion-tracking",
+    href: "/services/conversion-tracking",
+    description:
+      "Comprehensive telemetry setups with GA4 and Google Tag Manager to measure form submissions, calls, chats, and purchases.",
+    iconName: "Activity",
+    tag: "GA4 + GTM",
+  },
+  {
+    title: "Meta Conversions API",
+    slug: "meta-capi",
+    href: "/meta-capi",
+    description:
+      "Server-side event integration with deduplication to complement browser pixels and support reliable Meta ad measurement.",
+    iconName: "Server",
+    tag: "Server CAPI",
   },
 ];
 
 /* ========================================================================= */
-/* SECTION 4: WHAT WE HELP YOU ACHIEVE (5 OUTCOMES)                         */
+/* SECTION 4: SOLUTIONS (9 CARDS)                                            */
 /* ========================================================================= */
 
-export const OUTCOME_SECTIONS: OutcomeItem[] = [
+export const HOMEPAGE_SOLUTIONS = [
   {
-    number: "01",
-    title: "Establish Your Presence",
-    summary: "A permanent, high-performance home for your business online.",
-    details:
-      "Instead of relying solely on social media algorithms you do not control, you get a fast, modern digital property that represents your brand authentically 24/7.",
-    impactMetrics: "Sub-second load times · Mobile responsiveness · Full brand ownership",
+    title: "Personal Websites",
+    slug: "personal-websites",
+    href: "/solutions/personal-websites",
+    description: "Authority platforms for consultants, creators, executives, and specialists.",
+    tag: "Personal Brand",
   },
   {
-    number: "02",
-    title: "Get Discovered",
-    summary: "Show up when customers are actively searching for your solutions.",
-    details:
-      "We structure your digital assets with semantic HTML, search engine optimization, and local visibility signals so prospects find you at their moment of need.",
-    impactMetrics: "Targeted keyword visibility · Google Business positioning · Structured schema",
+    title: "Portfolio Websites",
+    slug: "portfolio-websites",
+    href: "/solutions/portfolio-websites",
+    description: "Visual, responsive showcase websites for designers, architects, and agencies.",
+    tag: "Creative Showcase",
   },
   {
-    number: "03",
-    title: "Reach Your Audience",
-    summary: "Connect with your ideal buyers across high-intent channels.",
-    details:
-      "Precision Google Search Ads and Meta campaigns targeted by real intent and demographics, avoiding wasted spend on generic clicks that never convert.",
-    impactMetrics: "High-intent buyer targeting · Visual hook testing · Zero ad spend wastage",
+    title: "Professional Websites",
+    slug: "professional-websites",
+    href: "/solutions/professional-websites",
+    description: "Credibility platforms for doctors, lawyers, accountants, and advisory practices.",
+    tag: "Practices",
   },
   {
-    number: "04",
-    title: "Generate Customers",
-    summary: "Turn anonymous website visitors into verified enquiries and sales.",
-    details:
-      "Friction-free inquiry forms, clear value propositions, direct WhatsApp chat gateways, and straightforward checkout flows designed to maximize conversions.",
-    impactMetrics: "Frictionless inquiry forms · WhatsApp lead routing · Optimized user journeys",
+    title: "Business Websites",
+    slug: "business-websites",
+    href: "/solutions/business-websites",
+    description: "Commercial websites designed to explain offerings and generate inbound enquiries.",
+    tag: "Commercial",
   },
   {
-    number: "05",
-    title: "Measure and Improve",
-    summary: "Know exactly which marketing efforts produce revenue.",
-    details:
-      "Reliable server-side tracking that bypasses ad blockers, tracks genuine inquiries and purchases, and gives you clear data to make confident growth decisions.",
-    impactMetrics: "Server-side Meta CAPI · GA4 key events · Verified cost-per-lead insights",
+    title: "Ecommerce Websites",
+    slug: "ecommerce-websites",
+    href: "/solutions/ecommerce-websites",
+    description: "High-speed online storefronts with clear catalog layouts and checkout flows.",
+    tag: "Storefronts",
+  },
+  {
+    title: "SaaS Products",
+    slug: "saas-development",
+    href: "/solutions/saas-development",
+    description: "Scalable software platforms, subscriber portals, and recurring tool apps.",
+    tag: "Cloud Apps",
+  },
+  {
+    title: "Landing Pages",
+    slug: "landing-pages",
+    href: "/solutions/landing-pages",
+    description: "Single-focus campaign pages engineered for high advertising conversion lift.",
+    tag: "High-Conversion",
+  },
+  {
+    title: "Web Applications",
+    slug: "web-applications",
+    href: "/solutions/web-applications",
+    description: "Custom dashboards, scheduling systems, and internal operational workflows.",
+    tag: "Interactive Tools",
+  },
+  {
+    title: "Mobile Applications",
+    slug: "mobile-applications",
+    href: "/solutions/mobile-applications",
+    description: "Engaging iOS and Android apps connected seamlessly to your backend API.",
+    tag: "Cross-Platform",
   },
 ];
 
 /* ========================================================================= */
-/* SECTION 5: SIGNATURE DIGITAL GROWTH FRAMEWORK                             */
+/* SECTION 5: INDUSTRIES (6 CARDS)                                           */
 /* ========================================================================= */
 
-export const GROWTH_FRAMEWORK_STAGES: GrowthFrameworkStage[] = [
+export const HOMEPAGE_INDUSTRIES = [
+  {
+    title: "Healthcare",
+    slug: "healthcare",
+    href: "/industries/healthcare",
+    description:
+      "Clinics, diagnostic centers, and hospitals requiring doctor profiles, treatment information, and appointment booking journeys.",
+    focus: "Patient journeys & local search",
+  },
+  {
+    title: "Real Estate",
+    slug: "real-estate",
+    href: "/industries/real-estate",
+    description:
+      "Property developers, brokers, and architectural studios needing project showcases, floor plans, and site visit enquiries.",
+    focus: "Property listings & lead capture",
+  },
+  {
+    title: "Education",
+    slug: "education",
+    href: "/industries/education",
+    description:
+      "Colleges, coaching academies, and training providers needing course catalogs, syllabus breakdowns, and admission funnels.",
+    focus: "Course pages & admission funnels",
+  },
+  {
+    title: "Ecommerce & Retail",
+    slug: "ecommerce-retail",
+    href: "/industries/ecommerce-retail",
+    description:
+      "D2C brands and multi-product retailers requiring fast storefronts, catalog navigation, shopping ad feeds, and purchase CAPI.",
+    focus: "Storefronts & purchase attribution",
+  },
+  {
+    title: "Manufacturing",
+    slug: "manufacturing",
+    href: "/industries/manufacturing",
+    description:
+      "Industrial manufacturers and export suppliers needing corporate credibility, technical specs, and B2B inquiry forms.",
+    focus: "B2B RFP engines & specifications",
+  },
+  {
+    title: "Professional Services",
+    slug: "professional-services",
+    href: "/industries/professional-services",
+    description:
+      "Consultants, chartered accountants, and legal practices requiring practice-area explanations, credentials, and consultation booking.",
+    focus: "Practice areas & consultation routing",
+  },
+];
+
+/* ========================================================================= */
+/* SECTION 6: OUR APPROACH (5 STEPS)                                         */
+/* ========================================================================= */
+
+export const HOMEPAGE_APPROACH: GrowthFrameworkStage[] = [
   {
     step: "01",
-    phase: "LEARN",
-    title: "Understand Your Opportunity",
-    tagline: "Audit, Audience & Goal Alignment",
+    phase: "UNDERSTAND",
+    title: "Understand",
+    tagline: "Discovery & Requirements",
     description:
-      "We study your business model, customer buying behaviors, current digital assets, and competitive landscape. We identify where friction exists and where your highest-leverage growth opportunities lie.",
+      "We begin by understanding your business model, customer buying journey, existing digital assets, and primary growth objectives.",
     activities: [
-      "Business model and target audience audit",
-      "Analysis of existing website performance and drop-off points",
-      "Review of advertising history and search volume demand",
-      "Clear, written milestone scope and technical roadmap",
+      "Auditing current website and traffic channels",
+      "Identifying conversion friction and drop-off points",
+      "Clarifying target audience intent and market demand",
+      "Drafting a straightforward written project scope",
     ],
-    deliverable: "Strategic Growth Roadmap & Scoping Document",
+    deliverable: "Strategic Discovery & Scoping Document",
   },
   {
     step: "02",
     phase: "BUILD",
-    title: "Engineer Your Digital Foundation",
-    tagline: "High-Performance Web, Apps & Infrastructure",
+    title: "Build",
+    tagline: "High-Performance Engineering",
     description:
-      "We construct modern, fast websites, custom web applications, or digital identity platforms using Next.js, clean TypeScript, and responsive UI. Every page is built to load instantly and guide users to action.",
+      "We design and develop fast, mobile-friendly websites, custom web applications, or tools using clean Next.js architecture.",
     activities: [
-      "Custom responsive Next.js engineering (desktop, tablet, mobile)",
-      "Conversion-focused layout architecture and persuasive copy",
-      "Form validation, bot protection, and instant notification pipelines",
-      "Structured SEO foundations, sitemaps, and Core Web Vitals optimization",
+      "Responsive UI engineering for mobile and desktop",
+      "Clear, persuasive copywriting without filler",
+      "Semantic SEO architecture and accessible markup",
+      "Form validation with instant notification routing",
     ],
-    deliverable: "Production-Ready Digital Platform & Experience",
+    deliverable: "Production-Ready Digital Platform",
   },
   {
     step: "03",
     phase: "REACH",
-    title: "Connect With Your Target Market",
-    tagline: "High-Intent Advertising & Search Visibility",
+    title: "Reach",
+    tagline: "Targeted Customer Acquisition",
     description:
-      "We launch targeted customer acquisition campaigns across Google Ads and Meta (Facebook & Instagram). We focus on search terms and audience segments with verified buying intent.",
+      "We connect your business with high-intent buyers through targeted Google Search Ads, Meta campaigns, and organic SEO foundations.",
     activities: [
-      "High-intent Google Search keyword architecture and negative lists",
+      "Commercial-intent keyword research and negative lists",
       "Meta Ads creative direction, ad angles, and hook testing",
-      "Audience segmentation (cold acquisition vs. warm retargeting)",
-      "Dedicated landing page alignment with specific ad messages",
+      "Targeting by geography, audience demographics, and buyer intent",
+      "Dedicated campaign landing page alignment",
     ],
     deliverable: "Active Acquisition Funnels Across Search & Social",
   },
   {
     step: "04",
     phase: "CONVERT",
-    title: "Turn Visitors Into Inquiries & Buyers",
-    tagline: "Conversion Optimization & Lead Routing",
+    title: "Convert",
+    tagline: "Frictionless Enquiries & Sales",
     description:
-      "We eliminate friction across user pathways. We test headings, call-to-action placement, mobile page speed, and contact methods like WhatsApp to maximize the percentage of visitors who become inquiries.",
+      "We eliminate friction across user pathways, optimizing contact forms, WhatsApp gateways, and value messaging to produce real enquiries.",
     activities: [
-      "Friction audit on mobile forms and checkout steps",
-      "Direct 1-on-1 WhatsApp integration for instant communication",
-      "Clear value propositions that address customer doubts upfront",
-      "A/B testing of landing page variations and call-to-action copy",
+      "Streamlining input fields on mobile forms",
+      "Direct 1-on-1 WhatsApp chat integration",
+      "Testing value propositions and prominent call-to-action buttons",
+      "Ensuring sub-second mobile page responsiveness",
     ],
     deliverable: "High-Conversion Lead Generation Workflow",
   },
   {
     step: "05",
-    phase: "GROW",
-    title: "Measure, Refine & Continuously Scale",
-    tagline: "Server-Side Telemetry & Data-Driven Growth",
+    phase: "MEASURE",
+    title: "Measure",
+    tagline: "Server-Side Telemetry & Continuous Refinement",
     description:
-      "We configure server-side Meta CAPI and GA4 to accurately record leads and sales. We analyze which campaigns drive actual revenue and continuously optimize performance for sustainable business growth.",
+      "We install server-side Meta CAPI and GA4 to verify every enquiry, phone call, and purchase, providing reliable data for decision-making.",
     activities: [
-      "Server-side Meta Conversions API (CAPI) installation & event deduplication",
-      "Google Tag Manager (GTM) container & GA4 key event setup",
-      "Weekly bid and budget reallocation toward profitable channels",
-      "Ongoing technical support, security patches, and feature upgrades",
+      "Server-side Meta Conversions API (CAPI) installation",
+      "Google Tag Manager container and GA4 key event setup",
+      "Event deduplication to avoid double-counting",
+      "Data-driven budget allocation toward profitable channels",
     ],
-    deliverable: "Accurate Revenue Reporting & Scalable Growth Engine",
+    deliverable: "Accurate Revenue Reporting & Continuous Optimization",
   },
 ];
 
 /* ========================================================================= */
-/* SECTION 6: CAPABILITIES (ORGANIZED IN 3 PILLARS)                          */
+/* SECTION 7: WHY DIZITALGROW (5 DIFFERENTIATORS)                            */
 /* ========================================================================= */
 
-export const CAPABILITIES_PILLARS = [
+export const HOMEPAGE_WHY_DIZITALGROW = [
   {
-    id: "build",
-    pillar: "BUILD",
-    pillarNumber: "01",
-    tagline: "Digital Presence & Infrastructure",
+    number: "01",
+    title: "Business-First Recommendations",
     description:
-      "Fast, engineered digital platforms that load in milliseconds, look exceptional on phones, and establish undeniable credibility.",
-    capabilities: [
-      {
-        name: "Website Development",
-        href: "/services/web-development",
-        summary:
-          "Custom Next.js marketing and corporate websites engineered for sub-second speeds, clean SEO, and inquiry generation.",
-        solves: "Solves slow loading times, outdated branding, and lack of mobile inquiries.",
-      },
-      {
-        name: "Web Application Development",
-        href: "/services/web-applications",
-        summary:
-          "Interactive client portals, SaaS MVPs, and internal workflow software with secure databases and authentication.",
-        solves: "Solves manual business operations and the need for custom customer platforms.",
-      },
-      {
-        name: "Mobile Application Development",
-        href: "/services/mobile-apps",
-        summary:
-          "Cross-platform iOS and Android apps with offline caching, push notifications, and seamless API sync.",
-        solves: "Solves the requirement to engage mobile-first users directly on their home screens.",
-      },
-      {
-        name: "Landing Pages & Funnels",
-        href: "/services/web-development#landing-pages",
-        summary:
-          "Single-focus, high-converting campaign landing pages built to maximize ad click-through conversions.",
-        solves: "Solves ad traffic bouncing on generic homepages without taking action.",
-      },
-      {
-        name: "Digital Platforms & Portals",
-        href: "/services/web-applications#portals",
-        summary:
-          "Centralized hubs connecting clients, teams, and data through intuitive interfaces and automated alerts.",
-        solves: "Solves fragmented spreadsheets and manual customer onboarding friction.",
-      },
-    ],
+      "We recommend solutions that match your commercial capacity and revenue goals, not whatever technology trend costs the most.",
   },
   {
-    id: "reach",
-    pillar: "REACH",
-    pillarNumber: "02",
-    tagline: "Customer Acquisition & Visibility",
+    number: "02",
+    title: "Technology and Marketing Together",
     description:
-      "Strategic acquisition campaigns that capture active buyers and build demand without burning budget on vanity impressions.",
-    capabilities: [
-      {
-        name: "Meta Ads (Facebook & Instagram)",
-        href: "/services/meta-ads",
-        summary:
-          "Targeted visual campaigns that reach prospective customers, test compelling creative hooks, and capture leads.",
-        solves: "Solves stagnant customer acquisition by tapping massive social attention pools.",
-      },
-      {
-        name: "Google Ads Management",
-        href: "/services/google-ads",
-        summary:
-          "Search and shopping campaigns that place your brand at the exact moment prospects search for your services.",
-        solves: "Solves missing out on high-intent buyers ready to purchase right now.",
-      },
-      {
-        name: "SEO and Digital Visibility",
-        href: "/services/seo-visibility",
-        summary:
-          "Semantic website structure, local search indexing, and AI search preparation to build enduring organic traffic.",
-        solves: "Solves 100% dependency on paid ads by building organic discoverability.",
-      },
-      {
-        name: "Digital Campaign Strategy",
-        href: "/services/meta-ads#campaign-strategy",
-        summary:
-          "Holistic multi-channel planning coordinating ad messaging, audience tiers, and seasonal promotions.",
-        solves: "Solves disconnected ad tactics operating without a unified commercial strategy.",
-      },
-      {
-        name: "Audience Acquisition",
-        href: "/services/google-ads#audience-acquisition",
-        summary:
-          "Audience segmentation connecting cold prospects, engaged visitors, and past buyers into an orderly funnel.",
-        solves: "Solves ad fatigue and low return on ad spend (ROAS).",
-      },
-    ],
+      "No finger-pointing between developers and ad managers. Your website engineering, ad campaigns, and conversion tracking work as one harmonized system.",
   },
   {
-    id: "convert-measure",
-    pillar: "CONVERT & MEASURE",
-    pillarNumber: "03",
-    tagline: "Conversion Optimization & Server Telemetry",
+    number: "03",
+    title: "Clear Project Scope",
     description:
-      "Precision tracking and user journey optimization that eliminates lost attribution and lifts conversion rates.",
-    capabilities: [
-      {
-        name: "Conversion Tracking & Telemetry",
-        href: "/services/conversion-tracking",
-        summary:
-          "End-to-end measurement setup tracking form submissions, phone calls, calendar bookings, and online sales.",
-        solves: "Solves marketing blindspots where you cannot verify which campaign drove revenue.",
-      },
-      {
-        name: "Google Analytics 4 & GTM",
-        href: "/services/ga4-gtm",
-        summary:
-          "Clean Google Tag Manager container deployment and GA4 event architecture with zero data clutter.",
-        solves: "Solves incorrect GA4 configurations, missing events, and duplicate reporting.",
-      },
-      {
-        name: "Meta Pixel & Conversions API (CAPI)",
-        href: "/meta-capi",
-        summary:
-          "Dual-channel browser and server event dispatch with deduplication, immune to iOS privacy blockers.",
-        solves: "Solves up to 30% lost sales attribution caused by browser ad blockers.",
-      },
-      {
-        name: "Conversion Rate Optimization (CRO)",
-        href: "/services/conversion-optimization",
-        summary:
-          "UX friction audits, copy testing, and layout refinements that increase the percentage of inquiries from existing traffic.",
-        solves: "Solves having good website traffic that fails to convert into paying customers.",
-      },
-    ],
+      "Fixed written deliverables, itemized milestone timelines, and complete transparency between agency fees and your direct advertising spend.",
+  },
+  {
+    number: "04",
+    title: "Solutions Built Around Actual Needs",
+    description:
+      "Every layout, heading, and database schema is crafted for your specific customers, rather than adapted from generic agency templates.",
+  },
+  {
+    number: "05",
+    title: "Measurement That Supports Decisions",
+    description:
+      "We verify conversions with reliable server-side telemetry so you know exactly which marketing efforts produce enquiries and revenue.",
   },
 ];
 
 /* ========================================================================= */
-/* SECTION 7: WHY DIZITALGROW (HONEST DIFFERENTIATORS)                       */
+/* SECTION 8: SELECTED WORK (AUTHENTIC & CLEARLY LABELED CONCEPT PROJECTS)  */
 /* ========================================================================= */
 
-export const WHY_DIZITALGROW = {
-  eyebrow: "OUR PHILOSOPHY",
-  heading: "Technology Meets Business Understanding.",
-  subheading:
-    "We do not make unrealistic promises of instant millions or guaranteed viral growth. We deliver disciplined engineering, honest marketing, and continuous optimization.",
-  differentiators: [
-    {
-      number: "01",
-      title: "Business-First Thinking",
-      description:
-        "We prioritize what moves your revenue—inquiries, phone calls, and customer transactions—rather than cosmetic trends or vanity metrics.",
-    },
-    {
-      number: "02",
-      title: "Tech & Marketing Under One Roof",
-      description:
-        "No finger-pointing between developers and ad managers. Your website engineering, ad campaigns, and telemetry work as one harmonized system.",
-    },
-    {
-      number: "03",
-      title: "Data-Informed Decisions",
-      description:
-        "We make campaign and UX changes based on verified server data and user behavior, not subjective agency opinions or guesswork.",
-    },
-    {
-      number: "04",
-      title: "Transparent Communication",
-      description:
-        "Clear scopes, honest timelines, plain language without buzzwords, and complete separation between management fees and your direct ad spend.",
-    },
-    {
-      number: "05",
-      title: "Practical Digital Strategies",
-      description:
-        "We build solutions tailored to your real business capacity. We recommend what works for your stage of growth, not what costs the most.",
-    },
-    {
-      number: "06",
-      title: "Continuous Improvement",
-      description:
-        "Digital growth is not a one-and-done project. We continually audit performance, patch bottlenecks, and optimize funnels for long-term compounding gains.",
-    },
-  ],
-};
-
-/* ========================================================================= */
-/* SECTION 8: WORK & PROJECT SHOWCASE (AUTHENTIC EVIDENCE)                   */
-/* ========================================================================= */
-
-export const PROJECT_SHOWCASE: ProjectShowcaseItem[] = [
+export const HOMEPAGE_SELECTED_WORK: ProjectShowcaseItem[] = [
   {
     id: "healthcare-diagnostic",
+    caseStudySlug: "healthcare-portal",
     title: "Diagnostic Center Patient Portal & Local Growth",
-    clientIndustry: "Healthcare & Diagnostics",
+    industry: "Healthcare & Diagnostics",
+    category: "Web Application & Local Search",
     overview:
-      "A fast, patient-friendly web presence enabling local patients to easily locate test packages, view preparation instructions, and book home sample collections.",
+      "A fast, patient-friendly web application enabling local patients to easily explore test packages, understand preparation protocols, and book home sample collections.",
     challenge:
-      "The clinic relied heavily on walk-ins and experienced low website engagement due to an outdated, slow platform that was difficult to navigate on mobile devices.",
+      "The diagnostic center relied heavily on walk-ins and faced low website engagement due to an outdated platform that was slow and difficult to navigate on mobile devices.",
     solution:
       "Engineered a responsive Next.js web application with structured test catalog schemas, instant WhatsApp appointment routing, and targeted Google Search Ads for local diagnostic queries.",
+    approach:
+      "Conducted patient discovery interviews, simplified test package navigation into clear categories, and integrated direct click-to-WhatsApp routing with Google Analytics event logging.",
+    features: [
+      "Structured medical test catalog with search filter",
+      "One-click WhatsApp home collection booking",
+      "Mobile-first responsive interface loading in < 0.9s",
+      "Local Google Search Ad campaign targeting intent keywords",
+    ],
     technologies: ["Next.js App Router", "Tailwind CSS", "Google Search Ads", "WhatsApp Lead Routing", "GA4"],
-    liveHref: "/contact",
-    linkText: "Discuss Similar Project",
+    servicesDelivered: ["Website Development", "Google Ads", "Conversion Tracking"],
+    isConcept: true,
   },
   {
     id: "d2c-ecommerce-capi",
-    title: "D2C Apparel Storefront & Server-Side Telemetry",
-    clientIndustry: "E-Commerce & Retail",
+    caseStudySlug: "ecommerce-telemetry",
+    title: "D2C Storefront & Server-Side Telemetry",
+    industry: "Ecommerce & Retail",
+    category: "Storefront & Server CAPI",
     overview:
-      "Modern e-commerce platform upgrade focused on lightning-fast product page rendering and server-side conversion tracking to recover lost purchase attribution.",
+      "E-commerce storefront upgrade focused on lightning-fast product page rendering and server-side conversion tracking to recover lost purchase attribution.",
     challenge:
       "Standard browser pixel tracking was losing up to 28% of purchase signals due to iOS Safari privacy controls and browser ad blockers, causing ad optimization algorithms to underperform.",
     solution:
       "Implemented server-side Meta Conversions API (CAPI) with automatic browser deduplication, combined with a streamlined, mobile-first checkout experience.",
+    approach:
+      "Audited client pixel fires, set up server container routing with matched Event IDs, and tested purchase dispatch via Meta Events Manager Test Events tool.",
+    features: [
+      "Dual-channel browser and server event dispatch",
+      "Event ID matching with zero double-counting",
+      "Event Match Quality score optimization",
+      "Lightweight mobile product layout with fast cart updates",
+    ],
     technologies: ["Next.js", "Meta Conversions API", "Event Deduplication", "Google Tag Manager", "Tailwind CSS"],
-    liveHref: "/meta-capi",
-    linkText: "View Architecture",
+    servicesDelivered: ["Meta Conversions API", "Conversion Tracking", "Website Development"],
+    isConcept: true,
   },
   {
-    id: "b2b-consulting-platform",
-    title: "Industrial Engineering Corporate Platform & Lead Engine",
-    clientIndustry: "B2B Manufacturing & Industrial Consulting",
+    id: "b2b-manufacturing-platform",
+    caseStudySlug: "industrial-platform",
+    title: "Industrial Manufacturing Corporate Platform & Lead Engine",
+    industry: "Manufacturing & Industrial",
+    category: "Corporate Platform & B2B Inquiries",
     overview:
-      "A clean, authoritative corporate website built to establish industry credibility and capture qualified RFPs from corporate procurement managers.",
+      "An authoritative corporate platform built to establish industrial credibility and capture qualified RFPs from corporate procurement managers.",
     challenge:
-      "The client had extensive technical expertise but no digital presence reflecting their capabilities, leading corporate prospects to favor competitors with polished websites.",
+      "The company had extensive manufacturing capabilities but no modern digital presence reflecting their scale, leading corporate prospects to favor competitors with polished websites.",
     solution:
-      "Built an engineered corporate platform with detailed project case studies, downloadable specification sheets, and a multi-step inquiry form with honeypot bot defense.",
-    technologies: ["Next.js", "TypeScript", "Sanity CMS", "Semantic SEO", "EmailJS Automation"],
-    liveHref: "/services/web-development",
-    linkText: "Explore Web Solutions",
-  },
-  {
-    id: "local-home-services",
-    title: "Premium Architecture Studio Portfolio & Search Visibility",
-    clientIndustry: "Architecture & Interior Design",
-    overview:
-      "An image-optimized digital portfolio showcasing luxury residential projects with fast CDN delivery and localized Google search visibility.",
-    challenge:
-      "High-resolution architectural photography was severely slowing down page loads on mobile phones, causing high bounce rates among affluent homeowners.",
-    solution:
-      "Delivered a modern portfolio using Next.js automatic image optimization, responsive picture formats, and clean typography with zero layout shift.",
-    technologies: ["Next.js", "Responsive Image Pipeline", "Google SEO", "Core Web Vitals", "Tailwind CSS"],
-    liveHref: "/contact",
-    linkText: "Discuss Your Project",
+      "Built an engineered corporate platform with detailed capability specifications, downloadable technical data sheets, and a multi-step inquiry form with bot defense.",
+    approach:
+      "Structured product catalogs by industrial sector, created downloadable specification sheets, and configured multi-step inquiry forms with instant email notifications.",
+    features: [
+      "Detailed industrial machine specifications catalog",
+      "Multi-step RFP submission form with honeypot bot defense",
+      "Downloadable technical specification sheets",
+      "Optimized Google Search Console indexing architecture",
+    ],
+    technologies: ["Next.js", "TypeScript", "Sanity CMS", "Semantic SEO", "EmailJS"],
+    servicesDelivered: ["Website Development", "Web Applications", "SEO & Digital Visibility"],
+    isConcept: true,
   },
 ];
 
 /* ========================================================================= */
-/* SECTION 10: FAQS (EXACT MASTER PROMPT QUESTIONS)                         */
+/* SECTION 9: TOOLS PREVIEW (FEATURED FREE TOOLS)                            */
+/* ========================================================================= */
+
+export const HOMEPAGE_FEATURED_TOOLS = [
+  {
+    title: "Invoice Generator",
+    slug: "invoice-generator",
+    href: "/tools/invoice-generator",
+    category: "Business & Freelancers",
+    description: "Generate clean, professional PDF-printable invoices with custom tax, discounts, and itemized calculations.",
+    tag: "Print & PDF",
+  },
+  {
+    title: "GST Calculator",
+    slug: "gst-calculator",
+    href: "/tools/gst-calculator",
+    category: "Everyday Calculators",
+    description: "Calculate GST inclusive and exclusive amounts with itemized CGST, SGST, and IGST breakdowns.",
+    tag: "Tax Breakdown",
+  },
+  {
+    title: "UTM Builder",
+    slug: "utm-builder",
+    href: "/tools/utm-builder",
+    category: "Marketing & SEO",
+    description: "Build clean, correctly encoded campaign tracking URLs while preserving existing query parameters and hash fragments.",
+    tag: "Analytics",
+  },
+  {
+    title: "SERP Preview",
+    slug: "serp-preview",
+    href: "/tools/serp-preview",
+    category: "Marketing & SEO",
+    description: "Preview how your webpage title and meta description will appear in Google desktop and mobile search snippets.",
+    tag: "SEO Simulator",
+  },
+  {
+    title: "LinkedIn Headline Generator",
+    slug: "linkedin-headline-generator",
+    href: "/tools/linkedin-headline-generator",
+    category: "Career & Students",
+    description: "Generate professional, high-impact LinkedIn headlines tailored for founders, engineers, consultants, and job seekers.",
+    tag: "Career",
+  },
+  {
+    title: "JSON Formatter",
+    slug: "json-formatter",
+    href: "/tools/json-formatter",
+    category: "Developer Utilities",
+    description: "Format, beautify, validate, and minify JSON data with clear syntax error detection and copy-to-clipboard.",
+    tag: "Developer",
+  },
+];
+
+/* ========================================================================= */
+/* SECTION 11: HOMEPAGE FAQS                                                 */
 /* ========================================================================= */
 
 export const MASTER_FAQS: FAQItem[] = [
   {
     question: "What does DizitalGrow do?",
     answer:
-      "DizitalGrow is a digital growth partner that unites website development, web applications, targeted advertising (Google & Meta Ads), and server-side tracking (Meta CAPI & GA4). We help businesses establish their digital presence, reach the right buyers, and generate measurable growth.",
+      "DizitalGrow is a digital growth partner that unites website development, web applications, mobile apps, digital advertising (Meta and Google Ads), SEO, and conversion tracking (including Meta Conversions API). We help individuals, startups, and businesses establish their online presence, reach the right audience, and generate measurable growth.",
   },
   {
-    question: "Who can work with DizitalGrow?",
+    question: "What services do you offer?",
     answer:
-      "We work with five distinct audiences: individuals building personal brands, entrepreneurs launching new ventures, startups needing MVPs and web applications, small and local businesses seeking customer enquiries, and growing companies looking to scale their digital infrastructure and ad performance.",
+      "We offer eight core digital capabilities: Website Development, Web Application Development, Mobile App Development, Meta Ads Management, Google Ads Management, SEO & Digital Visibility, Conversion Tracking, and Meta Conversions API (CAPI) implementation.",
   },
   {
-    question: "Do I need a website for my business?",
+    question: "Do I need a custom website or a template for my business?",
     answer:
-      "Yes. While social media channels are useful, your website is the only digital asset you truly own and control. It serves as your permanent 24/7 storefront where customers can verify your credibility, explore your offerings, and reach out directly without algorithmic interference.",
+      "While templates can work for basic temporary needs, custom Next.js websites provide significant long-term advantages: sub-second load times, mobile-optimized ergonomics, clean semantic code that search engines prefer, and conversion pathways tailored to your specific audience.",
   },
   {
-    question: "How can digital marketing help my business?",
+    question: "Can you build ecommerce websites?",
     answer:
-      "Digital marketing connects your business with people at the exact moment they are looking for what you offer. Unlike traditional broad advertising, digital channels allow precise targeting by intent, location, and interests—enabling you to track every rupee spent against verified customer enquiries.",
+      "Yes. We develop fast e-commerce storefronts with streamlined product catalogs, mobile-optimized cart workflows, secure payment gateways, and server-side purchase tracking to ensure accurate attribution.",
   },
   {
-    question: "Can you help me generate more enquiries?",
+    question: "Do you develop SaaS products and custom web applications?",
     answer:
-      "Yes. We specialize in conversion-focused funnels: designing fast, mobile-friendly landing pages that remove friction, combined with targeted Google Search and Meta Ads campaigns that reach motivated prospects, and routing inquiries directly to your team via phone or WhatsApp.",
+      "Yes. We build scalable SaaS MVPs, customer portals, internal business dashboards, and workflow tools with secure authentication, API integrations, and scalable database architecture.",
   },
   {
-    question: "Do you provide website and application development?",
+    question: "How do your advertising services work?",
     answer:
-      "Yes. We build high-performance corporate websites, custom web applications, SaaS dashboards, customer portals, e-commerce stores, and cross-platform iOS and Android mobile apps using modern Next.js and React frameworks.",
+      "We manage targeted advertising across Meta (Facebook and Instagram) and Google (Search, Display, Shopping). Our process includes commercial keyword research, creative direction, audience segmentation, conversion tracking, and ongoing bid optimization. Agency management fees are always kept completely separate from your direct ad spend.",
   },
   {
-    question: "Can you manage Google and Meta advertising?",
+    question: "Can you help my business rank on Google with SEO?",
     answer:
-      "Yes. We manage end-to-end advertising across Google (Search, Display, Shopping) and Meta (Facebook and Instagram). This includes keyword research, ad copy and creative direction, audience targeting, conversion tracking, and ongoing bid optimization.",
+      "Yes. We focus on search foundations: technical SEO, Core Web Vitals optimization, semantic HTML structure, schema markup, and high-intent content planning. Note that ethical SEO never promises guaranteed #1 rankings, but builds lasting organic visibility over time.",
   },
   {
-    question: "Can you track my website visitors and conversions?",
+    question: "What is conversion tracking and why is it important?",
     answer:
-      "Yes. We install advanced telemetry including Google Analytics 4, Google Tag Manager, Meta Pixel, and server-side Meta Conversions API (CAPI). We track form submissions, WhatsApp chats, phone clicks, and purchases with full event deduplication to stop data loss.",
+      "Conversion tracking measures the website actions that matter to your business: form submissions, phone calls, WhatsApp chats, and online purchases. Without accurate tracking, you cannot know which marketing channels or keywords generate your best customers.",
   },
   {
-    question: "How do we start working together?",
+    question: "What is the typical project process at DizitalGrow?",
     answer:
-      "Simply share your goals through our consultation form or reach out directly on WhatsApp. We will review your requirements, conduct an initial digital audit, and provide a clear, written proposal with fixed timelines and scopes within one business day.",
+      "Every project follows five clear stages: 01 Discovery (understanding goals and requirements), 02 Planning & Scope (itemized deliverables and fixed timeline), 03 Design & Implementation (clean coding and campaign setup), 04 Testing & Review (cross-device and telemetry validation), and 05 Launch & Support (zero-downtime deployment and ongoing care).",
+  },
+  {
+    question: "How do I contact DizitalGrow to discuss a project?",
+    answer:
+      "You can submit your project goals through our consultation form on the Contact page, email us directly at contact@dizitalgrow.in, or send a message on our official WhatsApp at +91 91871 26193. We review all enquiries and respond with honest recommendations within one business day.",
   },
 ];
 
 /* ========================================================================= */
-/* DEDICATED SERVICE PAGES DATASETS (8 CORE SERVICES)                       */
+/* DEDICATED SERVICE PAGES DATASETS (7 CORE SERVICES + META CAPI)            */
 /* ========================================================================= */
 
 export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
@@ -693,32 +664,41 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
     category: "BUILD",
     title: "Website Development",
     tagline: "High-Performance Business Websites Engineered to Convert",
-    heroHeadline: "Websites That Turn Visitors Into Real Enquiries.",
+    heroHeadline: "Website Development That Gives Your Business a Stronger Online Presence",
     heroDescription:
-      "We design and build fast, mobile-first business websites using modern Next.js architecture. Every page is structured for sub-second speeds, clean search engine indexing, and straightforward customer action.",
+      "Your website should explain what you offer, build trust, work smoothly across devices and guide visitors toward an enquiry or purchase.",
+    includes: [
+      "Business websites",
+      "Personal websites",
+      "Professional websites",
+      "Portfolio websites",
+      "Ecommerce websites",
+      "Landing pages",
+      "Website redesigns",
+    ],
     problemsSolved: [
       "Outdated websites that fail to reflect modern business credibility.",
-      "Slow loading times that cause mobile visitors to bounce before seeing content.",
+      "Slow loading times that cause mobile visitors to bounce before reading content.",
       "Complicated navigation and confusing layouts that fail to produce phone calls or leads.",
-      "Websites that lack foundational Google SEO architecture and structured metadata.",
+      "Websites that lack foundational search engine architecture and structured metadata.",
     ],
     whoNeedsThis: [
       {
         audience: "Growing Businesses",
-        description: "Companies needing a modern, authoritative digital presence to win enterprise clients.",
+        description: "Companies needing a modern, authoritative digital presence to win enterprise and commercial clients.",
       },
       {
         audience: "Local Service Providers",
-        description: "Clinics, consultants, and firms needing a steady flow of verified local enquiries.",
+        description: "Clinics, consultants, and firms needing a steady flow of verified local customer enquiries.",
       },
       {
         audience: "Personal Brands & Experts",
-        description: "Founders and professionals establishing an undisputed digital footprint.",
+        description: "Founders, executives, and specialists establishing an undisputed digital authority footprint.",
       },
     ],
     expectedOutcomes: [
       "Sub-second page load times across all mobile and desktop devices.",
-      "Clear, persuasive value propositions that answer customer questions instantly.",
+      "Clear, persuasive value propositions that answer customer questions immediately.",
       "Built-in Google search SEO architecture with valid schema markup.",
       "Direct form alerts and WhatsApp click pathways to capture incoming leads immediately.",
     ],
@@ -731,7 +711,7 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       {
         step: "02",
         title: "Next.js Engineering & Mobile Optimization",
-        description: "We develop the site using clean React and Next.js App Router for maximum speed.",
+        description: "We develop the site using clean React and Next.js App Router for maximum speed and accessibility.",
       },
       {
         step: "03",
@@ -751,6 +731,35 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       "Structured Schema.org JSON-LD",
       "Mobile-First Responsive Layouts (320px – 1440px+)",
       "Automated Form Validation & Bot Protection",
+    ],
+    relatedSolutions: [
+      {
+        name: "Business Websites",
+        href: "/solutions/business-websites",
+        description: "Commercial websites designed to generate daily enquiries.",
+      },
+      {
+        name: "Landing Pages",
+        href: "/solutions/landing-pages",
+        description: "Single-focus campaign pages engineered for high conversion lift.",
+      },
+      {
+        name: "Ecommerce Websites",
+        href: "/solutions/ecommerce-websites",
+        description: "Fast digital storefronts with streamlined checkout flows.",
+      },
+    ],
+    relatedIndustries: [
+      {
+        name: "Professional Services",
+        href: "/industries/professional-services",
+        description: "Authority platforms for consultants, legal, and financial practices.",
+      },
+      {
+        name: "Healthcare",
+        href: "/industries/healthcare",
+        description: "Clinics and diagnostic centers needing patient appointment journeys.",
+      },
     ],
     relatedServices: [
       {
@@ -789,13 +798,22 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
     slug: "web-applications",
     category: "BUILD",
     title: "Web Application Development",
-    tagline: "Custom Portals, SaaS Tools & Business Software",
-    heroHeadline: "Interactive Software Built for Your Business Workflows.",
+    tagline: "Custom Web Applications Built Around the Way You Work",
+    heroHeadline: "Custom Web Applications Built Around the Way You Work",
     heroDescription:
-      "We build secure client portals, team dashboards, SaaS applications, and custom business tools. High-reliability Next.js engineering with secure authentication, API integrations, and scalable database architecture.",
+      "Build browser-based applications that help users interact with information, manage tasks and complete specific business operations.",
+    includes: [
+      "Customer portals",
+      "Dashboards",
+      "Internal business tools",
+      "Booking platforms",
+      "Membership platforms",
+      "SaaS products",
+      "Workflow applications",
+    ],
     problemsSolved: [
-      "Manual spreadsheets and chaotic email chains slowing down client operations.",
-      "Off-the-shelf software that fails to fit your unique business workflows.",
+      "Manual spreadsheets and chaotic email chains slowing down business operations.",
+      "Off-the-shelf software that fails to fit your unique operational workflows.",
       "Lack of secure, self-service client portals for document sharing and updates.",
       "Early-stage startups needing a rapid, rock-solid MVP to validate their market.",
     ],
@@ -849,6 +867,30 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       "Webhook Automation & Background Jobs",
       "Audit Logging & Data Security Standards",
     ],
+    relatedSolutions: [
+      {
+        name: "SaaS Development",
+        href: "/solutions/saas-development",
+        description: "Scalable software platforms, subscriber portals, and recurring tool apps.",
+      },
+      {
+        name: "Web Applications",
+        href: "/solutions/web-applications",
+        description: "Interactive client portals and internal workflow platforms.",
+      },
+    ],
+    relatedIndustries: [
+      {
+        name: "Healthcare",
+        href: "/industries/healthcare",
+        description: "Patient booking platforms and medical test tracking systems.",
+      },
+      {
+        name: "Education",
+        href: "/industries/education",
+        description: "Student portals, course delivery, and assignment trackers.",
+      },
+    ],
     relatedServices: [
       {
         name: "Website Development",
@@ -856,7 +898,7 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
         description: "High-converting marketing frontends for your web app.",
       },
       {
-        name: "Mobile Application Development",
+        name: "Mobile App Development",
         href: "/services/mobile-apps",
         description: "Companion native-feel mobile apps for iOS and Android.",
       },
@@ -869,7 +911,7 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
     faqs: [
       {
         question: "What is the difference between a website and a web app?",
-        answer: "A website is primarily informational and designed to explain services and generate enquiries. A web application is interactive software where users log in, manage data, and perform specialized tasks.",
+        answer: "A website is primarily informational and designed to explain services and generate enquiries. A web application is interactive software where users log in, manage data, and perform specialized business tasks.",
       },
       {
         question: "Can you connect our web app to existing tools like CRM or ERP?",
@@ -881,13 +923,21 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
   "mobile-apps": {
     slug: "mobile-apps",
     category: "BUILD",
-    title: "Mobile Application Development",
-    tagline: "Cross-Platform iOS & Android Apps",
-    heroHeadline: "Put Your Business in Your Customers' Pockets.",
+    title: "Mobile App Development",
+    tagline: "Mobile Applications Designed Around Real User Needs",
+    heroHeadline: "Mobile Applications Designed Around Real User Needs",
     heroDescription:
-      "We design and build fast, responsive mobile applications for iPhones and Android devices. Clean cross-platform architecture with push notifications, offline support, and smooth backend synchronization.",
+      "Build mobile experiences around your users, product requirements and business workflows.",
+    includes: [
+      "Customer apps",
+      "Booking apps",
+      "Ecommerce apps",
+      "Business apps",
+      "Membership apps",
+      "Startup app MVPs",
+    ],
     problemsSolved: [
-      "Inability to engage mobile customers with timely push alerts.",
+      "Inability to engage mobile customers with timely push alerts and direct home-screen access.",
       "High costs of building and maintaining separate native iOS and Android codebases.",
       "Slow, unresponsive mobile web experiences that frustrate daily users.",
       "Complex app store submission processes causing launch delays.",
@@ -942,6 +992,30 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       "Secure Token Storage & API Telemetry",
       "App Store & Google Play Launch Compliance",
     ],
+    relatedSolutions: [
+      {
+        name: "Mobile Applications",
+        href: "/solutions/mobile-applications",
+        description: "Cross-platform mobile apps for iOS and Android.",
+      },
+      {
+        name: "SaaS Development",
+        href: "/solutions/saas-development",
+        description: "Scalable software platforms and mobile companion apps.",
+      },
+    ],
+    relatedIndustries: [
+      {
+        name: "Ecommerce & Retail",
+        href: "/industries/ecommerce-retail",
+        description: "Mobile shopping apps with push alerts and quick checkout.",
+      },
+      {
+        name: "Healthcare",
+        href: "/industries/healthcare",
+        description: "Patient companion apps for records and appointment reminders.",
+      },
+    ],
     relatedServices: [
       {
         name: "Web Application Development",
@@ -949,7 +1023,7 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
         description: "Unified backend architecture powering both web and mobile.",
       },
       {
-        name: "Meta Advertising",
+        name: "Meta Ads",
         href: "/services/meta-ads",
         description: "Acquire mobile app installs and active users through targeted ads.",
       },
@@ -965,11 +1039,22 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
   "meta-ads": {
     slug: "meta-ads",
     category: "REACH",
-    title: "Meta Ads (Facebook & Instagram)",
-    tagline: "High-ROI Social Acquisition Campaigns",
-    heroHeadline: "Reach the Right Buyers on Facebook and Instagram.",
+    title: "Meta Ads",
+    tagline: "Reach the Right Audience With Facebook and Instagram Ads",
+    heroHeadline: "Reach the Right Audience With Facebook and Instagram Ads",
     heroDescription:
-      "We design and manage targeted Meta ad campaigns that turn passive social attention into qualified leads and sales. We focus on compelling visual hooks, precise audience segmentation, and verified return on ad spend.",
+      "Plan and manage campaigns designed around business objectives, relevant audiences, useful creatives and measurable website actions.",
+    includes: [
+      "Campaign planning",
+      "Audience research",
+      "Campaign setup",
+      "Creative direction",
+      "Lead generation",
+      "Retargeting",
+      "Pixel setup",
+      "Conversions API coordination",
+      "Optimization",
+    ],
     problemsSolved: [
       "Boosting posts without a strategy, resulting in likes but zero customer enquiries.",
       "Ad fatigue causing rising cost-per-lead and declining return on ad spend.",
@@ -1026,14 +1111,38 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       "Ad Creative Angle Testing Framework",
       "Instant Lead Form & WhatsApp Direct Funnels",
     ],
+    relatedSolutions: [
+      {
+        name: "Landing Pages",
+        href: "/solutions/landing-pages",
+        description: "Dedicated ad landing pages built for high click-to-lead conversions.",
+      },
+      {
+        name: "Ecommerce Websites",
+        href: "/solutions/ecommerce-websites",
+        description: "Dynamic product catalog ad funnels.",
+      },
+    ],
+    relatedIndustries: [
+      {
+        name: "Real Estate",
+        href: "/industries/real-estate",
+        description: "Targeted property buyer campaigns and site visit lead forms.",
+      },
+      {
+        name: "Ecommerce & Retail",
+        href: "/industries/ecommerce-retail",
+        description: "D2C shopping campaigns driving store orders and retargeting.",
+      },
+    ],
     relatedServices: [
       {
-        name: "Google Advertising",
+        name: "Google Ads",
         href: "/services/google-ads",
         description: "Capture high-intent searchers to complement social campaigns.",
       },
       {
-        name: "Meta Pixel and Conversions API",
+        name: "Meta Conversions API",
         href: "/meta-capi",
         description: "Protect your ad attribution from browser blockers.",
       },
@@ -1058,11 +1167,21 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
   "google-ads": {
     slug: "google-ads",
     category: "REACH",
-    title: "Google Ads Management",
-    tagline: "High-Intent Search & Shopping Campaigns",
-    heroHeadline: "Capture Customers Actively Searching to Buy.",
+    title: "Google Ads",
+    tagline: "Reach Customers When They Search for What You Offer",
+    heroHeadline: "Reach Customers When They Search for What You Offer",
     heroDescription:
-      "We build and manage Google Ads campaigns that place your business at the very top of search results when buyers search for your exact services. Search, Display, and Shopping ads engineered for maximum qualified enquiries.",
+      "Connect your business with people actively searching for relevant products and services.",
+    includes: [
+      "Search campaign setup",
+      "Keyword research",
+      "Campaign structure",
+      "Ad copy",
+      "Location targeting",
+      "Negative keywords",
+      "Conversion tracking",
+      "Campaign optimization",
+    ],
     problemsSolved: [
       "Wasting ad spend on irrelevant broad-match keywords that never convert.",
       "Sending expensive paid search traffic to a confusing homepage instead of a dedicated landing page.",
@@ -1119,6 +1238,30 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       "Call Tracking & Form Submission Telemetry",
       "Quality Score Optimization & Landing Page Speed Checks",
     ],
+    relatedSolutions: [
+      {
+        name: "Landing Pages",
+        href: "/solutions/landing-pages",
+        description: "Frictionless campaign landing pages matching search ad intent.",
+      },
+      {
+        name: "Business Websites",
+        href: "/solutions/business-websites",
+        description: "Commercial websites structured to capture search ad traffic.",
+      },
+    ],
+    relatedIndustries: [
+      {
+        name: "Healthcare",
+        href: "/industries/healthcare",
+        description: "Capture high-intent searches for medical treatments and clinics.",
+      },
+      {
+        name: "Professional Services",
+        href: "/industries/professional-services",
+        description: "Connect with clients searching for specialist legal and financial advice.",
+      },
+    ],
     relatedServices: [
       {
         name: "Website Development",
@@ -1126,13 +1269,13 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
         description: "Fast landing pages that turn Google clicks into customers.",
       },
       {
-        name: "SEO and Digital Visibility",
+        name: "SEO & Digital Visibility",
         href: "/services/seo-visibility",
         description: "Build long-term organic rankings alongside paid ads.",
       },
       {
-        name: "Google Analytics & GTM",
-        href: "/services/ga4-gtm",
+        name: "Conversion Tracking",
+        href: "/services/conversion-tracking",
         description: "Accurate telemetry for key events and purchase revenue.",
       },
     ],
@@ -1148,20 +1291,31 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
     slug: "seo-visibility",
     category: "REACH",
     title: "SEO & Digital Visibility",
-    tagline: "Organic Search, Local Discovery & AI Search Indexing",
-    heroHeadline: "Build Enduring Organic Visibility Across Google & AI.",
+    tagline: "Help the Right Customers Discover Your Business on Search",
+    heroHeadline: "Help the Right Customers Discover Your Business on Search",
     heroDescription:
-      "We optimize your digital assets for genuine discoverability. Combining semantic website architecture, high-intent content, local search optimization, and AI search indexing so customers find your business wherever they search.",
+      "Improve your website's search foundations through technical SEO, content optimization, site architecture and useful search-focused content.",
+    includes: [
+      "Technical SEO",
+      "On-page SEO",
+      "Keyword research",
+      "Content planning",
+      "Internal linking",
+      "Metadata",
+      "Indexing",
+      "Local SEO foundations",
+      "Structured data where appropriate",
+    ],
     problemsSolved: [
       "Being completely invisible on Google for searches related to your core services.",
       "Total reliance on paid advertising, causing customer acquisition to stop when ad spend halts.",
       "Old, unstructured website pages that search engine crawlers cannot understand or index.",
-      "Missing out on AI search experiences like Google AI Overviews and AI Mode.",
+      "Missing out on AI search experiences like Google AI Overviews.",
     ],
     whoNeedsThis: [
       {
         audience: "Local & Regional Businesses",
-        description: "Businesses that serve a city or region and want to dominate local search queries.",
+        description: "Businesses that serve a city or region and want to establish local search visibility.",
       },
       {
         audience: "Content-Driven Personal Brands",
@@ -1208,6 +1362,30 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       "Google Search Console Indexing Monitoring",
       "AI Search Readiness & Direct Answer Formatting",
     ],
+    relatedSolutions: [
+      {
+        name: "Business Websites",
+        href: "/solutions/business-websites",
+        description: "Build an SEO-friendly website engineered from the ground up.",
+      },
+      {
+        name: "Personal Websites",
+        href: "/solutions/personal-websites",
+        description: "Authority platforms structured for personal search visibility.",
+      },
+    ],
+    relatedIndustries: [
+      {
+        name: "Real Estate",
+        href: "/industries/real-estate",
+        description: "Local search and property keyword visibility.",
+      },
+      {
+        name: "Healthcare",
+        href: "/industries/healthcare",
+        description: "Local clinic SEO and symptom/treatment discovery.",
+      },
+    ],
     relatedServices: [
       {
         name: "Website Development",
@@ -1215,7 +1393,7 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
         description: "Build an SEO-friendly website engineered from the ground up.",
       },
       {
-        name: "Google Advertising",
+        name: "Google Ads",
         href: "/services/google-ads",
         description: "Capture search demand immediately while SEO rankings build.",
       },
@@ -1235,11 +1413,22 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
   "conversion-tracking": {
     slug: "conversion-tracking",
     category: "CONVERT & MEASURE",
-    title: "Conversion Tracking & Telemetry",
-    tagline: "Accurate Lead, Phone Call & Sales Attribution",
-    heroHeadline: "Know Exactly Which Campaign Generated Every Customer.",
+    title: "Conversion Tracking",
+    tagline: "Understand Which Marketing Activities Lead to Customer Actions",
+    heroHeadline: "Understand Which Marketing Activities Lead to Customer Actions",
     heroDescription:
-      "We design and deploy robust tracking systems that eliminate marketing blindspots. From contact forms and WhatsApp chats to phone calls and e-commerce purchases, we verify that every critical business action is recorded accurately.",
+      "Measure important website interactions, including enquiries, calls, signups and purchases, using suitable analytics and advertising measurement tools.",
+    includes: [
+      "Google Analytics 4",
+      "Google Tag Manager",
+      "Google Ads conversions",
+      "Meta Pixel",
+      "Event tracking",
+      "Form submissions",
+      "WhatsApp click tracking",
+      "Purchase events",
+      "Tracking validation",
+    ],
     problemsSolved: [
       "Ad platforms claiming leads that never showed up in your actual sales records.",
       "Broken tags and missing triggers causing conversions to go completely unrecorded.",
@@ -1296,16 +1485,40 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       "Google Ads Enhanced Conversions",
       "Server-Side Webhook Event Routing",
     ],
+    relatedSolutions: [
+      {
+        name: "Ecommerce Websites",
+        href: "/solutions/ecommerce-websites",
+        description: "End-to-end checkout and revenue tracking.",
+      },
+      {
+        name: "Landing Pages",
+        href: "/solutions/landing-pages",
+        description: "Telemetry on ad campaign landing pages.",
+      },
+    ],
+    relatedIndustries: [
+      {
+        name: "Ecommerce & Retail",
+        href: "/industries/ecommerce-retail",
+        description: "Purchase event tracking, average order value, and cart drops.",
+      },
+      {
+        name: "Healthcare",
+        href: "/industries/healthcare",
+        description: "Track patient appointments and call inquiries.",
+      },
+    ],
     relatedServices: [
       {
-        name: "Meta Pixel & Conversions API",
+        name: "Meta Conversions API",
         href: "/meta-capi",
         description: "Server-side tracking immune to browser ad blockers.",
       },
       {
-        name: "Google Analytics & GTM",
-        href: "/services/ga4-gtm",
-        description: "Comprehensive reporting and dashboard setup.",
+        name: "Google Ads",
+        href: "/services/google-ads",
+        description: "Feed conversion signals back into Google smart bidding.",
       },
     ],
     faqs: [
@@ -1315,208 +1528,312 @@ export const SERVICE_DETAIL_PAGES: Record<string, ServiceDetailData> = {
       },
     ],
   },
-
-  "ga4-gtm": {
-    slug: "ga4-gtm",
-    category: "CONVERT & MEASURE",
-    title: "Google Analytics 4 & GTM",
-    tagline: "Clean Event Architecture & Measurement Strategy",
-    heroHeadline: "Actionable Business Data Without the Confusion.",
-    heroDescription:
-      "We configure Google Analytics 4 (GA4) and Google Tag Manager (GTM) with disciplined event taxonomies. No useless vanity metrics or default event clutter—just clean data on user pathways, inquiries, and customer transactions.",
-    problemsSolved: [
-      "Default GA4 setups that track millions of page views but zero meaningful business conversions.",
-      "Messy GTM containers with outdated tags from past marketing vendors slowing down your website.",
-      "Confusion navigating GA4's interface without customized reports tailored to your goals.",
-      "Missing user engagement data on key actions like file downloads and video watches.",
-    ],
-    whoNeedsThis: [
-      {
-        audience: "Business Owners & Executives",
-        description: "Leaders who need simple, accurate reports on website ROI and customer channels.",
-      },
-      {
-        audience: "Marketing Teams",
-        description: "Teams needing reliable data to evaluate campaign performance and allocate budgets.",
-      },
-    ],
-    expectedOutcomes: [
-      "A streamlined GTM container with clean triggers that load asynchronously without speed impact.",
-      "Custom GA4 conversion events tracking form completions, contact actions, and purchase revenue.",
-      "Customized GA4 exploration reports tailored to your team's specific commercial questions.",
-      "Full privacy compliance respecting user consent and regional regulations.",
-    ],
-    ourApproach: [
-      {
-        step: "01",
-        title: "Container Cleanup & Tag Audit",
-        description: "We remove obsolete tags, duplicate triggers, and bloated tracking scripts.",
-      },
-      {
-        step: "02",
-        title: "Measurement Strategy & Data Layer",
-        description: "We define clean event parameter naming conventions for all business-critical actions.",
-      },
-      {
-        step: "03",
-        title: "GA4 Custom Dimensions & Key Events",
-        description: "We configure conversion thresholds and custom parameters for deeper analysis.",
-      },
-      {
-        step: "04",
-        title: "Executive Dashboard Setup",
-        description: "We build intuitive reports so you can check performance in seconds without getting lost.",
-      },
-    ],
-    technicalCapabilities: [
-      "Google Tag Manager Container Architecture",
-      "GA4 Measurement Protocol & Custom Events",
-      "Consent Mode v2 Integration",
-      "Cross-Domain Tracking Configuration",
-      "Data Layer Push Specifications",
-      "Custom Looker Studio Performance Dashboards",
-    ],
-    relatedServices: [
-      {
-        name: "Conversion Tracking",
-        href: "/services/conversion-tracking",
-        description: "Comprehensive multi-channel attribution.",
-      },
-      {
-        name: "Meta Pixel & Conversions API",
-        href: "/meta-capi",
-        description: "Pair GA4 with server-side social telemetry.",
-      },
-    ],
-    faqs: [
-      {
-        question: "Why does GA4 feel so different from older Google Analytics?",
-        answer: "GA4 is event-based rather than session-based, designed for modern privacy standards. Once properly configured with custom events, it provides far superior insights into user actions.",
-      },
-    ],
-  },
-
-  "conversion-optimization": {
-    slug: "conversion-optimization",
-    category: "CONVERT & MEASURE",
-    title: "Conversion Rate Optimization (CRO)",
-    tagline: "Turn More of Your Existing Traffic Into Customers",
-    heroHeadline: "Get More Leads Without Spending More on Ads.",
-    heroDescription:
-      "We identify and remove friction across your website. By refining layouts, headline messaging, mobile tap targets, and contact pathways, we increase the percentage of visitors who take action and become paying customers.",
-    problemsSolved: [
-      "Getting decent website traffic that never converts into enquiries or sales.",
-      "Mobile visitors abandoning contact forms because they are too long or difficult to fill out.",
-      "Unclear value propositions that fail to explain why a prospect should choose your business.",
-      "Rising advertising costs requiring you to get more revenue from every visitor.",
-    ],
-    whoNeedsThis: [
-      {
-        audience: "Businesses With Steady Traffic",
-        description: "Companies receiving at least 1,000 monthly visitors that want to double inquiry rates.",
-      },
-      {
-        audience: "High-Spend Advertisers",
-        description: "Brands running paid search or social ads that want to lower customer acquisition cost.",
-      },
-    ],
-    expectedOutcomes: [
-      "Higher conversion rates turning existing website traffic into tangible revenue.",
-      "Drastic reduction in form abandonment through streamlined, mobile-friendly input fields.",
-      "Clear, persuasive value messaging that builds immediate trust and overcomes hesitation.",
-      "Lower cost-per-lead (CPL) across all paid marketing channels.",
-    ],
-    ourApproach: [
-      {
-        step: "01",
-        title: "Friction & Drop-Off Audit",
-        description: "We analyze visitor behavior, session recordings, and drop-off points to find where users get stuck.",
-      },
-      {
-        step: "02",
-        title: "Copywriting & Value Proposition Refinement",
-        description: "We clarify headlines, eliminate jargon, and address customer hesitations upfront.",
-      },
-      {
-        step: "03",
-        title: "Form & Call-to-Action Redesign",
-        description: "We simplify contact inputs, add direct WhatsApp options, and optimize mobile tap areas.",
-      },
-      {
-        step: "04",
-        title: "Testing & Validation",
-        description: "We compare conversion rates before and after implementation to verify real improvements.",
-      },
-    ],
-    technicalCapabilities: [
-      "User Friction & Journey Mapping",
-      "Mobile Tap Target & Ergonomics Optimization",
-      "High-Conversion Copywriting Frameworks",
-      "Form Field Reduction & Autofill Optimization",
-      "WhatsApp Instant Communication Gateways",
-      "Speed & Core Web Vitals Optimization",
-    ],
-    relatedServices: [
-      {
-        name: "Website Development",
-        href: "/services/web-development",
-        description: "Rebuild your website with conversion principles baked in.",
-      },
-      {
-        name: "Conversion Tracking",
-        href: "/services/conversion-tracking",
-        description: "Verify conversion rate improvements with accurate data.",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do I need to rebuild my entire website to do CRO?",
-        answer: "Not necessarily. Often, targeted refinements to headings, hero sections, form fields, and call-to-action buttons can generate substantial conversion improvements.",
-      },
-    ],
-  },
 };
 
-export interface ContactMethodItem {
-  label: string;
-  value: string;
-  href: string;
-  iconName: string;
-  badge?: string;
-  description?: string;
-}
+/* ========================================================================= */
+/* ALIASES & COMPATIBILITY DATASETS                                          */
+/* ========================================================================= */
 
-export const CONTACT_METHODS: ContactMethodItem[] = [
+export const GROWTH_FRAMEWORK_STAGES = HOMEPAGE_APPROACH;
+export const PROJECT_SHOWCASE = HOMEPAGE_SELECTED_WORK;
+
+export const DIGITAL_OPPORTUNITY = {
+  eyebrow: BUSINESS_PROBLEMS.eyebrow,
+  heading: BUSINESS_PROBLEMS.heading,
+  leadParagraph: BUSINESS_PROBLEMS.leadParagraph,
+  bottlenecks: BUSINESS_PROBLEMS.challenges.map((c) => ({
+    id: c.number,
+    number: c.number,
+    title: c.title,
+    description: c.description,
+  })),
+};
+
+export const CONTACT_METHODS = [
   {
-    label: "Email",
+    label: "Email Support",
     value: "contact@dizitalgrow.in",
     href: "mailto:contact@dizitalgrow.in",
-    iconName: "mail",
-    badge: "Direct",
-    description: "For structured project briefs, formal RFPs, and collaboration queries.",
+    iconName: "Mail",
+    description: "Write directly for project inquiries and formal RFPs.",
+    badge: "Primary Response",
   },
   {
     label: "WhatsApp Chat",
     value: "+91 91871 26193 (Chat only)",
-    href: "https://wa.me/919187126193?text=Hi%20DizitalGrow,%20I%20would%20like%20to%20discuss%20a%20project.",
-    iconName: "whatsapp",
-    badge: "Fastest",
-    description: "Quick discussions, discovery chats, and growth scoping.",
+    href: "https://wa.me/919187126193",
+    iconName: "WhatsApp",
+    description: "Fast 1-on-1 discovery messages and scope scoping.",
+    badge: "Fastest Response",
   },
   {
     label: "WhatsApp Channel",
-    value: "DizitalGrow Growth Broadcast",
-    href: "https://whatsapp.com/channel/0029VaF7r7C4tRs4413x9u0B",
-    iconName: "whatsapp-channel",
-    badge: "Updates",
-    description: "Follow for growth frameworks, product teardowns, and tech insights.",
+    value: "DizitalGrow Updates",
+    href: "https://whatsapp.com/channel/0029Vb4w2hL0bIdtE14Y8w0s",
+    iconName: "WhatsAppChannel",
+    description: "Follow for growth insights, tool updates, and case studies.",
+    badge: "Broadcast",
   },
   {
     label: "Instagram",
     value: "@dizitalgrow",
-    href: "https://www.instagram.com/dizitalgrow/",
-    iconName: "instagram",
+    href: "https://instagram.com/dizitalgrow",
+    iconName: "Instagram",
+    description: "Visual breakdowns, agency news, and tech insights.",
     badge: "Social",
-    description: "Design breakdowns, digital concepts, and ecosystem stories.",
   },
 ];
+
+export const WHO_WE_HELP_AUDIENCES = [
+  {
+    id: "individuals",
+    number: "01",
+    title: "Individuals & Professionals",
+    subtitle: "Personal Authority, Portfolios & Consultants",
+    audience: "Individuals & Freelancers",
+    summary: "Establish personal authority, showcase portfolios, and capture direct inquiries.",
+    tag: "Personal Brand",
+    problems: [
+      "No centralized professional hub to showcase projects and credibility",
+      "Relying solely on social platforms with volatile algorithms",
+      "Missing automated contact and booking workflows",
+    ],
+    solution:
+      "We design authoritative personal portfolio platforms engineered to showcase your expertise, build credibility, and generate direct inquiries.",
+    deliverables: [
+      "Custom Personal Portfolio Website",
+      "SEO-optimized personal authority profile",
+      "Direct WhatsApp and Email inquiry funnel",
+    ],
+    ctaHref: "/solutions/personal-websites",
+    ctaText: "Explore Personal Websites",
+  },
+  {
+    id: "startups",
+    number: "02",
+    title: "Early-Stage Startups",
+    subtitle: "MVPs, Landing Funnels & Conversion Telemetry",
+    audience: "Early-Stage Startups",
+    summary: "Validate ideas quickly with high-conversion landing pages and scalable web apps.",
+    tag: "MVP & Scale",
+    problems: [
+      "Need rapid MVP deployment without sacrificing code quality",
+      "Low initial brand trust and conversion bottlenecks",
+      "Lacking server-side attribution for early ad campaigns",
+    ],
+    solution:
+      "We build robust Next.js web applications, validated conversion funnels, and dual-channel telemetry to launch your product fast.",
+    deliverables: [
+      "Next.js App Router Web Platform",
+      "Conversion tracking & Meta CAPI telemetry",
+      "Automated lead capture & CRM notification triggers",
+    ],
+    ctaHref: "/solutions/saas-development",
+    ctaText: "Explore Startup Solutions",
+  },
+  {
+    id: "local-businesses",
+    number: "03",
+    title: "Local & Retail Businesses",
+    subtitle: "Google Search Dominance & Local Customers",
+    audience: "Local & Retail Businesses",
+    summary: "Capture high-intent local searchers and convert foot traffic into online sales.",
+    tag: "Local Dominance",
+    problems: [
+      "Invisible on Google Maps and high-intent local search queries",
+      "Competitors winning walk-ins through targeted local Google Ads",
+      "Outdated mobile experience leading to instant bounce rates",
+    ],
+    solution:
+      "We engineer fast mobile experiences paired with targeted local Google Search campaigns and click-to-call lead funnels.",
+    deliverables: [
+      "High-speed mobile website with local schema markup",
+      "Targeted Google Search & Maps ad campaigns",
+      "One-click phone and WhatsApp lead routing",
+    ],
+    ctaHref: "/services/google-ads",
+    ctaText: "Explore Local Growth",
+  },
+  {
+    id: "b2b-enterprises",
+    number: "04",
+    title: "B2B & Manufacturing",
+    subtitle: "Corporate Platforms & Qualified Procurement RFPs",
+    audience: "B2B & Manufacturing",
+    summary: "Build corporate credibility, generate high-ticket RFPs, and streamline client portals.",
+    tag: "B2B Inquiries",
+    problems: [
+      "Complex product catalogs presented poorly in outdated PDFs",
+      "Low-quality website traffic failing to generate qualified procurement RFPs",
+      "Disjointed customer inquiry channels causing lost deals",
+    ],
+    solution:
+      "We build authoritative corporate platforms that position your technical capabilities, host structured catalogs, and generate corporate RFPs.",
+    deliverables: [
+      "Authoritative corporate platform with downloadable data sheets",
+      "Multi-step RFP submission funnels with bot protection",
+      "High-intent Search Ads targeting corporate procurement terms",
+    ],
+    ctaHref: "/industries/manufacturing",
+    ctaText: "Explore B2B Solutions",
+  },
+  {
+    id: "ecommerce-brands",
+    number: "05",
+    title: "E-Commerce & D2C Brands",
+    subtitle: "Sub-Second Storefronts & Attribution Recovery",
+    audience: "E-Commerce & D2C Brands",
+    summary: "Engineer sub-second storefronts and recover lost attribution with Meta CAPI.",
+    tag: "E-Commerce",
+    problems: [
+      "Browser ad blockers and iOS privacy wiping out Meta purchase signals",
+      "Slow catalog load times causing checkout abandonment",
+      "Poor ROAS from unoptimized ad campaigns",
+    ],
+    solution:
+      "We build high-speed storefronts and implement server-side Meta Conversions API (CAPI) with deduplication to restore ad performance.",
+    deliverables: [
+      "Fast storefront with optimized checkout ergonomics",
+      "Server-side Meta Conversions API with deduplication",
+      "Targeted Meta Catalog & Retargeting ad campaigns",
+    ],
+    ctaHref: "/meta-capi",
+    ctaText: "Explore Meta CAPI",
+  },
+];
+
+export const WHY_DIZITALGROW = {
+  eyebrow: "OUR PHILOSOPHY",
+  heading: "A Clear, Practical Approach to Digital Growth",
+  subheading:
+    "We do not believe in hype or generic templates. We build modern, durable digital platforms backed by real telemetry.",
+  differentiators: HOMEPAGE_WHY_DIZITALGROW,
+};
+
+export const OUTCOME_SECTIONS: OutcomeItem[] = [
+  {
+    number: "01",
+    title: "Fast, Credible Digital Presence",
+    summary: "Turn first impressions into confidence with high-speed Next.js platforms.",
+    details: "Sub-second load times, structured semantic schemas, and mobile ergonomics that make visitors take your business seriously.",
+    impactMetrics: "< 1.0s LCP · 100% Mobile Ready",
+  },
+  {
+    number: "02",
+    title: "High-Intent Customer Acquisition",
+    summary: "Reach buyers who are actively searching for what you offer.",
+    details: "Google Search Ads and Meta campaigns targeted around commercial intent rather than vanity impressions.",
+    impactMetrics: "High-Intent Queries · Focused Ad Spend",
+  },
+  {
+    number: "03",
+    title: "Server-Side Conversion Telemetry",
+    summary: "Bypass browser ad blockers and recover lost attribution signals.",
+    details: "Server-side Meta Conversions API (CAPI) and GA4 integration delivering clean event data for machine learning optimization.",
+    impactMetrics: "Dual-Channel Routing · Deduplicated",
+  },
+  {
+    number: "04",
+    title: "Frictionless Inquiry Pathways",
+    summary: "Convert interested visitors into qualified inquiries with zero friction.",
+    details: "Fast forms, direct WhatsApp gateways, and clear call-to-action hierarchies tailored to your buyer persona.",
+    impactMetrics: "Zero-Friction Forms · Instant WhatsApp",
+  },
+  {
+    number: "05",
+    title: "Sustainable Long-Term Growth",
+    summary: "Build on clean, modern code that your business owns completely.",
+    details: "No proprietary vendor lock-in, no generic site builders. Modern open-source tech stacks built for longevity.",
+    impactMetrics: "Modern Next.js · Full Code Ownership",
+  },
+];
+
+export const CAPABILITIES_PILLARS = [
+  {
+    id: "build",
+    pillarNumber: 1,
+    pillar: "BUILD",
+    tagline: "High-Performance Digital Platforms",
+    description:
+      "Modern, sub-second web applications, mobile apps, and business websites engineered on Next.js and React.",
+    capabilities: [
+      {
+        name: "Website Development",
+        href: "/services/web-development",
+        summary:
+          "Modern, fast business websites built on Next.js engineered to explain your value, build trust, and turn visitors into enquiries.",
+        solves: "Slow, outdated websites that fail to convert traffic into qualified inquiries.",
+      },
+      {
+        name: "Web Application Development",
+        href: "/services/web-applications",
+        summary:
+          "Custom browser-based applications, client portals, and SaaS tools built around your exact operational workflows.",
+        solves: "Manual spreadsheets and fragmented software tools that bottleneck team productivity.",
+      },
+      {
+        name: "Mobile App Development",
+        href: "/services/mobile-apps",
+        summary:
+          "Cross-platform iOS and Android mobile experiences designed around real user needs, with push alerts and offline capabilities.",
+        solves: "Inability to reach mobile-first customers through high-retention app experiences.",
+      },
+    ],
+  },
+  {
+    id: "reach",
+    pillarNumber: 2,
+    pillar: "REACH",
+    tagline: "High-Intent Customer Acquisition",
+    description:
+      "Targeted Google Search campaigns, Meta advertising, and organic search optimization connecting with real buyers.",
+    capabilities: [
+      {
+        name: "Meta Ads",
+        href: "/services/meta-ads",
+        summary:
+          "Facebook and Instagram advertising campaigns built around business goals, targeted audiences, and measurable website actions.",
+        solves: "Wasted ad spend on low-intent vanity impressions that fail to generate pipeline.",
+      },
+      {
+        name: "Google Ads",
+        href: "/services/google-ads",
+        summary:
+          "High-intent Search, Display, and Shopping campaigns connecting your business with customers actively searching for what you offer.",
+        solves: "Missing commercial search intent when prospective buyers look for your exact services.",
+      },
+      {
+        name: "SEO & Digital Visibility",
+        href: "/services/seo-visibility",
+        summary:
+          "Technical search engine optimization, semantic site architecture, and on-page content planning to earn lasting discoverability.",
+        solves: "Total dependency on paid ads with zero organic inbound discovery.",
+      },
+    ],
+  },
+  {
+    id: "convert-measure",
+    pillarNumber: 3,
+    pillar: "CONVERT & MEASURE",
+    tagline: "Attribution & Server Telemetry",
+    description:
+      "Full-funnel telemetry setups, Google Tag Manager, GA4, and server-side Meta Conversions API.",
+    capabilities: [
+      {
+        name: "Conversion Tracking",
+        href: "/services/conversion-tracking",
+        summary:
+          "Comprehensive telemetry setups with GA4 and Google Tag Manager to measure form submissions, calls, chats, and purchases.",
+        solves: "Blind marketing decisions due to missing or inaccurate event measurement.",
+      },
+      {
+        name: "Meta Conversions API",
+        href: "/meta-capi",
+        summary:
+          "Server-side event integration with deduplication to complement browser pixels and support reliable Meta ad measurement.",
+        solves: "Lost purchase data and degraded ad performance caused by iOS privacy and ad blockers.",
+      },
+    ],
+  },
+];
+

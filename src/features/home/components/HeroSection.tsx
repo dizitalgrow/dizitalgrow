@@ -2,97 +2,114 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ArrowDown, Sparkles, Activity, Users, Megaphone, BarChart3, TrendingUp, Smartphone, Globe } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowDown,
+  Sparkles,
+  Layers,
+  Radio,
+  BarChart3,
+  MessageSquare,
+  TrendingUp,
+  CheckCircle2,
+  ChevronRight,
+} from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { HERO_CONTENT } from "@/constants/site-data";
 
-interface EcosystemNode {
+interface EcosystemStage {
+  step: string;
   id: string;
-  label: string;
-  category: "Foundation" | "Reach" | "Telemetry" | "Outcome";
+  title: string;
+  subhead: string;
   icon: React.ComponentType<{ className?: string }>;
   description: string;
   metric: string;
-  x: number; // percentage in coordinate space
-  y: number;
+  deliverables: string[];
 }
 
-const NODES: EcosystemNode[] = [
+const ECOSYSTEM_STAGES: EcosystemStage[] = [
   {
-    id: "website",
-    label: "Website",
-    category: "Foundation",
-    icon: Globe,
-    description: "Next.js App Router for sub-second page rendering and mobile ergonomics.",
-    metric: "< 0.8s LCP",
-    x: 18,
-    y: 24,
+    step: "01",
+    id: "web-apps",
+    title: "Websites & Applications",
+    subhead: "Digital Foundation",
+    icon: Layers,
+    description:
+      "Modern, sub-second web platforms and mobile applications engineered on Next.js. Built for lightning-fast loading, clear proposition hierarchy, and mobile ergonomics.",
+    metric: "< 0.8s LCP · Next.js 16",
+    deliverables: [
+      "Sub-second App Router Architecture",
+      "Semantic SEO Schemas",
+      "Mobile-Optimized UX",
+    ],
   },
   {
-    id: "mobile-app",
-    label: "Mobile App",
-    category: "Foundation",
-    icon: Smartphone,
-    description: "Cross-platform iOS and Android app with offline caching and push notifications.",
-    metric: "iOS & Android",
-    x: 18,
-    y: 72,
+    step: "02",
+    id: "traffic-acquisition",
+    title: "Traffic & Acquisition",
+    subhead: "Customer Connection",
+    icon: Radio,
+    description:
+      "High-intent buyer acquisition through coordinated Google Search Ads, targeted Meta campaigns (Instagram & Facebook), and technical organic search engine optimization.",
+    metric: "High-Intent Buyer Search",
+    deliverables: [
+      "Google Search & Shopping Ads",
+      "Targeted Meta Funnels",
+      "Technical On-Page SEO",
+    ],
   },
   {
-    id: "audience",
-    label: "Target Audience",
-    category: "Reach",
-    icon: Users,
-    description: "High-intent buyer segmentation filtering out low-value vanity clicks.",
-    metric: "Verified Intent",
-    x: 48,
-    y: 18,
-  },
-  {
-    id: "advertising",
-    label: "Paid Ads",
-    category: "Reach",
-    icon: Megaphone,
-    description: "Coordinated Google Search Ads and Meta Instagram/Facebook campaigns.",
-    metric: "Google + Meta",
-    x: 48,
-    y: 48,
-  },
-  {
-    id: "analytics",
-    label: "Analytics & CAPI",
-    category: "Telemetry",
+    step: "03",
+    id: "tracking-analytics",
+    title: "Tracking & Analytics",
+    subhead: "Server-Side Telemetry",
     icon: BarChart3,
-    description: "Server-side Meta CAPI and GA4 telemetry bypassing browser ad blockers.",
-    metric: "Dual-Channel",
-    x: 48,
-    y: 80,
+    description:
+      "End-to-end telemetry setups using Google Tag Manager, GA4, and server-side Meta Conversions API (CAPI) with deduplication to measure exactly which ad channels produce revenue.",
+    metric: "Dual-Channel · Event ID Matched",
+    deliverables: [
+      "GA4 E-commerce & Lead Events",
+      "Server-Side Meta CAPI",
+      "Zero-Deduplication Conflict",
+    ],
   },
   {
-    id: "leads",
-    label: "Qualified Enquiries",
-    category: "Outcome",
-    icon: Activity,
-    description: "Frictionless form submissions and direct 1-on-1 WhatsApp chat gateways.",
-    metric: "Real Leads",
-    x: 82,
-    y: 32,
+    step: "04",
+    id: "enquiries-leads",
+    title: "Qualified Enquiries",
+    subhead: "Conversion Routing",
+    icon: MessageSquare,
+    description:
+      "Frictionless conversion journeys connecting high-intent visitors directly with your team through verified form submissions, WhatsApp gateways, and consultation booking.",
+    metric: "High-Intent Inquiries",
+    deliverables: [
+      "Direct WhatsApp Lead Funnels",
+      "Honeypot-Protected Forms",
+      "Automated Email Notifications",
+    ],
   },
   {
-    id: "growth",
-    label: "Business Growth",
-    category: "Outcome",
+    step: "05",
+    id: "business-growth",
+    title: "Business Growth",
+    subhead: "Compounding Scale",
     icon: TrendingUp,
-    description: "Measurable customer acquisition and sustainable compounding revenue.",
+    description:
+      "Dependable, measurable commercial outcomes. Clean code, dedicated telemetry, and continuous feedback loops that turn online traffic into sustainable business expansion.",
     metric: "Grow Beyond Offline",
-    x: 82,
-    y: 72,
+    deliverables: [
+      "Full Code & Data Ownership",
+      "Predictable Customer Pipeline",
+      "Long-Term Enterprise Longevity",
+    ],
   },
 ];
 
 export function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
-  const [activeNode, setActiveNode] = useState<EcosystemNode>(NODES[0]);
+  const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const activeStage = ECOSYSTEM_STAGES[activeStageIndex];
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -141,8 +158,8 @@ export function HeroSection() {
               variants={itemVariants}
               className="font-display text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold uppercase leading-[1.06] tracking-tight text-white"
             >
-              The Digital World Has Opportunities. <br />
-              <span className="text-[#D5FF40]">Let&apos;s Help You Grow With Them.</span>
+              Build Your Digital Presence. <br />
+              <span className="text-[#D5FF40]">Reach More People. Grow With Clarity.</span>
             </motion.h1>
 
             {/* Supporting Copy */}
@@ -192,7 +209,7 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Interactive Digital Ecosystem Visualization */}
+          {/* Right Column: Connected Digital Growth Ecosystem Visualization */}
           <motion.div
             className="lg:col-span-6 relative"
             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
@@ -203,7 +220,7 @@ export function HeroSection() {
               ease: [0.16, 1, 0.3, 1] as const,
             }}
           >
-            <div className="relative border border-[rgba(213,255,64,0.2)] bg-[#0A0A0A] rounded-[2px] p-4 sm:p-7 cyber-grid-bg">
+            <div className="relative border border-[rgba(213,255,64,0.2)] bg-[#0A0A0A] rounded-[2px] p-5 sm:p-7 cyber-grid-bg">
               {/* Header inside visualization */}
               <div className="flex items-center justify-between pb-4 border-b border-[rgba(213,255,64,0.12)]">
                 <div>
@@ -211,135 +228,106 @@ export function HeroSection() {
                     CONNECTED DIGITAL ECOSYSTEM
                   </span>
                   <p className="font-display text-xs font-bold text-white uppercase mt-0.5">
-                    How Digital Activities Interconnect
+                    How Digital Activities Interconnect to Drive Growth
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.2)] px-2 py-0.5 rounded-[2px] shrink-0">
+                <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.2)] px-2.5 py-1 rounded-[2px] shrink-0">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40] animate-pulse" />
-                  <span>Interactive Flow</span>
+                  <span>5-Stage Flow</span>
                 </div>
               </div>
 
-              {/* Node Network Map (Responsive Grid with Connected Connectors) */}
-              <div className="py-4 sm:py-6">
-                <div className="grid grid-cols-3 gap-2 sm:gap-4 relative">
-                  {/* Column 1: Foundation */}
-                  <div className="space-y-2 sm:space-y-3">
-                    <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-widest text-[#B0B0B0] block text-center truncate">
-                      01 · FOUNDATION
-                    </span>
-                    {[NODES[0], NODES[1]].map((node) => {
-                      const Icon = node.icon;
-                      const isSelected = activeNode.id === node.id;
-                      return (
-                        <button
-                          key={node.id}
-                          type="button"
-                          onClick={() => setActiveNode(node)}
-                          className={`w-full text-left p-2 sm:p-3 rounded-[2px] border transition-all cursor-pointer ${
-                            isSelected
-                              ? "border-[#D5FF40] bg-[#141414]"
-                              : "border-[rgba(213,255,64,0.15)] bg-[#101010] hover:border-[rgba(213,255,64,0.35)]"
-                          }`}
-                        >
-                          <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
-                            <Icon className={`h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 ${isSelected ? "text-[#D5FF40]" : "text-[#B0B0B0]"}`} />
-                            <span className="font-display text-[11px] sm:text-xs font-bold uppercase text-white truncate">
-                              {node.label}
-                            </span>
-                          </div>
-                          <span className="font-mono text-[9px] sm:text-[10px] text-[#A1A1AA] block truncate">
-                            {node.metric}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
+              {/* Connected Flow Bar (Horizontal sequence) */}
+              <div className="py-4">
+                <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+                  {ECOSYSTEM_STAGES.map((stg, idx) => {
+                    const isSelected = activeStageIndex === idx;
+                    const isPassed = activeStageIndex > idx;
+                    const Icon = stg.icon;
 
-                  {/* Column 2: Reach & Telemetry */}
-                  <div className="space-y-2 sm:space-y-3">
-                    <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-widest text-[#B0B0B0] block text-center truncate">
-                      02 · TRAFFIC & DATA
-                    </span>
-                    {[NODES[2], NODES[3], NODES[4]].map((node) => {
-                      const Icon = node.icon;
-                      const isSelected = activeNode.id === node.id;
-                      return (
-                        <button
-                          key={node.id}
-                          type="button"
-                          onClick={() => setActiveNode(node)}
-                          className={`w-full text-left p-2 sm:p-3 rounded-[2px] border transition-all cursor-pointer ${
-                            isSelected
-                              ? "border-[#D5FF40] bg-[#141414]"
-                              : "border-[rgba(213,255,64,0.15)] bg-[#101010] hover:border-[rgba(213,255,64,0.35)]"
-                          }`}
-                        >
-                          <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
-                            <Icon className={`h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 ${isSelected ? "text-[#D5FF40]" : "text-[#B0B0B0]"}`} />
-                            <span className="font-display text-[11px] sm:text-xs font-bold uppercase text-white truncate">
-                              {node.label}
-                            </span>
-                          </div>
-                          <span className="font-mono text-[9px] sm:text-[10px] text-[#A1A1AA] block truncate">
-                            {node.metric}
+                    return (
+                      <button
+                        key={stg.id}
+                        type="button"
+                        onClick={() => setActiveStageIndex(idx)}
+                        className={`p-2 sm:p-2.5 rounded-[2px] border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                          isSelected
+                            ? "border-[#D5FF40] bg-[#141414]"
+                            : isPassed
+                            ? "border-[#D5FF40]/40 bg-[#101010]"
+                            : "border-white/10 bg-[#0c0c0c] hover:border-white/20"
+                        }`}
+                        title={stg.title}
+                      >
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span
+                            className={`font-mono text-[9px] font-bold ${
+                              isSelected ? "text-[#D5FF40]" : "text-[#707070]"
+                            }`}
+                          >
+                            {stg.step}
                           </span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                          <Icon
+                            className={`h-3 w-3 sm:h-3.5 sm:w-3.5 ${
+                              isSelected
+                                ? "text-[#D5FF40]"
+                                : isPassed
+                                ? "text-white/80"
+                                : "text-[#555]"
+                            }`}
+                          />
+                        </div>
+                        <span className="font-display text-[9px] sm:text-[10px] font-bold uppercase text-white truncate block">
+                          {stg.subhead}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-                  {/* Column 3: Outcomes */}
-                  <div className="space-y-2 sm:space-y-3">
-                    <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-widest text-[#B0B0B0] block text-center truncate">
-                      03 · REVENUE
-                    </span>
-                    {[NODES[5], NODES[6]].map((node) => {
-                      const Icon = node.icon;
-                      const isSelected = activeNode.id === node.id;
-                      return (
-                        <button
-                          key={node.id}
-                          type="button"
-                          onClick={() => setActiveNode(node)}
-                          className={`w-full text-left p-2 sm:p-3 rounded-[2px] border transition-all cursor-pointer ${
-                            isSelected
-                              ? "border-[#D5FF40] bg-[#141414]"
-                              : "border-[rgba(213,255,64,0.15)] bg-[#101010] hover:border-[rgba(213,255,64,0.35)]"
-                          }`}
-                        >
-                          <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
-                            <Icon className={`h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 ${isSelected ? "text-[#D5FF40]" : "text-[#B0B0B0]"}`} />
-                            <span className="font-display text-[11px] sm:text-xs font-bold uppercase text-white truncate">
-                              {node.label}
-                            </span>
-                          </div>
-                          <span className="font-mono text-[9px] sm:text-[10px] text-[#A1A1AA] block truncate">
-                            {node.metric}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                {/* SVG Visual Flow Line */}
+                <div className="hidden sm:flex items-center justify-between px-6 pt-3 text-[#D5FF40]/40 text-xs font-mono">
+                  <span>Web &amp; Apps</span>
+                  <ChevronRight className="w-3 h-3 text-[#D5FF40]/60" />
+                  <span>Traffic</span>
+                  <ChevronRight className="w-3 h-3 text-[#D5FF40]/60" />
+                  <span>Telemetry</span>
+                  <ChevronRight className="w-3 h-3 text-[#D5FF40]/60" />
+                  <span>Inquiries</span>
+                  <ChevronRight className="w-3 h-3 text-[#D5FF40]/60" />
+                  <span>Growth</span>
                 </div>
               </div>
 
-              {/* Active Node Detail Card */}
-              <div className="p-4 border-t border-[rgba(213,255,64,0.15)] bg-[#101010] rounded-[2px] space-y-2">
-                <div className="flex items-center justify-between">
+              {/* Active Stage Detail Card */}
+              <div className="p-4 sm:p-5 border-t border-[rgba(213,255,64,0.15)] bg-[#101010] rounded-[2px] space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#D5FF40]" />
-                    <span className="font-display text-xs font-bold uppercase text-white">
-                      {activeNode.label} ({activeNode.category})
+                    <span className="font-mono text-xs text-[#D5FF40] bg-[#D5FF40]/10 px-2 py-0.5 rounded-[2px] border border-[#D5FF40]/20 font-bold">
+                      STAGE {activeStage.step}
                     </span>
+                    <h3 className="font-display text-sm sm:text-base font-bold uppercase text-white">
+                      {activeStage.title}
+                    </h3>
                   </div>
-                  <span className="font-mono text-[10px] text-[#D5FF40] uppercase">
-                    {activeNode.metric}
+                  <span className="font-mono text-[10px] text-[#A1A1AA] uppercase px-2 py-0.5 rounded-[2px] bg-white/5 border border-white/10">
+                    {activeStage.metric}
                   </span>
                 </div>
-                <p className="text-xs text-[#B0B0B0] leading-relaxed">
-                  {activeNode.description}
+
+                <p className="text-xs sm:text-sm text-[#B0B0B0] leading-relaxed">
+                  {activeStage.description}
                 </p>
+
+                {/* Deliverables Checklist */}
+                <div className="pt-2 border-t border-white/5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  {activeStage.deliverables.map((deliv, dIdx) => (
+                    <div key={dIdx} className="flex items-center gap-1.5 text-[11px] font-mono text-white/90">
+                      <CheckCircle2 className="w-3 h-3 text-[#D5FF40] shrink-0" />
+                      <span className="truncate">{deliv}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>

@@ -31,7 +31,7 @@ export async function submitContactEnquiry(
   }
 
   console.log(
-    `[Server Action] New inquiry from ${validatedData.name} (${validatedData.email}, Phone: ${validatedData.phoneOrWhatsApp}) regarding ${validatedData.goal}`
+    `[Server Action] Validated contact inquiry received successfully for category: "${validatedData.goal}"`
   );
 
   return {

@@ -6,6 +6,7 @@ import {
   WhatHappensNext,
 } from "@/features/contact/components";
 import { Reveal, MotionReveal } from "@/components/ui/motion";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Discuss Your Project — Web Development, Advertising & Tracking | DizitalGrow",
@@ -55,6 +56,7 @@ export default function ContactPage() {
 
       {/* Header Section */}
       <section className="container-cyber pt-16 pb-12">
+        <Breadcrumb items={[{ name: "Contact" }]} />
         <Reveal>
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 mb-3">

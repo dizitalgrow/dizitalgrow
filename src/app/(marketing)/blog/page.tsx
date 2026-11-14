@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getBlogPosts, getAllCategories } from "@/lib/sanity";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { BlogListingClient } from "./BlogListingClient";
 
 export const revalidate = 60; // Next.js ISR: Revalidate every 60 seconds
@@ -37,6 +38,7 @@ export default async function BlogPage() {
   return (
     <div className="py-12 md:py-20">
       <div className="container-cyber space-y-12">
+        <Breadcrumb items={[{ name: "Blog" }]} />
         {/* Header Hero */}
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 border border-[rgba(213,255,64,0.25)] bg-[#101010] px-3 py-1">

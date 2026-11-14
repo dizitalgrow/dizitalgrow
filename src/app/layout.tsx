@@ -60,7 +60,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${spaceGrotesk.variable}`}
+      className={`dark ${inter.variable} ${spaceGrotesk.variable}`}
     >
       <body className="min-h-screen bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased flex flex-col justify-between selection:bg-[#D5FF40] selection:text-[#050505] transition-colors duration-200">
         <Providers>

@@ -10,13 +10,15 @@ import {
   WhatsAppChannelIcon,
 } from "@/components/ui/Icons";
 import {
-  FOOTER_NAV_LINKS,
-  FOOTER_SOLUTIONS_LINKS,
+  FOOTER_SERVICES_LINKS,
+  FOOTER_EXPLORE_LINKS,
+  FOOTER_RESOURCES_LINKS,
   FOOTER_LEGAL_LINKS,
   VERIFIED_EMAIL,
   WHATSAPP_CHANNEL_URL,
   VERIFIED_WHATSAPP_PHONE,
   BRAND_TAGLINE,
+  PRIMARY_CTA_LABEL,
 } from "@/constants/navigation";
 import { useSiteSettings } from "@/hooks/use-sanity-queries";
 import { formatWhatsAppUrl } from "@/lib/utils";
@@ -26,16 +28,15 @@ export function Footer() {
 
   const footerDescription =
     siteSettings?.footerDescription ||
-    "DizitalGrow helps individuals, startups, and growing businesses establish their digital presence, reach the right audience, and generate measurable growth through technology, marketing, and data-driven strategies.";
+    "DizitalGrow helps individuals, professionals, startups and businesses build their digital presence and grow through website development, web applications, mobile applications, digital advertising, SEO and conversion tracking.";
 
   const contactEmail = siteSettings?.footerContactEmail || VERIFIED_EMAIL;
   const channelUrl = siteSettings?.whatsappChannelUrl || WHATSAPP_CHANNEL_URL;
   const whatsappPhone =
     siteSettings?.whatsappNumber || VERIFIED_WHATSAPP_PHONE;
 
-  const ctaHeading =
-    siteSettings?.footerCtaHeading || "The Digital World Has Opportunities.";
-  const ctaLabel = siteSettings?.footerCtaButtonLabel || "Let's Grow Together";
+  const ctaHeading = "Your Next Digital Step Starts Here.";
+  const ctaLabel = siteSettings?.footerCtaButtonLabel || PRIMARY_CTA_LABEL;
   const ctaUrl = siteSettings?.footerCtaButtonUrl || "/contact";
   const copyright =
     siteSettings?.copyrightText ||
@@ -50,8 +51,8 @@ export function Footer() {
           <div className="space-y-4 lg:col-span-1">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 group"
-              aria-label="Dizital Grow"
+              className="inline-flex items-center gap-2 group focus-cyber rounded-[2px]"
+              aria-label="DizitalGrow Home"
             >
               <DizitalGrowLogo showTagline={false} />
             </Link>
@@ -79,7 +80,7 @@ export function Footer() {
                 <a
                   href={formatWhatsAppUrl(
                     whatsappPhone,
-                    "Hi DizitalGrow, I would like to discuss our digital growth goals."
+                    "Hi DizitalGrow, I would like to discuss our digital project."
                   )}
                   target="_blank"
                   rel="noreferrer"
@@ -88,7 +89,7 @@ export function Footer() {
                   <WhatsAppIcon className="h-3.5 w-3.5 text-[#D5FF40] shrink-0" />
                   <span>{whatsappPhone}</span>
                   <span className="text-[10px] uppercase font-mono tracking-wider text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.2)] px-1.5 py-0.5 rounded-[2px]">
-                    Chat Only
+                    WhatsApp
                   </span>
                 </a>
               )}
@@ -101,7 +102,7 @@ export function Footer() {
                   className="inline-flex items-center gap-2 text-[#B0B0B0] hover:text-[#D5FF40] transition-colors"
                 >
                   <WhatsAppChannelIcon className="h-3.5 w-3.5 text-[#D5FF40] shrink-0" />
-                  <span>Official WhatsApp Channel</span>
+                  <span>WhatsApp Channel</span>
                   <span className="text-[10px] uppercase font-mono tracking-wider text-[#D5FF40] bg-[#141414] border border-[rgba(213,255,64,0.2)] px-1.5 py-0.5 rounded-[2px]">
                     Updates
                   </span>
@@ -110,13 +111,13 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Solutions Navigation */}
+          {/* Col 2: Services Navigation */}
           <div>
             <p className="font-display text-xs tracking-widest text-[#D5FF40] uppercase font-bold">
-              Digital Solutions
+              Core Services
             </p>
             <ul className="mt-4 space-y-2">
-              {FOOTER_SOLUTIONS_LINKS.map((link) => (
+              {FOOTER_SERVICES_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -129,13 +130,13 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Company & Insights */}
+          {/* Col 3: Explore Navigation */}
           <div>
             <p className="font-display text-xs tracking-widest text-[#D5FF40] uppercase font-bold">
-              Company &amp; Insights
+              Explore Platform
             </p>
             <ul className="mt-4 space-y-2">
-              {FOOTER_NAV_LINKS.map((link) => (
+              {FOOTER_EXPLORE_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -148,19 +149,34 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: Consultation CTA & Socials */}
+          {/* Col 4: Resources & CTA */}
           <div className="space-y-4">
             <p className="font-display text-xs tracking-widest text-[#D5FF40] uppercase font-bold">
-              {ctaHeading}
+              Resources &amp; Company
             </p>
-            <p className="text-xs text-[#B0B0B0] leading-relaxed">
-              Whether you are starting from scratch or looking to grow an existing business, let&apos;s explore how digital can create new opportunities for you.
-            </p>
+            <ul className="mt-2 space-y-2">
+              {FOOTER_RESOURCES_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-xs text-[#B0B0B0] hover:text-[#D5FF40] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-            <div>
+            <div className="pt-3 border-t border-[rgba(213,255,64,0.1)]">
+              <p className="font-display text-xs tracking-wider text-white uppercase font-bold mb-1">
+                {ctaHeading}
+              </p>
+              <p className="text-[11px] text-[#B0B0B0] mb-3 leading-relaxed">
+                Tell us what you are trying to build or improve. We will help you understand the practical next steps.
+              </p>
               <Link
                 href={ctaUrl}
-                className="inline-flex items-center gap-1.5 bg-[#D5FF40] text-[#050505] px-4 py-2.5 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] transition-colors hover:bg-[#c2ea36] active:translate-y-[1px] focus-cyber"
+                className="inline-flex items-center gap-1.5 bg-[#D5FF40] text-[#050505] px-4 py-2 text-xs font-display font-extrabold uppercase tracking-wider rounded-[2px] transition-colors hover:bg-[#c2ea36] active:translate-y-[1px] focus-cyber"
               >
                 <span>{ctaLabel}</span>
                 <ArrowUpRight className="h-3.5 w-3.5" />
@@ -169,13 +185,13 @@ export function Footer() {
 
             <div className="pt-2">
               <span className="text-[10px] font-mono uppercase tracking-wider text-[#B0B0B0] block mb-2 font-bold">
-                CONNECT WITH US
+                CONNECT
               </span>
               <div className="flex flex-wrap items-center gap-2">
                 <a
                   href={formatWhatsAppUrl(
                     whatsappPhone,
-                    "Hi DizitalGrow, I would like to discuss our digital growth goals."
+                    "Hi DizitalGrow, I would like to discuss our digital project."
                   )}
                   target="_blank"
                   rel="noreferrer"
@@ -185,19 +201,6 @@ export function Footer() {
                   <WhatsAppIcon className="h-3 w-3 text-[#D5FF40]" />
                   <span>WhatsApp</span>
                 </a>
-
-                {channelUrl && (
-                  <a
-                    href={channelUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Follow WhatsApp Channel"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono rounded-[2px] border border-[rgba(213,255,64,0.2)] text-[#B0B0B0] hover:text-[#D5FF40] hover:border-[#D5FF40] transition-colors"
-                  >
-                    <WhatsAppChannelIcon className="h-3 w-3 text-[#D5FF40]" />
-                    <span>Channel</span>
-                  </a>
-                )}
 
                 <a
                   href="https://www.instagram.com/dizitalgrow/"

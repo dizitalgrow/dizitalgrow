@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { getBlogPostBySlug, urlFor } from "@/lib/sanity";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const revalidate = 60; // Next.js ISR: Revalidate every 60 seconds
 
@@ -166,8 +167,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="container-cyber max-w-4xl space-y-10">
-        {/* Breadcrumb & Back Link */}
+      <div className="container-cyber max-w-4xl space-y-8">
+        <Breadcrumb
+          items={[
+            { name: "Blog", href: "/blog" },
+            { name: post.title },
+          ]}
+        />
+
+        {/* Back Link */}
         <div className="flex items-center justify-between text-xs font-mono text-[#B0B0B0]">
           <Link
             href="/blog"

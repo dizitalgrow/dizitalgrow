@@ -5,37 +5,39 @@ import { getBlogPosts } from "@/lib/sanity";
 import {
   HeroSection,
   DigitalOpportunitySection,
-  WhoWeHelpSection,
-  OutcomesSection,
-  GrowthFrameworkSection,
   CapabilitiesSection,
+  SolutionsPreviewSection,
+  IndustriesPreviewSection,
   WhyDizitalGrowSection,
+  GrowthFrameworkSection,
   WorkShowcaseSection,
+  ToolsPreviewSection,
   LearnAndGrowSection,
   HomeFAQSection,
   FinalCTASection,
 } from "@/features/home/components";
 
 export const metadata: Metadata = {
-  title: "DizitalGrow — Grow Beyond Offline | Digital Growth Platform",
+  title: "DizitalGrow | Web Development & Digital Marketing Agency",
   description:
-    "We help individuals, startups, and growing businesses establish their digital presence, reach the right audience, and turn online opportunities into measurable growth through technology, marketing, and data-driven strategies.",
+    "DizitalGrow is a web development and digital marketing agency engineering high-performance websites, web applications, Meta Ads, Google Ads, SEO, and server-side conversion tracking for growing businesses.",
   alternates: {
     canonical: "https://dizitalgrow.in",
   },
   openGraph: {
-    title: "DizitalGrow — Grow Beyond Offline",
+    title: "DizitalGrow | Web Development & Digital Marketing Agency",
     description:
-      "The Digital World Has Opportunities. Let's Help You Grow With Them. Web development, high-intent advertising, and verified server-side telemetry.",
+      "DizitalGrow is a web development and digital marketing agency engineering high-performance websites, web applications, Meta Ads, Google Ads, SEO, and server-side conversion tracking for growing businesses.",
     url: "https://dizitalgrow.in",
     siteName: "DizitalGrow",
+    locale: "en_IE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DizitalGrow — Grow Beyond Offline",
+    title: "DizitalGrow | Web Development & Digital Marketing Agency",
     description:
-      "From building your digital presence to reaching the right audience and turning visitors into customers, we help you make the most of the digital world.",
+      "DizitalGrow is a web development and digital marketing agency engineering high-performance websites, web applications, Meta Ads, Google Ads, SEO, and server-side conversion tracking for growing businesses.",
   },
 };
 
@@ -44,16 +46,38 @@ export const revalidate = 60; // Next.js ISR: Revalidate homepage every 60 secon
 export default async function HomePage() {
   const publishedPosts = await getBlogPosts({ limit: 6 });
 
-  const organizationSchema = {
+  const agencySchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "ProfessionalService"],
     name: "DizitalGrow",
     url: "https://dizitalgrow.in",
     logo: "https://dizitalgrow.in/icon.png",
+    image: "https://dizitalgrow.in/icon.png",
     email: "contact@dizitalgrow.in",
+    telephone: "+919187126193",
     slogan: "Grow Beyond Offline.",
     description:
-      "DizitalGrow helps individuals, startups, and businesses establish their digital presence, reach the right audience, and generate measurable growth through technology, marketing, and data-driven strategies.",
+      "DizitalGrow is a web development and digital marketing agency helping individuals, professional practices, startups, and businesses establish high-performance digital platforms, acquire customers through high-intent advertising, and measure conversions with server-side telemetry.",
+    areaServed: [
+      {
+        "@type": "Country",
+        name: "India",
+      },
+      {
+        "@type": "City",
+        name: "Bengaluru",
+      },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bengaluru",
+      addressRegion: "Karnataka",
+      addressCountry: "IN",
+    },
+    sameAs: [
+      "https://whatsapp.com/channel/0029Vb4w2hL0bIdtE14Y8w0s",
+      "https://instagram.com/dizitalgrow",
+    ],
   };
 
   const webSiteSchema = {
@@ -85,7 +109,7 @@ export default async function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(agencySchema) }}
       />
       <script
         type="application/ld+json"
@@ -96,37 +120,40 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* Section 1: Hero Experience */}
+      {/* Section 1: Hero */}
       <HeroSection />
 
-      {/* Section 2: The Digital Opportunity */}
+      {/* Section 2: Business Problems */}
       <DigitalOpportunitySection />
 
-      {/* Section 3: Who We Help (5 Target Audiences) */}
-      <WhoWeHelpSection />
-
-      {/* Section 4: What We Help You Achieve (5 Outcomes) */}
-      <OutcomesSection />
-
-      {/* Section 5: Signature Digital Growth Framework (LEARN → BUILD → REACH → CONVERT → GROW) */}
-      <GrowthFrameworkSection />
-
-      {/* Section 6: Capabilities (BUILD, REACH, CONVERT & MEASURE) */}
+      {/* Section 3: Services (8 Core Capabilities) */}
       <CapabilitiesSection />
 
-      {/* Section 7: Why DizitalGrow? (Honest Differentiators) */}
+      {/* Section 4: Solutions (9 Tailored Blueprints) */}
+      <SolutionsPreviewSection />
+
+      {/* Section 5: Industries (6 Sector Systems) */}
+      <IndustriesPreviewSection />
+
+      {/* Section 6: Why DizitalGrow (5 Differentiators) */}
       <WhyDizitalGrowSection />
 
-      {/* Section 8: Work and Case Studies */}
+      {/* Section 7: Approach (How We Work — 5 Stages) */}
+      <GrowthFrameworkSection />
+
+      {/* Section 8: Selected Work */}
       <WorkShowcaseSection />
 
-      {/* Section 9: Knowledge and Insights */}
+      {/* Section 9: Free Tools Preview */}
+      <ToolsPreviewSection />
+
+      {/* Section 10: Blog & Insights Preview */}
       <LearnAndGrowSection posts={publishedPosts} />
 
-      {/* Section 10: Frequently Asked Questions */}
+      {/* Section 11: Frequently Asked Questions */}
       <HomeFAQSection />
 
-      {/* Section 11: Final Call to Action */}
+      {/* Section 12: Final Call to Action */}
       <FinalCTASection />
     </>
   );

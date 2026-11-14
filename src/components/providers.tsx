@@ -21,6 +21,7 @@ export function Providers({ children }: ProvidersProps) {
     <QueryClientProvider client={queryClient}>
       <NextThemesProvider
         attribute="class"
+        forcedTheme="dark"
         defaultTheme="dark"
         enableSystem={false}
         disableTransitionOnChange

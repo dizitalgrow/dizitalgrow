@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2, Compass, FileCheck2, Code2, TestTube2, Rocket } from "lucide-react";
 import { Reveal, MotionReveal } from "@/components/ui/motion";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Our 5-Stage Process — Discovery to Launch | DizitalGrow",
@@ -99,6 +100,7 @@ export default function ProcessPage() {
     <div className="w-full bg-[#050505] text-white">
       {/* Header */}
       <section className="container-cyber pt-16 pb-12">
+        <Breadcrumb items={[{ name: "Process" }]} />
         <Reveal>
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 mb-3">

@@ -5,21 +5,23 @@ import { Check, Activity, Cpu, Radio, Zap, TrendingUp } from "lucide-react";
 import { GROWTH_FRAMEWORK_STAGES } from "@/constants/site-data";
 import { Reveal, MotionReveal } from "@/components/ui/motion";
 
-const STAGE_ICONS = {
+const STAGE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  UNDERSTAND: Cpu,
   LEARN: Cpu,
   BUILD: Zap,
   REACH: Radio,
   CONVERT: Activity,
+  MEASURE: TrendingUp,
   GROW: TrendingUp,
 };
 
 export function GrowthFrameworkSection() {
   const [activeStageIndex, setActiveStageIndex] = useState(0);
   const currentStage = GROWTH_FRAMEWORK_STAGES[activeStageIndex];
-  const CurrentIcon = STAGE_ICONS[currentStage.phase];
+  const CurrentIcon = STAGE_ICONS[currentStage.phase] || Cpu;
 
   return (
-    <section id="framework" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] bg-[#070707] scroll-mt-16">
+    <section id="approach" className="py-20 md:py-28 border-b border-[rgba(213,255,64,0.12)] bg-[#070707] scroll-mt-16">
       <div className="container-cyber">
         {/* Section Header */}
         <Reveal>
@@ -27,17 +29,17 @@ export function GrowthFrameworkSection() {
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[#D5FF40]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#D5FF40]">
-                SIGNATURE FRAMEWORK
+                OUR METHODOLOGY
               </span>
             </div>
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-white leading-tight">
-              A Smarter Way to <br />
-              <span className="text-[#D5FF40]">Grow Digitally.</span>
+              How We Work: <br />
+              <span className="text-[#D5FF40]">Step-by-Step Clarity.</span>
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-[#B0B0B0] leading-relaxed">
-              Most digital initiatives fail because steps are skipped or tackled out of order. Our five-stage framework ensures your technology, traffic, and tracking build upon each other.
+              Sustainable digital growth happens in sequence. Our five-stage delivery model ensures your foundation, acquisition channels, and measurement architecture operate as one cohesive engine.
             </p>
           </div>
         </Reveal>
@@ -52,7 +54,7 @@ export function GrowthFrameworkSection() {
             {GROWTH_FRAMEWORK_STAGES.map((stage, idx) => {
               const isSelected = activeStageIndex === idx;
               const isPassed = activeStageIndex > idx;
-              const Icon = STAGE_ICONS[stage.phase];
+              const Icon = STAGE_ICONS[stage.phase] || Cpu;
 
               return (
                 <button

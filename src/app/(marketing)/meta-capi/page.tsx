@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2, ShieldAlert, Cpu, Globe, Server, Database, ArrowRight } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Reveal, MotionReveal } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
@@ -26,6 +27,12 @@ export default function MetaCapiPage() {
     <div className="w-full bg-[#050505] text-white">
       {/* Header */}
       <section className="container-cyber pt-16 pb-12">
+        <Breadcrumb
+          items={[
+            { name: "Services", href: "/services" },
+            { name: "Meta Conversions API" },
+          ]}
+        />
         <Reveal>
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 mb-3">

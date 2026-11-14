@@ -10,6 +10,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Reveal, MotionReveal } from "@/components/ui/motion";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { GROWTH_FRAMEWORK_STAGES } from "@/constants/site-data";
 import { PRIMARY_CTA_LABEL, BRAND_TAGLINE } from "@/constants/navigation";
 
@@ -62,6 +63,7 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <section className="container-cyber pt-16 pb-14 border-b border-[rgba(213,255,64,0.12)]">
+        <Breadcrumb items={[{ name: "About" }]} />
         <Reveal>
           <div className="max-w-3xl space-y-5">
             <div className="inline-flex items-center gap-2">
