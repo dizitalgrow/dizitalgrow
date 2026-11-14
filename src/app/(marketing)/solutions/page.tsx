@@ -159,7 +159,7 @@ export default function SolutionsDirectoryPage() {
   );
 
   return (
-    <main className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen pt-12 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -370,6 +370,6 @@ export default function SolutionsDirectoryPage() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

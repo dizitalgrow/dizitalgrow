@@ -20,8 +20,26 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Terms of Service | DizitalGrow",
+    description:
+      "Read the terms, project agreements, and conditions governing digital services and website usage with DizitalGrow.",
+    url: "https://dizitalgrow.in/terms",
+    publisher: {
+      "@type": "Organization",
+      name: "DizitalGrow",
+      url: "https://dizitalgrow.in",
+    },
+  };
+
   return (
     <div className="w-full bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
       <article className="container-cyber pt-16 pb-24 max-w-3xl">
         <Reveal>
           <Breadcrumb items={[{ name: "Terms of Service" }]} />

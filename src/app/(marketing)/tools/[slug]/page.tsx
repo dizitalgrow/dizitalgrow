@@ -83,7 +83,7 @@ export default async function ToolOrCategoryPage({ params }: PageProps) {
       .filter(Boolean);
 
     return (
-      <main className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="min-h-screen pt-12 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <Breadcrumb
           items={[
             { name: "Free Tools", href: "/tools" },
@@ -169,7 +169,7 @@ export default async function ToolOrCategoryPage({ params }: PageProps) {
             <ArrowRight className="w-4 h-4" />
           </Link>
         </section>
-      </main>
+      </div>
     );
   }
 
@@ -208,7 +208,7 @@ export default async function ToolOrCategoryPage({ params }: PageProps) {
     };
 
     return (
-      <main className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="min-h-screen pt-12 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
@@ -436,7 +436,7 @@ export default async function ToolOrCategoryPage({ params }: PageProps) {
             </Link>
           </div>
         </section>
-      </main>
+      </div>
     );
   }
 

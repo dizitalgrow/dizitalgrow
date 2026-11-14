@@ -30,8 +30,32 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "DizitalGrow Selected Work & Architectural Proofs",
+    itemListElement: HOMEPAGE_SELECTED_WORK.map((item, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      item: {
+        "@type": "CreativeWork",
+        name: item.title,
+        description: item.overview,
+        creator: {
+          "@type": "Organization",
+          name: "DizitalGrow",
+          url: "https://dizitalgrow.in",
+        },
+      },
+    })),
+  };
+
   return (
-    <main className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen pt-12 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Breadcrumb items={[{ name: "Work & Case Studies" }]} />
 
       {/* Hero Header */}
@@ -189,6 +213,6 @@ export default function WorkPage() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

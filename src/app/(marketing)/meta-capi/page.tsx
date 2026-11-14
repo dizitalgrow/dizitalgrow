@@ -23,8 +23,34 @@ export const metadata: Metadata = {
 };
 
 export default function MetaCapiPage() {
+  const techArticleSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: "Server-Side Meta Conversions API (CAPI) Architecture & Setup",
+    description:
+      "How Meta Conversions API works with browser pixels and event deduplication to ensure accurate ad tracking and recovered revenue data.",
+    author: {
+      "@type": "Organization",
+      name: "DizitalGrow",
+      url: "https://dizitalgrow.in",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "DizitalGrow",
+      url: "https://dizitalgrow.in",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://dizitalgrow.in/meta-capi",
+    },
+  };
+
   return (
     <div className="w-full bg-[#050505] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(techArticleSchema) }}
+      />
       {/* Header */}
       <section className="container-cyber pt-16 pb-12">
         <Breadcrumb

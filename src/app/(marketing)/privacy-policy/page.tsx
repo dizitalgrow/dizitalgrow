@@ -20,8 +20,26 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicyPage() {
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Privacy Policy | DizitalGrow",
+    description:
+      "Learn how DizitalGrow collects, utilizes, safeguards, and handles your data and privacy across our website, services, and free tools.",
+    url: "https://dizitalgrow.in/privacy-policy",
+    publisher: {
+      "@type": "Organization",
+      name: "DizitalGrow",
+      url: "https://dizitalgrow.in",
+    },
+  };
+
   return (
     <div className="w-full bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
       <article className="container-cyber pt-16 pb-24 max-w-3xl">
         <Reveal>
           <Breadcrumb items={[{ name: "Privacy Policy" }]} />

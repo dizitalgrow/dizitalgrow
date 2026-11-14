@@ -26,8 +26,27 @@ export const metadata: Metadata = {
 export default function IndustriesDirectoryPage() {
   const industries = Object.values(INDUSTRIES_DATA);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: industries.map((ind, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      item: {
+        "@type": "Service",
+        name: ind.title,
+        description: ind.heroDescription,
+        url: `https://dizitalgrow.in/industries/${ind.slug}`,
+      },
+    })),
+  };
+
   return (
-    <main className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen pt-12 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Breadcrumb items={[{ name: "Industries" }]} />
 
       {/* Hero Header */}
@@ -117,6 +136,6 @@ export default function IndustriesDirectoryPage() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

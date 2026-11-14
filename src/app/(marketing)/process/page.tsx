@@ -96,8 +96,26 @@ const DETAILED_STAGES = [
 ];
 
 export default function ProcessPage() {
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "DizitalGrow 5-Stage Digital Delivery Process",
+    description:
+      "The disciplined 5-stage framework DizitalGrow uses to deliver high-converting websites, web applications, and telemetry systems.",
+    step: DETAILED_STAGES.map((s, idx) => ({
+      "@type": "HowToStep",
+      position: idx + 1,
+      name: s.name,
+      text: s.description,
+    })),
+  };
+
   return (
     <div className="w-full bg-[#050505] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
       {/* Header */}
       <section className="container-cyber pt-16 pb-12">
         <Breadcrumb items={[{ name: "Process" }]} />
