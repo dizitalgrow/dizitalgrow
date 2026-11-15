@@ -35,10 +35,9 @@ export const portableTextComponents: PortableTextComponents = {
       return (
         <h2
           id={id || undefined}
-          className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-[var(--color-text-primary)] uppercase tracking-tight mt-12 mb-5 scroll-mt-28 flex items-center gap-2 group"
+          className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-[var(--color-text-primary)] uppercase tracking-tight mt-12 mb-5 scroll-mt-28"
         >
-          <span className="h-2 w-2 rounded-full bg-[#D5FF40] inline-block shrink-0" />
-          <span>{children}</span>
+          {children}
         </h2>
       );
     },

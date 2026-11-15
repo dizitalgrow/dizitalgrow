@@ -377,6 +377,15 @@ export const post = defineType({
             defineField({ name: "ctaLabel", title: "CTA Button Label", type: "string" }),
             defineField({ name: "ctaUrl", title: "CTA Button URL", type: "string" }),
           ],
+          preview: {
+            select: { title: "name", subtitle: "rating" },
+            prepare({ title, subtitle }) {
+              return {
+                title: title ? `⚡ ${title}` : "Feature Card",
+                subtitle: subtitle ? `Score: ${subtitle}` : "Feature Comparison",
+              };
+            },
+          },
         },
         // Custom Block 4: Pros & Cons
         {
@@ -404,6 +413,15 @@ export const post = defineType({
               validation: (rule) => rule.required(),
             }),
           ],
+          preview: {
+            select: { title: "title" },
+            prepare({ title }) {
+              return {
+                title: title ? `⚖️ ${title}` : "⚖️ Pros & Cons",
+                subtitle: "Comparison Block",
+              };
+            },
+          },
         },
         // Custom Block 5: Step-by-Step Guide
         {
@@ -429,6 +447,15 @@ export const post = defineType({
               ],
             }),
           ],
+          preview: {
+            select: { title: "sectionTitle" },
+            prepare({ title }) {
+              return {
+                title: title ? `📋 ${title}` : "📋 Step-by-Step Guide",
+                subtitle: "Process Flow",
+              };
+            },
+          },
         },
         // Custom Block 6: Statistic Callout
         {
@@ -440,6 +467,19 @@ export const post = defineType({
             defineField({ name: "label", title: "Description / Metric Label", type: "string", validation: (rule) => rule.required() }),
             defineField({ name: "source", title: "Source Attribution (e.g. Google Analytics / Meta Study)", type: "string" }),
           ],
+          preview: {
+            select: {
+              value: "value",
+              label: "label",
+              source: "source",
+            },
+            prepare({ value, label, source }) {
+              return {
+                title: value ? `📊 ${value}` : "Statistic Callout",
+                subtitle: [source, label].filter(Boolean).join(" — "),
+              };
+            },
+          },
         },
         // Custom Block 7: Code Block
         {
@@ -467,6 +507,15 @@ export const post = defineType({
             defineField({ name: "filename", title: "File Name (e.g. capi-worker.ts)", type: "string" }),
             defineField({ name: "code", title: "Code", type: "text", rows: 8, validation: (rule) => rule.required() }),
           ],
+          preview: {
+            select: { title: "filename", subtitle: "language" },
+            prepare({ title, subtitle }) {
+              return {
+                title: title ? `💻 ${title}` : "💻 Code Snippet",
+                subtitle: subtitle ? `Language: ${subtitle}` : "Code",
+              };
+            },
+          },
         },
         // Custom Block 8: CTA Banner
         {
@@ -494,6 +543,15 @@ export const post = defineType({
               },
             }),
           ],
+          preview: {
+            select: { title: "headline", subtitle: "buttonLabel" },
+            prepare({ title, subtitle }) {
+              return {
+                title: title ? `📢 ${title}` : "📢 CTA Banner",
+                subtitle: subtitle ? `Action: ${subtitle}` : "Conversion CTA",
+              };
+            },
+          },
         },
         // Custom Block 9: FAQ Accordion
         {
@@ -517,6 +575,15 @@ export const post = defineType({
               ],
             }),
           ],
+          preview: {
+            select: { title: "heading" },
+            prepare({ title }) {
+              return {
+                title: title ? `❓ ${title}` : "❓ FAQ Accordion",
+                subtitle: "FAQ Accordion Block",
+              };
+            },
+          },
         },
         // Custom Block 10: Video Embed
         {
@@ -527,6 +594,15 @@ export const post = defineType({
             defineField({ name: "url", title: "Video URL (YouTube or direct)", type: "url", validation: (rule) => rule.required() }),
             defineField({ name: "caption", title: "Video Caption", type: "string" }),
           ],
+          preview: {
+            select: { title: "caption", subtitle: "url" },
+            prepare({ title, subtitle }) {
+              return {
+                title: title ? `🎥 ${title}` : "🎥 Video Embed",
+                subtitle: subtitle || "Video URL",
+              };
+            },
+          },
         },
       ],
     }),

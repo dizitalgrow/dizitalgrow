@@ -79,11 +79,14 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           )}
         </div>
 
-        {/* Title */}
+        {/* Title - strictly 2 lines */}
         <h3
-          className={`font-display font-bold text-white transition-colors group-hover:text-[#D5FF40] ${
-            featured ? "text-xl sm:text-2xl" : "text-base sm:text-lg"
+          className={`font-display font-bold text-white transition-colors group-hover:text-[#D5FF40] line-clamp-2 ${
+            featured
+              ? "text-xl sm:text-2xl leading-snug"
+              : "text-base sm:text-lg leading-snug min-h-[2.75rem]"
           }`}
+          title={post.title}
         >
           <Link href={`/blog/${slug}`}>
             <span className="absolute inset-0" aria-hidden="true" />
@@ -91,9 +94,9 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           </Link>
         </h3>
 
-        {/* Excerpt */}
+        {/* Excerpt - strictly 2 lines */}
         {post.excerpt && (
-          <p className="mt-2.5 text-xs sm:text-sm text-[#B0B0B0] line-clamp-3 leading-relaxed font-normal">
+          <p className="mt-2.5 text-xs sm:text-sm text-[#B0B0B0] line-clamp-2 leading-relaxed font-normal min-h-[2.5rem]">
             {post.excerpt}
           </p>
         )}
